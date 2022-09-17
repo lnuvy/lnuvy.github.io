@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import styled from '@emotion/styled'
-import styles from '../styles/Home.modules.scss'
+import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
   return (
