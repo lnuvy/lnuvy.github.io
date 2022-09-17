@@ -1,12 +1,9 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-// import Image from 'next/image'
-import { useState } from 'react'
+import styled from '@emotion/styled'
+import styles from '../styles/Home.modules.scss'
 
 const Home: NextPage = () => {
-
-  const [isDark, setIsDark] = useState(false)
-
   return (
     <div>
       <Head>
@@ -15,11 +12,21 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <Container>
+        <h2>안녕하세요</h2>
+
+        <div className={styles.grid}>그리드~ㄴ\</div>
+      </Container>
 
       {/*<hr />*/}
       {/*<Image  src="/vercel.svg" alt="gd" width={72} height={16} />*/}
     </div>
   )
 }
+
+const Container = styled.div`
+  min-height: 80vh;
+  display: flex;
+`
 
 export default Home
