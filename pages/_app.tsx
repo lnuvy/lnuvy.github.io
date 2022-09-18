@@ -6,9 +6,11 @@ function MyApp({ Component, pageProps }: AppProps) {
   const [isDark, setIsDark] = useState(false)
 
   return (
-    <div className="global-div">
-      <Component {...pageProps} />
-    </div>
+    <>
+      <div className="global-div">
+        <Component {...pageProps} />
+      </div>
+    </>
   )
 }
 

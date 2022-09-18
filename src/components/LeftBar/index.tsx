@@ -10,6 +10,14 @@ const Index = () => {
 
       <h4>이한울</h4>
 
+      <div>
+        <span>Home</span>
+        <span>About</span>
+        <span>Stacks</span>
+        <span>Experience</span>
+        <span>Education</span>
+      </div>
+
       <Footer>
         <Span>© 2022. lnuvy All rights reserved.</Span>
       </Footer>
