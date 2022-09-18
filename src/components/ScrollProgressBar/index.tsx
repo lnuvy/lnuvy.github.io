@@ -5,7 +5,7 @@ import React, {
   useRef,
   MouseEvent,
 } from 'react'
-import styles from './Styles.module.css'
+import styles from './styles.module.css'
 
 const ScrollProgress = () => {
   const [width, setWidth] = useState<number>(0)

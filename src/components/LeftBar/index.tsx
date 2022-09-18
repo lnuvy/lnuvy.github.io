@@ -1,7 +1,7 @@
 import React from 'react'
-import { Wrap, ImageProfile, Image, Span, Footer } from './Styles'
+import { Wrap, ImageProfile, Image, Span, Footer } from './LeftBarStyles'
 
-const Index = () => {
+const LeftBar = () => {
   return (
     <Wrap>
       <ImageProfile>
@@ -10,8 +10,8 @@ const Index = () => {
 
       <h4>이한울</h4>
 
-      <div>
-        <span>Home</span>
+      <div className="flex-c-center" style={{ gap: '0.5rem' }}>
+        <span>Top</span>
         <span>About</span>
         <span>Stacks</span>
         <span>Experience</span>
@@ -25,4 +25,4 @@ const Index = () => {
   )
 }
 
-export default Index
+export default LeftBar
