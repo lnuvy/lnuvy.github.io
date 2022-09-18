@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import styled from '@emotion/styled'
 import LeftBar from '@components/LeftBar'
-import RightContent from '@components/RightContent'
+import RightContent from '../src/layout/RightContent'
 import ScrollProgress from '@components/ScrollProgressBar'
 
 const Home: NextPage = () => {

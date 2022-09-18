@@ -13,7 +13,8 @@
           "@constant": "./src/constant",
           "@utils": "./src/utils",
           "@hooks": "./src/hooks",
-          "@components": "./src/components"
+          "@components": "./src/components",
+          "@layout": "./src/layout"
         }
       }
     ]
