@@ -37,7 +37,7 @@ const Wrap = styled.div`
     }
 
     &:hover:after {
-      border-bottom: solid 2px green;
+      //border-bottom: solid 2px #539bf5;
       transform: scaleX(1);
     }
 
@@ -46,7 +46,7 @@ const Wrap = styled.div`
       padding: 0 0.3rem;
 
       &:hover {
-        color: rgba(205, 217, 229, 0.4);
+        color: rgba(205, 217, 229, 0.5);
         transition: all 0.3s ease-in-out;
       }
     }

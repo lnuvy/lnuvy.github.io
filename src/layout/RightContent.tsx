@@ -2,6 +2,7 @@ import React from 'react'
 import styled from '@emotion/styled'
 import TitleCarousel from '@components/Title'
 import About from '../../pages/About'
+import Stacks from '../../pages/Stacks'
 
 const RightContent = () => {
   return (
@@ -10,6 +11,9 @@ const RightContent = () => {
 
       <br />
       <About />
+      <br />
+      <Stacks />
+      <br />
 
       <h3>테스트</h3>
       <h3>테스트</h3>
