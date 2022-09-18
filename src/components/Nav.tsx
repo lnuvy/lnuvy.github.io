@@ -6,7 +6,9 @@ const Nav = () => {
   return (
     <Wrap>
       <nav>
-        <Link href="/about">안녕</Link>
+        <Link href="/about">
+          <Title>l</Title>
+        </Link>
       </nav>
     </Wrap>
   )
@@ -17,6 +19,11 @@ const Wrap = styled.div`
   //padding: 1rem;
   background: #2d333b;
   padding: 16px 24px;
+`
+
+const Title = styled.h2`
+  margin: 0;
+  cursor: pointer;
 `
 
 export default Nav

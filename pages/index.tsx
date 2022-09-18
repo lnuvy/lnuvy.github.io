@@ -1,7 +1,8 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import styled from '@emotion/styled'
-import styles from '../styles/Home.module.css'
+import LeftBar from '@components/LeftBar'
+import RightContent from '@components/RightContent'
 
 const Home: NextPage = () => {
   return (
@@ -13,20 +14,21 @@ const Home: NextPage = () => {
       </Head>
 
       <Container>
-        <h2>안녕하세요</h2>
-
-        <div className={styles.grid}>그리드~ㄴ\</div>
+        <LeftBar />
+        <RightContent />
       </Container>
-
-      {/*<hr />*/}
-      {/*<Image  src="/vercel.svg" alt="gd" width={72} height={16} />*/}
     </div>
   )
 }
 
 const Container = styled.div`
-  min-height: 80vh;
+  padding: 0 1rem;
+  max-width: 90vw;
   display: flex;
+  flex: 1;
+  //justify-content: center;
+  //align-items: center;
+  margin: 0 auto;
 `
 
 export default Home
