@@ -1,5 +1,6 @@
 import React from 'react'
 import { Wrap, ImageProfile, Image, Span, Footer } from './LeftBarStyles'
+import Chapter from '@components/LeftBar/Chapter'
 
 const LeftBar = () => {
   return (
@@ -10,13 +11,7 @@ const LeftBar = () => {
 
       <h4>이한울</h4>
 
-      <div className="flex-c-center" style={{ gap: '0.5rem' }}>
-        <span>Top</span>
-        <span>About</span>
-        <span>Stacks</span>
-        <span>Experience</span>
-        <span>Education</span>
-      </div>
+      <Chapter />
 
       <Footer>
         <Span>© 2022. lnuvy All rights reserved.</Span>

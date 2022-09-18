@@ -1,11 +1,32 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import TitleCarousel from '@components/Title'
+import About from '../../pages/About'
 
 const RightContent = () => {
   return (
     <Wrap>
       <TitleCarousel />
+
+      <br />
+      <About />
+
+      <h3>테스트</h3>
+      <h3>테스트</h3>
+      <h3>테스트</h3>
+      <h3>테스트</h3>
+      <h3>테스트</h3>
+      <h3>테스트</h3>
+      <h3>테스트</h3>
+      <h3>테스트</h3>
+      <h3>테스트</h3>
+      <h3>테스트</h3>
+      <h3>테스트</h3>
+      <h3>테스트</h3>
+      <h3>테스트</h3>
+      <h3>테스트</h3>
+      <h3>테스트</h3>
+      <h3>테스트</h3>
       <h3>테스트</h3>
       <h3>테스트</h3>
       <h3>테스트</h3>
