@@ -1,6 +1,7 @@
 import React from 'react'
 import { ListWrap, Label, Description } from './StackListStyles'
 import { Stacks } from '@constant/Stacks'
+import SelectBtn from '../../elements/SelectBtn'
 
 const StackList = () => {
   return (
@@ -17,11 +18,12 @@ const StackList = () => {
 
                 <Description>{v.desc}</Description>
               </div>
+              <div className="stack-right">
+                <SelectBtn>{}</SelectBtn>
+              </div>
             </li>
           )
         })}
-
-        <li>안녕</li>
       </ul>
     </ListWrap>
   )

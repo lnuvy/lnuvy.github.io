@@ -5,7 +5,6 @@ body {
     /*font-family: 'Cinzel', serif;*/
     /*font-family: 'Jua', sans-serif;*/
     font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-    background: #22272e;
     scroll-behavior: smooth;
 }
 
@@ -20,9 +19,6 @@ a {
 
 .global-div {
     min-height: 100vh;
-    background: #22272e;
-    color: rgba(205, 217, 229, .7);
-    /*color: #cdd9e5b3;*/
 }
 
 .flex-start {

@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 
 export const ListWrap = styled.div`
   padding: 0 0.5rem;
+  margin: 0 auto;
   & > ul {
     padding: 0;
 

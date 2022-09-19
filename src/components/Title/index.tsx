@@ -23,7 +23,11 @@ const Page = () => {
   return (
     <TextBox>
       {array.map((t, i) => {
-        return <H1 pos={i}>{t}</H1>
+        return (
+          <H1 key={`${i}_${i}`} pos={i}>
+            {t}
+          </H1>
+        )
       })}
 
       <p>JavaScript / TypeScript / React / MySQL / MongoDB </p>

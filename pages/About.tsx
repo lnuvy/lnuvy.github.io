@@ -40,6 +40,7 @@ const Wrap = styled.div`
   line-height: 1.8;
 
   & > p {
+    margin: 0 auto;
     border: 1px solid #444c56;
     border-radius: 8px;
     padding: 2rem;

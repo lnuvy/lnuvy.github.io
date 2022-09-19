@@ -29,8 +29,6 @@ const Container = styled.div`
   max-width: 90vw;
   display: flex;
   flex: 1;
-  //justify-content: center;
-  //align-items: center;
   margin: 0 auto;
 `
 
