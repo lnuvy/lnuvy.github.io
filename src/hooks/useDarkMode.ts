@@ -1,30 +1,31 @@
 import { useEffect, useState } from 'react'
-import { lightTheme, darkTheme, ColorTheme } from '../../styles/theme'
+import { theme } from '../../styles/theme'
 
 export const useDarkMode = () => {
-  const [colorTheme, setColorTheme] = useState<ColorTheme>(lightTheme)
+  const [isDark, setIsDark] = useState<boolean>(true)
 
-  const setMode = (mode: ColorTheme) => {
-    mode === lightTheme
+  const changeMode = (isCheck: boolean) => {
+    isCheck
       ? localStorage.setItem('theme', 'light')
       : localStorage.setItem('theme', 'dark')
-    setColorTheme(mode)
+    setIsDark(!isCheck)
   }
 
-  const toggleColorTheme = () => {
-    colorTheme === lightTheme ? setMode(darkTheme) : setMode(lightTheme)
-  }
+  const toggleColorTheme = () => changeMode(isDark)
 
   useEffect(() => {
     const localTheme = localStorage.getItem('theme')
     if (localTheme !== null) {
       if (localTheme === 'dark') {
-        setColorTheme(darkTheme)
+        setIsDark(true)
       } else {
-        setColorTheme(lightTheme)
+        setIsDark(false)
       }
     }
   }, [])
 
-  return { colorTheme, toggleColorTheme }
+  return {
+    theme: isDark ? theme.darkTheme : theme.lightTheme,
+    toggleColorTheme,
+  }
 }

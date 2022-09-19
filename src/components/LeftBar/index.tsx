@@ -1,10 +1,10 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Wrap, ImageProfile, Image, Span, Footer } from './LeftBarStyles'
 import Chapter from '@components/LeftBar/Chapter'
-import { ThemeContext } from '@emotion/react'
+import { useDarkMode } from '@hooks/useDarkMode'
 
 const LeftBar = () => {
-  const { colorTheme, toggleColorTheme } = useContext(ThemeContext)
+  const { theme, toggleColorTheme } = useDarkMode()
 
   return (
     <Wrap>
@@ -16,7 +16,7 @@ const LeftBar = () => {
 
       <Chapter />
 
-      <button onClick={toggleTheme}>토글</button>
+      <button onClick={toggleColorTheme}>토글</button>
       <Footer>
         <Span>© 2022. lnuvy All rights reserved.</Span>
       </Footer>
