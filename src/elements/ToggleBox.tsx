@@ -11,8 +11,12 @@ const ToggleBox = ({
   const [check, setCheck] = useState(true)
 
   useEffect(() => {
-    setCheck(checked || true)
+    // setCheck(checked || true)
+    setCheck(checked ?? true)
   }, [checked])
+
+  console.log(checked)
+
   return (
     <CheckBox
       type="checkbox"
@@ -46,8 +50,8 @@ const CheckBox = styled.input`
     transition: background-color 0.2s ease-in-out;
     content: '🌞';
     font-size: 1.2rem;
-    background: ${({ theme }) => theme.text2};
-    color: ${({ theme }) => theme.borderColor};
+    background: ${({ theme }) => theme.palette.text2};
+    color: ${({ theme }) => theme.palette.borderColor};
   }
 
   // 원
@@ -60,8 +64,8 @@ const CheckBox = styled.input`
     top: calc((2rem - 1.6rem) / 2);
     left: calc((4rem - 1.1rem) - 4px);
     border-radius: 2rem;
-    background: ${({ theme }) => theme.backgroundColor};
-    color: ${({ theme }) => theme.text2};
+    background: ${({ theme }) => theme.palette.backgroundColor};
+    color: ${({ theme }) => theme.palette.text2};
     transition: all 0.2s ease-in-out;
   }
 
@@ -76,7 +80,7 @@ const CheckBox = styled.input`
       content: '🌛 ';
       align-items: center;
       justify-content: end;
-      background: ${({ theme }) => theme.text2};
+      background: ${({ theme }) => theme.palette.text2};
     }
 
     /* 선택 O 원 */

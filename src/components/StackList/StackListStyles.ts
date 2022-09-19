@@ -11,9 +11,13 @@ export const ListWrap = styled.div`
       display: flex;
       justify-content: space-between;
       padding: 2rem 0;
-      border-top: 1px solid #373e47;
-      border-bottom: 1px solid #373e47;
+      border-top: 1px solid ${({ theme }) => theme.palette.borderColor};
+      //border-bottom: 1px solid #373e47;
       text-align: -webkit-match-parent;
+
+      &:last-child {
+        border-bottom: 1px solid ${({ theme }) => theme.palette.borderColor};
+      }
 
       & > .stack-left {
         width: 80%;
@@ -23,13 +27,14 @@ export const ListWrap = styled.div`
           & > h3 {
             font-size: 20px;
             font-weight: 600;
-            margin: 0 0.5rem 0 0;
+            margin: 0 0.5rem 2px 0;
             word-break: break-all;
             width: fit-content;
-            color: #539bf5;
+            color: ${({ theme }) => theme.palette.linkColor};
+            border-bottom: 2px solid transparent;
             &:hover {
               cursor: pointer;
-              border-bottom: 1px solid #539bf5;
+              border-bottom: 2px solid ${({ theme }) => theme.palette.linkColor};
             }
           }
         }
@@ -40,13 +45,13 @@ export const ListWrap = styled.div`
 
 export const Label = styled.span`
   color: #768390;
-  border: 1px solid #444c56;
+  border: 1px solid ${({ theme }) => theme.palette.borderColor};
   border-radius: 2rem;
   font-size: 12px;
   font-weight: 500;
   padding: 0 7px;
   margin-left: 4px;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
   vertical-align: middle;
   line-height: 18px;
 `

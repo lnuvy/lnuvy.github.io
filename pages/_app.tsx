@@ -33,8 +33,8 @@ function MyApp({ Component, pageProps }: AppProps) {
     <ThemeProvider
       theme={
         isDark
-          ? { device, ...theme.darkTheme }
-          : { device, ...theme.lightTheme }
+          ? { device: theme.device, palette: theme.darkTheme }
+          : { device: theme.device, palette: theme.lightTheme }
       }
     >
       <div className="global-div">

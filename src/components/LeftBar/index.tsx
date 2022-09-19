@@ -1,7 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { Wrap, ImageProfile, Image, Span, Footer } from './LeftBarStyles'
+import {
+  Wrap,
+  ImageProfile,
+  Image,
+  Span,
+  Footer,
+  BurgerIcon,
+} from './LeftBarStyles'
 import Chapter from '@components/LeftBar/Chapter'
-import ToggleBox from '../../elements/ToggleBox'
+import ToggleBox from '@elements/ToggleBox'
+import { theme } from '../../../styles/theme'
 
 const LeftBar = ({ changeMode }: any) => {
   const [checked, setChecked] = useState<any>(false)
@@ -12,22 +20,33 @@ const LeftBar = ({ changeMode }: any) => {
   }, [])
 
   return (
-    <Wrap>
-      <ImageProfile>
-        <Image src="images/profile.JPG" alt="my_img" />
-      </ImageProfile>
+    <>
+      <br />
+      <input type="checkbox" id="sidebar" style={{ display: 'none' }} />
+      <BurgerIcon htmlFor="sidebar" onClick={(e) => e.stopPropagation()}>
+        <span />
+        <span />
+        <span />
+      </BurgerIcon>
+      <br />
+      <Wrap>
+        <br />
+        <ImageProfile>
+          <Image src="images/profile.JPG" alt="my_img" />
+        </ImageProfile>
 
-      <h4>이한울</h4>
+        <h4>이한울</h4>
 
-      <Chapter />
+        <Chapter />
 
-      <div className="flex-start">
-        <ToggleBox checked={checked} changeMode={changeMode} />
-      </div>
-      <Footer>
-        <Span>© 2022. lnuvy All rights reserved.</Span>
-      </Footer>
-    </Wrap>
+        <div className="flex-start">
+          <ToggleBox checked={checked} changeMode={changeMode} />
+        </div>
+        <Footer>
+          <Span>© 2022. lnuvy All rights reserved.</Span>
+        </Footer>
+      </Wrap>
+    </>
   )
 }
 

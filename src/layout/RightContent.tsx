@@ -47,14 +47,19 @@ const RightContent = () => {
 }
 
 const Wrap = styled.div`
-  width: 100%;
-  padding: 0 2rem;
-`
+  max-width: calc(90vw - 30vw);
+  @media ${({ theme }) => theme.device.mobile} {
+    max-width: 90vw;
+  }
+  background-color: ${({ theme }) => theme.palette.backgroundColor};
 
-const Title = styled.div`
-  background: linear-gradient(to bottom, #0b0719, #2d333b);
-  height: 100vh;
-  width: 100%;
+  //@media;
 `
+//
+// const Title = styled.div`
+//   background: linear-gradient(to bottom, #0b0719, #2d333b);
+//   height: 100vh;
+//   width: 100%;
+// `
 
 export default RightContent

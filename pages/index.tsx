@@ -27,16 +27,21 @@ const Home: NextPage = ({ changeMode }: any) => {
 const GlobalWrap = styled.div`
   max-width: 100vw;
   transition: background-color 0.3s ease-in-out;
-  background: ${({ theme }) => theme.backgroundColor};
-  color: ${({ theme }) => theme.text2};
+  background: ${({ theme }) => theme.palette.backgroundColor};
+  color: ${({ theme }) => theme.palette.text2};
 `
 
 const Container = styled.div`
-  padding: 0 1rem;
   max-width: 90vw;
   display: flex;
   flex: 1;
   margin: 0 auto;
+  gap: 1rem;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    gap: 0;
+  }
+  //padding: 0 1rem;
 `
 
 export default Home

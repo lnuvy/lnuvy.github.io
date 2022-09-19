@@ -47,6 +47,12 @@ const Wrap = styled.div`
     width: 90%;
     font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas,
       Liberation Mono, monospace;
+
+    @media ${({ theme }) => theme.device.mobile} {
+      font-size: 0.8rem;
+      padding: 1rem;
+      width: 95%;
+    }
   }
 `
 
