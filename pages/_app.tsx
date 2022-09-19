@@ -2,15 +2,37 @@ import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 
 import { ThemeProvider } from '@emotion/react'
-import { useDarkMode } from '@hooks/useDarkMode'
+import { useEffect, useState } from 'react'
+import { theme } from '../styles/theme'
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const { theme, toggleColorTheme } = useDarkMode()
+  const [isDark, setIsDark] = useState(false)
+
+  useEffect(() => {
+    const localTheme = localStorage.getItem('theme')
+    if (localTheme !== null) {
+      if (localTheme === 'dark') {
+        setIsDark(true)
+      } else {
+        setIsDark(false)
+      }
+    }
+    // return () => {
+    //   localStorage.removeItem('theme')
+    // }
+  }, [])
+
+  const changeMode = () => {
+    isDark
+      ? localStorage.setItem('theme', 'light')
+      : localStorage.setItem('theme', 'dark')
+    setIsDark(!isDark)
+  }
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={isDark ? theme.darkTheme : theme.lightTheme}>
       <div className="global-div">
-        <Component {...pageProps} />
+        <Component {...pageProps} changeMode={changeMode} />
       </div>
     </ThemeProvider>
   )

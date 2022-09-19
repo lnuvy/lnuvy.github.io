@@ -1,21 +1,4 @@
-// import { Theme } from '@emotion/react'
-
-interface ThemeObj {
-  backgroundColor: string
-  textColor: string
-  borderColor: string
-  stackBorder: string
-  linkColor: string
-  chapterHover: string
-  labelColor: string
-}
-
-interface Theme {
-  darkTheme: ThemeObj
-  lightTheme: ThemeObj
-}
-
-export const theme: Theme = {
+export const theme = {
   darkTheme: {
     backgroundColor: '#22272e',
     textColor: 'rgba(205, 217, 229, .7)',

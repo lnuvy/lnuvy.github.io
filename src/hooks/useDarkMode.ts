@@ -25,6 +25,7 @@ export const useDarkMode = () => {
   }, [])
 
   return {
+    event: isDark,
     theme: isDark ? theme.darkTheme : theme.lightTheme,
     toggleColorTheme,
   }

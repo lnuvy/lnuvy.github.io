@@ -12,11 +12,12 @@ export const ImageProfile = styled.div`
   width: 260px;
   height: 260px;
 `
+
 export const Image = styled.img`
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  border: 1px solid ${(props) => props.theme.borderColor};
+  border: 1px solid ${({ theme }) => theme.borderColor};
 `
 
 export const Footer = styled.div`
