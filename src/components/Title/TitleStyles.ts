@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import Slider from 'react-slick'
 
 export const Wrap = styled.div`
-  width: 65vw;
+  max-width: 65vw;
   min-height: 100vh;
   background: linear-gradient(to bottom, #0b0719, #2d333b);
 `

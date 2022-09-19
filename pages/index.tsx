@@ -25,8 +25,10 @@ const Home: NextPage = ({ changeMode }: any) => {
 }
 
 const GlobalWrap = styled.div`
+  max-width: 100vw;
+  transition: background-color 0.3s ease-in-out;
   background: ${({ theme }) => theme.backgroundColor};
-  color: ${({ theme }) => theme.textColor};
+  color: ${({ theme }) => theme.text2};
 `
 
 const Container = styled.div`

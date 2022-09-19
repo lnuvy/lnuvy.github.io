@@ -14,7 +14,9 @@
           "@utils": "./src/utils",
           "@hooks": "./src/hooks",
           "@components": "./src/components",
-          "@layout": "./src/layout"
+          "@layout": "./src/layout",
+          "@typing": "./src/typing",
+          "@elements": "./src/elements"
         }
       }
     ]

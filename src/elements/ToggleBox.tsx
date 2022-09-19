@@ -8,10 +8,10 @@ const ToggleBox = ({
   checked: boolean | undefined
   changeMode?: () => void | undefined
 }) => {
-  const [check, setCheck] = useState(false)
+  const [check, setCheck] = useState(true)
 
   useEffect(() => {
-    setCheck(checked || false)
+    setCheck(checked || true)
   }, [checked])
   return (
     <CheckBox
@@ -46,9 +46,10 @@ const CheckBox = styled.input`
     transition: background-color 0.2s ease-in-out;
     content: '🌞';
     font-size: 1.2rem;
-    background: ${({ theme }) => theme.textColor};
+    background: ${({ theme }) => theme.text2};
     color: ${({ theme }) => theme.borderColor};
   }
+
   // 원
   &::after {
     position: relative;
@@ -60,11 +61,13 @@ const CheckBox = styled.input`
     left: calc((4rem - 1.1rem) - 4px);
     border-radius: 2rem;
     background: ${({ theme }) => theme.backgroundColor};
-    color: ${({ theme }) => theme.textColor};
+    color: ${({ theme }) => theme.text2};
     transition: all 0.2s ease-in-out;
   }
+
   &:checked {
     transition: all 0.2s ease-in-out;
+
     ::before {
       width: 4rem;
       height: 2rem;
@@ -73,7 +76,7 @@ const CheckBox = styled.input`
       content: '🌛 ';
       align-items: center;
       justify-content: end;
-      background: ${({ theme }) => theme.textColor};
+      background: ${({ theme }) => theme.text2};
     }
 
     /* 선택 O 원 */
@@ -85,7 +88,6 @@ const CheckBox = styled.input`
       border-radius: 2rem;
       z-index: 2;
       top: calc((2rem - 1.6em) / 2);
-      //right: calc((4rem + 1em));
       left: calc((2rem - 1.6em) / 2);
       background: #fff;
       content: '';

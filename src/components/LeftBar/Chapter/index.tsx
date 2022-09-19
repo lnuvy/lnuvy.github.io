@@ -31,13 +31,12 @@ const Wrap = styled.div`
       display: block;
       padding: 0 0.2rem;
       content: '';
-      border-bottom: solid 2px #444c56;
+      border-bottom: solid 2px ${({ theme }) => theme.borderColor};
       transform: scaleX(0);
       transition: transform 250ms ease-in-out;
     }
 
     &:hover:after {
-      //border-bottom: solid 2px #539bf5;
       transform: scaleX(1);
     }
 
@@ -46,7 +45,7 @@ const Wrap = styled.div`
       padding: 0 0.3rem;
 
       &:hover {
-        color: rgba(205, 217, 229, 0.5);
+        color: ${({ theme }) => theme.text1};
         transition: all 0.3s ease-in-out;
       }
     }

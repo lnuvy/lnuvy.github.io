@@ -31,7 +31,6 @@ const Page = () => {
       })}
 
       <p>JavaScript / TypeScript / React / MySQL / MongoDB </p>
-      <p></p>
     </TextBox>
   )
 }

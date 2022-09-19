@@ -27,6 +27,6 @@ export const Footer = styled.div`
 `
 
 export const Span = styled.span`
-  color: rgba(205, 217, 229, 0.5);
+  color: ${({ theme }) => theme.text1};
   margin: 0 1rem;
 `

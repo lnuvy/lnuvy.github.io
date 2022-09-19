@@ -9,6 +9,7 @@ const nextConfig = {
 }
 
 module.exports = nextConfig
+
 //
 // const path = require('path');
 // const { webpack } = require('next')

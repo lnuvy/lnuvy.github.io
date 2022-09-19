@@ -1,7 +1,24 @@
+const deviceSizes = {
+  mobile: 375,
+  tablet: 768,
+  pc: 1080,
+}
+
+/**
+ * 숫자가 작을수록 연한 색깔 ex) text1, text2
+ *
+ * */
 export const theme = {
+  device: {
+    mobile: `screen and (max-width: ${deviceSizes.tablet - 1}px)`,
+    tablet: `screen and (max-width: ${deviceSizes.pc - 1}px)`,
+  },
   darkTheme: {
     backgroundColor: '#22272e',
-    textColor: 'rgba(205, 217, 229, .7)',
+    text1: 'rgba(205, 217, 229, 0.5)',
+    text2: 'rgba(205, 217, 229, .7)',
+    text3: '#768390',
+    text4: '#adbac7',
     borderColor: '#444c56',
     stackBorder: '#373e47',
     linkColor: '#539bf5',
@@ -10,9 +27,12 @@ export const theme = {
   },
   lightTheme: {
     backgroundColor: '#fff',
-    textColor: '#24292f',
-    borderColor: '#444c56', // chapter border, 라벨과 동일
-    stackBorder: '#d0d7de', // 리스트 보더
+    text1: '#57606a',
+    text2: '#24292f',
+    text3: '#adbac7',
+    text4: '#adbac7',
+    borderColor: '#d0d7de',
+    stackBorder: '#d0d7de',
     linkColor: '#0969da',
     chapterHover: 'rgba(205, 217, 229, 0.5)',
     labelColor: '#768390',

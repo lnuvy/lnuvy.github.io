@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import { theme } from '../styles/theme'
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [isDark, setIsDark] = useState(false)
+  const [isDark, setIsDark] = useState(true)
 
   useEffect(() => {
     const localTheme = localStorage.getItem('theme')
@@ -30,7 +30,13 @@ function MyApp({ Component, pageProps }: AppProps) {
   }
 
   return (
-    <ThemeProvider theme={isDark ? theme.darkTheme : theme.lightTheme}>
+    <ThemeProvider
+      theme={
+        isDark
+          ? { device, ...theme.darkTheme }
+          : { device, ...theme.lightTheme }
+      }
+    >
       <div className="global-div">
         <Component {...pageProps} changeMode={changeMode} />
       </div>
