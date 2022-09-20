@@ -32,15 +32,15 @@ export const BurgerIcon = styled.label<SidebarProps>`
       position: absolute;
       transition: 0.3s;
 
-      &:nth-child(1) {
+      &:nth-of-type(1) {
         ${({ mobileToggle }) =>
           mobileToggle ? 'top: 50%; transform: rotate(45deg);' : 'top: 0;'};
       }
-      &:nth-child(2) {
+      &:nth-of-type(2) {
         top: 50%;
         ${({ mobileToggle }) => (mobileToggle ? 'opacity: 0;' : 'top: 50%;')};
       }
-      &:nth-child(3) {
+      &:nth-of-type(3) {
         ${({ mobileToggle }) =>
           mobileToggle ? 'top: 50%;transform: rotate(-45deg);' : 'top: 100%;'};
       }
@@ -62,6 +62,8 @@ export const Wrap = styled.div<SidebarProps>`
     position: fixed;
     left: ${({ mobileToggle }) => (mobileToggle ? '0;' : '-500px;')};
     z-index: 2;
+    background-color: ${({ theme }) => theme.palette.background1};
+    border-right: 1px solid ${({ theme }) => theme.palette.background2};
   }
 `
 

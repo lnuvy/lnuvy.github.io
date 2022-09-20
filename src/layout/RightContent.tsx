@@ -30,7 +30,7 @@ const Wrap = styled.div`
   }
   background-color: ${({ theme }) => theme.palette.backgroundColor};
 `
-//
+
 // const Title = styled.div`
 //   background: linear-gradient(to bottom, #0b0719, #2d333b);
 //   height: 100vh;

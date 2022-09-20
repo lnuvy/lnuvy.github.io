@@ -36,6 +36,7 @@ export const TextBox = styled.div`
 
   & > p {
     margin: 0;
+    color: ${({ theme }) => theme.palette.text4};
   }
 `
 
@@ -49,6 +50,7 @@ export const H1 = styled.h1<H1Props>`
   text-align: start;
   margin-top: 0;
   margin-bottom: 1rem;
+  color: ${({ theme }) => theme.palette.text4};
   margin-left: ${({ pos }) => `calc(8rem * ${pos + 1});`};
 
   @media ${({ theme }) => theme.device.mobile} {

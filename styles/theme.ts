@@ -15,6 +15,8 @@ export const theme = {
   },
   darkTheme: {
     backgroundColor: '#22272e',
+    background1: '#373e48', // 버튼색상
+    background2: '#454e58', // 버튼 border 색상
     text1: 'rgba(205, 217, 229, 0.5)',
     text2: 'rgba(205, 217, 229, .7)',
     text3: '#768390',
@@ -27,6 +29,8 @@ export const theme = {
   },
   lightTheme: {
     backgroundColor: '#fff',
+    background1: '#f6f8fb',
+    background2: '#d6d8db',
     text1: '#57606a',
     text2: '#24292f',
     text3: '#adbac7',

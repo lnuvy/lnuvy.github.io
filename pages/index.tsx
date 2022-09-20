@@ -4,13 +4,10 @@ import styled from '@emotion/styled'
 import LeftBar from '@components/LeftBar'
 import RightContent from '../src/layout/RightContent'
 import ScrollProgress from '@components/ScrollProgressBar'
-import GlobalStyles from '../styles/GlobalStyles'
 
 const Home: NextPage = ({ changeMode }: any) => {
   return (
     <>
-      <GlobalStyles />
-
       <GlobalWrap>
         <Head>
           <title>프론트엔드 개발자 이한울</title>

@@ -10,11 +10,10 @@ import {
 } from './LeftBarStyles'
 import Chapter from '@components/LeftBar/Chapter'
 import ToggleBox from '@elements/ToggleBox'
-import { theme } from '../../../styles/theme'
 import { useCheck } from '@hooks/useInput'
 
 const LeftBar = ({ changeMode }: any) => {
-  const [sidebarToggle, onChangeToggle] = useCheck(false)
+  const [sidebarToggle, onChangeToggle, setSidebarToggle] = useCheck(false)
   const [checked, setChecked] = useState<any>(false)
 
   useEffect(() => {
@@ -52,14 +51,16 @@ const LeftBar = ({ changeMode }: any) => {
 
         <h4>이한울</h4>
 
-        <Chapter />
+        <Chapter setSidebarToggle={setSidebarToggle} />
 
-        <div className="flex-start">
-          <ToggleBox checked={checked} changeMode={changeMode} />
+        <div style={{ marginTop: '2rem' }}>
+          <div className="flex-start">
+            <ToggleBox checked={checked} changeMode={changeMode} />
+          </div>
+          <Footer>
+            <Span>© 2022. lnuvy All rights reserved.</Span>
+          </Footer>
         </div>
-        <Footer>
-          <Span>© 2022. lnuvy All rights reserved.</Span>
-        </Footer>
       </Wrap>
     </>
   )

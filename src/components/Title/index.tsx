@@ -10,7 +10,7 @@ const TitleCarousel = () => {
       <StyledSlider {...settings}>
         {[...Array(4)].map((_, i) => {
           if (i === 0) return <Page key={i} />
-          else return <Item>하하</Item>
+          else return <Item key={i}>하하</Item>
         })}
       </StyledSlider>
     </Wrap>
