@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import TitleCarousel from '@components/Title'
 import About from '../../pages/About'
 import Stacks from '../../pages/Stacks'
+import Experience from '../../pages/Experience'
 
 const RightContent = () => {
   return (
@@ -14,33 +15,7 @@ const RightContent = () => {
       <br />
       <Stacks />
       <br />
-
-      <h3>테스트</h3>
-      <h3>테스트</h3>
-      <h3>테스트</h3>
-      <h3>테스트</h3>
-      <h3>테스트</h3>
-      <h3>테스트</h3>
-      <h3>테스트</h3>
-      <h3>테스트</h3>
-      <h3>테스트</h3>
-      <h3>테스트</h3>
-      <h3>테스트</h3>
-      <h3>테스트</h3>
-      <h3>테스트</h3>
-      <h3>테스트</h3>
-      <h3>테스트</h3>
-      <h3>테스트</h3>
-      <h3>테스트</h3>
-      <h3>테스트</h3>
-      <h3>테스트</h3>
-      <h3>테스트</h3>
-      <h3>테스트</h3>
-      <h3>테스트</h3>
-      <h3>테스트</h3>
-      <h3>테스트</h3>
-      <h3>테스트</h3>
-      <h3>테스트</h3>
+      <Experience />
       <h3>테스트</h3>
     </Wrap>
   )
