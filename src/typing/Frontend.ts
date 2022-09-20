@@ -4,5 +4,7 @@ export interface Stack {
   isPublic: number
   desc: string
   svg: string
+  svgName: string
+  updated: string
   level: string
 }

@@ -64,3 +64,11 @@ export const Description = styled.p`
   margin: 4px 0 0.5rem;
   line-height: 1.5;
 `
+
+export const StackInfo = styled.div`
+  margin-top: 8px;
+  font-size: 12px;
+  color: ${({ theme }) => theme.palette.text3};
+`
+
+export const StackImg = styled.img``

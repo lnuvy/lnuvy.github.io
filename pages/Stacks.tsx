@@ -7,7 +7,7 @@ const Stacks = () => {
     <Wrap id="Stacks">
       <br />
       <h2>📚 Stacks.</h2>
-      <br />
+
       <StackList />
     </Wrap>
   )

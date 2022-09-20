@@ -15,6 +15,7 @@ export default function Document() {
         {/*<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet" />*/}
       </Head>
       <body>
+        <div id="portal" />
         <Main />
         <NextScript />
       </body>
