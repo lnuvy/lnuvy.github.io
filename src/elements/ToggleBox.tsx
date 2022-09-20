@@ -15,8 +15,6 @@ const ToggleBox = ({
     setCheck(checked ?? true)
   }, [checked])
 
-  console.log(checked)
-
   return (
     <CheckBox
       type="checkbox"
@@ -47,7 +45,7 @@ const CheckBox = styled.input`
     padding: 0 0 0 0.5rem;
     justify-content: flex-start;
     align-items: center;
-    transition: background-color 0.2s ease-in-out;
+    transition: background-color 0.3s;
     content: '🌞';
     font-size: 1.2rem;
     background: ${({ theme }) => theme.palette.text2};

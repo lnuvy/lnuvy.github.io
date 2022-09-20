@@ -23,12 +23,12 @@ const RightContent = () => {
 
 const Wrap = styled.div`
   max-width: calc(90vw - 30vw);
+  margin-left: 30vw;
   @media ${({ theme }) => theme.device.mobile} {
     max-width: 90vw;
+    margin-left: 0;
   }
   background-color: ${({ theme }) => theme.palette.backgroundColor};
-
-  //@media;
 `
 //
 // const Title = styled.div`

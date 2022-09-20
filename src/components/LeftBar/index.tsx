@@ -5,13 +5,16 @@ import {
   Image,
   Span,
   Footer,
+  SidebarBtn,
   BurgerIcon,
 } from './LeftBarStyles'
 import Chapter from '@components/LeftBar/Chapter'
 import ToggleBox from '@elements/ToggleBox'
 import { theme } from '../../../styles/theme'
+import { useCheck } from '@hooks/useInput'
 
 const LeftBar = ({ changeMode }: any) => {
+  const [sidebarToggle, onChangeToggle] = useCheck(false)
   const [checked, setChecked] = useState<any>(false)
 
   useEffect(() => {
@@ -22,15 +25,27 @@ const LeftBar = ({ changeMode }: any) => {
   return (
     <>
       <br />
-      <input type="checkbox" id="sidebar" style={{ display: 'none' }} />
-      <BurgerIcon htmlFor="sidebar" onClick={(e) => e.stopPropagation()}>
-        <span />
-        <span />
-        <span />
-      </BurgerIcon>
+      <SidebarBtn>
+        <input
+          type="checkbox"
+          id="sidebar"
+          style={{ display: 'none' }}
+          checked={sidebarToggle}
+          onChange={onChangeToggle}
+        />
+        <BurgerIcon
+          mobileToggle={sidebarToggle}
+          htmlFor="sidebar"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <span />
+          <span />
+          <span />
+        </BurgerIcon>
+      </SidebarBtn>
       <br />
-      <Wrap>
-        <br />
+
+      <Wrap mobileToggle={sidebarToggle}>
         <ImageProfile>
           <Image src="images/profile.JPG" alt="my_img" />
         </ImageProfile>

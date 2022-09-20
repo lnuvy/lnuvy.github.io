@@ -1,12 +1,28 @@
 import styled from '@emotion/styled'
 
-export const BurgerIcon = styled.label`
+type SidebarProps = {
+  mobileToggle: boolean
+}
+
+export const SidebarBtn = styled.div`
+  position: fixed;
+  width: 60px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 8px;
+  z-index: 50;
+  top: 1rem;
+  left: 0;
+`
+
+export const BurgerIcon = styled.label<SidebarProps>`
   @media ${({ theme }) => theme.device.mobile} {
     width: 30px;
     height: 20px;
     display: block;
     position: fixed;
     top: 2rem;
+    left: 1rem;
     & > span {
       display: block;
       height: 2px;
@@ -17,48 +33,42 @@ export const BurgerIcon = styled.label`
       transition: 0.3s;
 
       &:nth-child(1) {
-        top: 0;
+        ${({ mobileToggle }) =>
+          mobileToggle ? 'top: 50%; transform: rotate(45deg);' : 'top: 0;'};
       }
       &:nth-child(2) {
         top: 50%;
+        ${({ mobileToggle }) => (mobileToggle ? 'opacity: 0;' : 'top: 50%;')};
       }
       &:nth-child(3) {
-        top: 100%;
+        ${({ mobileToggle }) =>
+          mobileToggle ? 'top: 50%;transform: rotate(-45deg);' : 'top: 100%;'};
       }
-    }
-
-    input[id='sidebar']:checked + & > span:nth-child(1) {
-      top: 50%;
-      transform: rotate(45deg);
-    }
-    input[id='sidebar']:checked + & > span:nth-child(2) {
-      opacity: 0;
-    }
-
-    input[id='sidebar']:checked + & > span:nth-child(3) {
-      top: 50%;
-      transform: rotate(-45deg);
     }
   }
 `
-
-export const Wrap = styled.div`
+export const Wrap = styled.div<SidebarProps>`
   height: 100vh;
   padding: 1rem;
-  max-width: 30vw;
-  position: sticky;
+  width: 30vw;
+  position: fixed;
   top: 0;
-  left: 0px;
+  transition: left 0.5s;
+  background-color: ${({ theme }) => theme.palette.backgroundColor};
 
   @media ${({ theme }) => theme.device.mobile} {
+    width: 40vw;
+    min-width: 280px;
     position: fixed;
-    left: -300px;
+    left: ${({ mobileToggle }) => (mobileToggle ? '0;' : '-500px;')};
+    z-index: 2;
   }
 `
 
 export const ImageProfile = styled.div`
   width: 260px;
   height: 260px;
+  margin: 0 auto;
 
   @media ${({ theme }) => theme.device.tablet} {
     width: 200px;

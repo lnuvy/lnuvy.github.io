@@ -1,9 +1,8 @@
-import '../styles/globals.css'
 import type { AppProps } from 'next/app'
-
 import { ThemeProvider } from '@emotion/react'
 import { useEffect, useState } from 'react'
 import { theme } from '../styles/theme'
+import GlobalStyles from '../styles/GlobalStyles'
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [isDark, setIsDark] = useState(true)
@@ -37,9 +36,8 @@ function MyApp({ Component, pageProps }: AppProps) {
           : { device: theme.device, palette: theme.lightTheme }
       }
     >
-      <div className="global-div">
-        <Component {...pageProps} changeMode={changeMode} />
-      </div>
+      <GlobalStyles isDark={isDark} />
+      <Component {...pageProps} changeMode={changeMode} />
     </ThemeProvider>
   )
 }
