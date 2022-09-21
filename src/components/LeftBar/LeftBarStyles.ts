@@ -93,10 +93,16 @@ export const Image = styled.img`
 export const Footer = styled.div`
   font-size: 0.8rem;
   position: relative;
-  top: 20px;
+  top: 30px;
+  display: flex;
+  justify-content: center;
 `
 
 export const Span = styled.span`
   color: ${({ theme }) => theme.palette.text1};
   margin: 0 1rem;
+
+  @media ${({ theme }) => theme.device.tablet} {
+    font-size: 0.7rem;
+  }
 `

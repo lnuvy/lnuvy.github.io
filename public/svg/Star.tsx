@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 
 export const Svg = styled.svg`
   fill: ${({ theme }) => theme.palette.text4};
+  //stroke: ${({ theme }) => theme.palette.text4};
 `
 
 const Star = () => {

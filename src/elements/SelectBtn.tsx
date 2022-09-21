@@ -6,11 +6,12 @@ type BtnType = {
   padding: string
   pointer?: boolean | any
   mini?: boolean | any
+  onClick?: () => void
 }
 
-const SelectBtn = ({ children, padding, pointer, mini }: BtnType) => {
+const SelectBtn = ({ children, padding, pointer, mini, onClick }: BtnType) => {
   return (
-    <Button padding={padding} pointer={pointer} mini={mini}>
+    <Button padding={padding} pointer={pointer} mini={mini} onClick={onClick}>
       {children}
     </Button>
   )
@@ -34,6 +35,11 @@ const Button = styled.button<BtnProps>`
   border-radius: 6px;
   background-color: ${({ theme }) => theme.palette.background1};
   color: ${({ theme }) => theme.palette.text4};
+
+  &:hover {
+    background-color: ${({ theme }) => theme.palette.background3};
+    border-color: ${({ theme }) => theme.palette.background4};
+  }
 `
 
 export default SelectBtn

@@ -54,7 +54,7 @@ const LeftBar = ({ changeMode }: any) => {
         <Chapter setSidebarToggle={setSidebarToggle} />
 
         <div style={{ marginTop: '2rem' }}>
-          <div className="flex-start">
+          <div className="flex-start" style={{ marginLeft: '1rem' }}>
             <ToggleBox checked={checked} changeMode={changeMode} />
           </div>
           <Footer>

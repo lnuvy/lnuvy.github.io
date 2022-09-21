@@ -6,5 +6,6 @@ export interface Stack {
   svg: string
   svgName: string
   updated: string
+  starred: number
   level: string
 }

@@ -25,6 +25,7 @@ export const ListWrap = styled.div`
           margin-bottom: 4px;
           display: flex;
           & > h3 {
+            user-select: none;
             font-size: 20px;
             font-weight: 600;
             margin: 0 0.5rem 2px 0;

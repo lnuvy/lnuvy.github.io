@@ -7,6 +7,7 @@ export const Stacks = [
     svg: '/images/React-icon.png',
     svgName: 'React',
     updated: 'Updated now',
+    starred: 1,
     level: '80%',
   },
   {
@@ -17,6 +18,7 @@ export const Stacks = [
     svg: '/images/JavaScript_logo_2.png',
     svgName: 'JavaScript',
     updated: 'Updated 29 seconds ago',
+    starred: 1,
     level: '60%',
   },
   {
@@ -27,6 +29,7 @@ export const Stacks = [
     svg: '/images/Typescript_logo_2020.png',
     svgName: 'TypeScript',
     updated: 'Updated 1 minute ago',
+    starred: 1,
     level: '40%',
   },
   {
@@ -37,16 +40,18 @@ export const Stacks = [
     svg: '/svg/AWS',
     svgName: 'Amazon Web Service',
     updated: 'Updated 13 days ago',
+    starred: 0,
     level: '30%',
   },
   {
     id: 4,
     name: 'Java',
     isPublic: 0,
-    desc: '처음 공부한 언어로, 국비교육 당시 가장 중점적으로 다루었습니다. 이 기본기는 타입스크립트를 공부할 때 많은 도움이 되고있어, 한번 배운것은 항상 내 자산이 된다는 것을 느끼게 해주었습니다. 지금은 사용하지 않은지 오래되어 20%로 책정했습니다.',
+    desc: '처음 공부한 언어로, 국비교육 당시 가장 중점적으로 다루었습니다. 이 기본기는 타입스크립트를 공부할 때 많은 도움이 되고있어, 한번 배운것은 항상 내 자산이 된다는 것을 느끼게 해주었습니다.',
     svg: '/images/java-4-logo-svgrepo-com.svg',
     svgName: 'Java/Spring',
     updated: 'Updated on 11 Jan',
+    starred: 0,
     level: '20%',
   },
 ]
