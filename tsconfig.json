@@ -23,6 +23,7 @@
       "@layout/*": ["src/layout/*"],
       "@typing/*": ["src/typing/*"],
       "@elements/*": ["src/elements/*"],
+      "@markdown/*": ["src/markdown/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

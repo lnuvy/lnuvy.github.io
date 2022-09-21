@@ -3,10 +3,12 @@ import {
   Wrap,
   ImageProfile,
   Image,
+  NameInfo,
   Span,
   Footer,
   SidebarBtn,
   BurgerIcon,
+  ModeChangeWrap,
 } from './LeftBarStyles'
 import Chapter from '@components/LeftBar/Chapter'
 import ToggleBox from '@elements/ToggleBox'
@@ -49,18 +51,25 @@ const LeftBar = ({ changeMode }: any) => {
           <Image src="images/profile.JPG" alt="my_img" />
         </ImageProfile>
 
-        <h4>이한울</h4>
+        <NameInfo className="flex-c-start">
+          <h4>이한울</h4>
+
+          <div className="flex-sb" style={{ padding: '0 1rem 0 0' }}>
+            <span>lnuvy</span>
+            <i>1997.02.24</i>
+          </div>
+        </NameInfo>
 
         <Chapter setSidebarToggle={setSidebarToggle} />
 
         <div style={{ marginTop: '2rem' }}>
-          <div className="flex-start" style={{ marginLeft: '1rem' }}>
-            <ToggleBox checked={checked} changeMode={changeMode} />
-          </div>
           <Footer>
             <Span>© 2022. lnuvy All rights reserved.</Span>
           </Footer>
         </div>
+        <ModeChangeWrap className="flex-center">
+          <ToggleBox checked={checked} changeMode={changeMode} />
+        </ModeChangeWrap>
       </Wrap>
     </>
   )

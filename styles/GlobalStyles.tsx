@@ -24,6 +24,7 @@ const common = css`
 
   * {
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .flex-start {

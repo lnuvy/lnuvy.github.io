@@ -1,4 +1,7 @@
-export const Stacks = [
+import Next from 'public/svg/Next'
+import AWS from 'public/svg/AWS'
+
+export const StacksArray = [
   {
     id: 0,
     name: 'React',
@@ -8,7 +11,7 @@ export const Stacks = [
     svgName: 'React',
     updated: 'Updated now',
     starred: 1,
-    level: '80%',
+    level: '60%',
   },
   {
     id: 1,
@@ -34,17 +37,28 @@ export const Stacks = [
   },
   {
     id: 3,
+    name: 'Next.js',
+    isPublic: 1,
+    desc: '지금의 github.io 페이지는 Next.js 와 emotion 을 사용하여 개발했습니다.',
+    svg: <Next />,
+    svgName: 'Next.js by Vercel',
+    updated: 'Updated 20 days ago',
+    starred: 1,
+    level: '30%',
+  },
+  {
+    id: 4,
     name: 'AWS',
     isPublic: 1,
     desc: 'Spring Boot JPA로 만든 REST-API와 파이썬 flask 서버를 EC2로 배포한 경험이 있고, SPA 배포가 간편한 S3를 사용해보았습니다.',
-    svg: '/svg/AWS',
+    svg: <AWS />,
     svgName: 'Amazon Web Service',
     updated: 'Updated 13 days ago',
     starred: 0,
     level: '30%',
   },
   {
-    id: 4,
+    id: 5,
     name: 'Java',
     isPublic: 0,
     desc: '처음 공부한 언어로, 국비교육 당시 가장 중점적으로 다루었습니다. 이 기본기는 타입스크립트를 공부할 때 많은 도움이 되고있어, 한번 배운것은 항상 내 자산이 된다는 것을 느끼게 해주었습니다.',

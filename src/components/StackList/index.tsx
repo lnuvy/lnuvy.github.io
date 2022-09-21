@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { ListWrap, Label, Description, StackInfo } from './StackListStyles'
-import { Stacks } from '@constant/Stacks'
+import { StacksArray } from '@constant/StacksArray'
 import SelectBtn from '../../elements/SelectBtn'
 import { Stack } from '@typing/Frontend'
-import Star from '../../../public/svg/Star'
-import AWS from '../../../public/svg/AWS'
-import FillStar from '../../../public/svg/FillStar'
+import AWS from 'public/svg/AWS'
+import Star from 'public/svg/Star'
+import FillStar from 'public/svg/FillStar'
+import Next from '../../../public/svg/Next'
 
 const StackList = () => {
   return (
     <ListWrap>
       <ul>
-        {Stacks.map((v, i) => (
+        {StacksArray.map((v, i) => (
           <EachStack key={v.id} v={v} />
         ))}
       </ul>
@@ -44,14 +45,14 @@ const EachStack = ({ v }: { v: Stack }) => {
               className="flex-center"
               style={{ width: 16, marginRight: '4px' }}
             >
-              {v.svg.includes('/svg/') ? (
-                <AWS />
-              ) : (
+              {typeof v.svg === 'string' ? (
                 <img
                   src={v.svg}
                   alt={v.svg}
                   style={{ width: '100%', height: '100%' }}
                 />
+              ) : (
+                v.svg
               )}
             </div>
             {v.svgName}
@@ -60,19 +61,17 @@ const EachStack = ({ v }: { v: Stack }) => {
         </StackInfo>
       </div>
       <div className="flex-center">
-        <SelectBtn padding="3px 12px" onClick={() => setIsStar(!isStar)}>
+        <SelectBtn
+          padding="3px 12px"
+          mini
+          pointer
+          onClick={() => setIsStar(!isStar)}
+        >
           <div className="flex-center">
             <div className="flex-center" style={{ marginRight: '8px' }}>
               {isStar ? <FillStar /> : <Star />}
             </div>
             {v.level}
-
-            {/*<div*/}
-            {/*  className="flex-center"*/}
-            {/*  style={{ borderLeft: '1px solid #768390' }}*/}
-            {/*>*/}
-            {/*<DownArrow />*/}
-            {/*</div>*/}
           </div>
         </SelectBtn>
       </div>

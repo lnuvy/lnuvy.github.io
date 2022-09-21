@@ -90,6 +90,28 @@ export const Image = styled.img`
   border: 1px solid ${({ theme }) => theme.palette.borderColor};
 `
 
+export const NameInfo = styled.div`
+  padding: 0.5rem 1rem;
+  gap: 0.5rem;
+  font-weight: 300;
+  font-size: 1rem;
+
+  & > .flex-sb {
+    width: 100%;
+  }
+  & > h4 {
+    margin: 0;
+    font-size: 24px;
+    line-height: 1.25;
+  }
+  & span {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 24px;
+  }
+`
+
 export const Footer = styled.div`
   font-size: 0.8rem;
   position: relative;
@@ -105,4 +127,10 @@ export const Span = styled.span`
   @media ${({ theme }) => theme.device.tablet} {
     font-size: 0.7rem;
   }
+`
+
+export const ModeChangeWrap = styled.div`
+  position: relative;
+  top: 100px;
+  left: -26px;
 `
