@@ -138,8 +138,3 @@ export const DetailList = styled.li<ListProps>`
   //  width: 100%;
   //}
 `
-
-export const SkeletonLi = styled.li<ListProps>`
-  max-height: 1000px;
-  background-color: tomato;
-`

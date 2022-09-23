@@ -1,11 +1,5 @@
 import React, { useCallback, useContext, useState } from 'react'
-import {
-  Wrap,
-  ContentWrap,
-  BorderBox,
-  DetailList,
-  SkeletonLi,
-} from './ExpStyles'
+import { Wrap, ContentWrap, BorderBox, DetailList } from './ExpStyles'
 import Octicon from 'public/svg/Octicon'
 import { Company } from '@typing/Frontend'
 import { marked } from 'marked'
@@ -17,7 +11,6 @@ import matter from 'gray-matter'
 
 const ExpBox = ({ company }: { company: Company }) => {
   const { posts }: any = useContext(MDContext)
-  const a = posts[1].content
 
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
@@ -56,33 +49,36 @@ const ExpBox = ({ company }: { company: Company }) => {
             </i>
           </span>
           <BorderBox>
-            {company.summary.map((s, i) => (
-              <React.Fragment key={`${i}_${s}`}>
-                <li
-                  className="title-li"
-                  onClick={() => {
-                    onClickOpen(i)
-                  }}
-                >
-                  <div className="desc-div">{s}</div>
-                </li>
+            {posts.map(
+              (
+                { title, content }: { title: string; content: string },
+                i: number,
+              ) => (
+                <React.Fragment key={`${i}_${title}`}>
+                  <li
+                    className="title-li"
+                    onClick={() => {
+                      onClickOpen(i)
+                    }}
+                  >
+                    <div className="desc-div">{title}</div>
+                  </li>
 
-                {openIndex === i ? (
-                  <DetailList index={openIndex}>
-                    <div className="detail-div">
-                      <div
-                        className="md-div"
-                        dangerouslySetInnerHTML={{
-                          __html: marked(a),
-                        }}
-                      />
-                    </div>
-                  </DetailList>
-                ) : (
-                  <SkeletonLi index={openIndex} />
-                )}
-              </React.Fragment>
-            ))}
+                  {openIndex === i && (
+                    <DetailList index={openIndex}>
+                      <div className="detail-div">
+                        <div
+                          className="md-div"
+                          dangerouslySetInnerHTML={{
+                            __html: marked(content),
+                          }}
+                        />
+                      </div>
+                    </DetailList>
+                  )}
+                </React.Fragment>
+              ),
+            )}
           </BorderBox>
         </ContentWrap>
       </Wrap>

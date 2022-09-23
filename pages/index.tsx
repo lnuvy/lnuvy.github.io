@@ -12,6 +12,7 @@ import { createContext } from 'react'
 export const MDContext = createContext({})
 
 const Home: NextPage = ({ changeMode, posts }: any) => {
+  console.log(posts)
   const contextValue = { posts }
   return (
     <MDContext.Provider value={contextValue}>
@@ -53,18 +54,22 @@ const Container = styled.div`
 `
 
 export async function getStaticProps() {
-  const files = fs.readdirSync(path.join('posts'))
+  const files = fs.readdirSync(path.join('posts', 'alim'))
 
+  console.log(files)
+  console.log(files)
+  console.log(files)
   console.log(files)
 
   const posts = files
     .filter((filename) => filename.includes('.md'))
     .map((filename) => {
+      console.log(filename)
       // Create slug
       const title = filename.replace('.md', '')
 
       const markdownWithMeta = fs.readFileSync(
-        path.join('posts', filename),
+        path.join('posts', 'alim', filename),
         'utf-8',
       )
 
@@ -75,11 +80,11 @@ export async function getStaticProps() {
         content,
       }
     })
-    .sort(
-      (a, b) =>
-        new Date(b.frontMatter.date).getTime() -
-        new Date(a.frontMatter.date).getTime(),
-    )
+  // .sort(
+  //   (a, b) =>
+  //     new Date(b.frontMatter.date).getTime() -
+  //     new Date(a.frontMatter.date).getTime(),
+  // )
 
   return {
     props: {
