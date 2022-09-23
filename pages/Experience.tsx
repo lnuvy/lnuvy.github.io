@@ -18,7 +18,7 @@ const Experience = () => {
 }
 
 const Wrap = styled.div`
-  min-height: 100vh;
+  //min-height: 100vh;
   padding: 1rem 0;
 `
 

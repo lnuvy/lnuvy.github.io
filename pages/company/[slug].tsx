@@ -9,6 +9,10 @@ const CompanyDetail = (props: any) => {
   const router = useRouter()
   const { slug } = router.query
 
+  console.log(slug)
+  console.log(props)
+  console.log(props.content)
+
   return (
     <div>
       <div className="prose prose-sm sm:prose lg:prose-lg mx-auto prose-slate">

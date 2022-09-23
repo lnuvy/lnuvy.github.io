@@ -7,11 +7,16 @@ import ScrollProgress from '@components/ScrollProgressBar'
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
+import { createContext } from 'react'
+
+export const MDContext = createContext({})
 
 const Home: NextPage = ({ changeMode, posts }: any) => {
   console.log(posts)
+
+  const contextValue = { posts }
   return (
-    <>
+    <MDContext.Provider value={contextValue}>
       <GlobalWrap>
         <Head>
           <title>프론트엔드 개발자 이한울</title>
@@ -26,7 +31,7 @@ const Home: NextPage = ({ changeMode, posts }: any) => {
           <RightContent />
         </Container>
       </GlobalWrap>
-    </>
+    </MDContext.Provider>
   )
 }
 
@@ -64,11 +69,11 @@ export async function getStaticProps() {
         'utf-8',
       )
 
-      const { data: frontMatter } = matter(markdownWithMeta)
-
+      const { data: frontMatter, content } = matter(markdownWithMeta)
       return {
         slug,
         frontMatter,
+        content,
       }
     })
     .sort(

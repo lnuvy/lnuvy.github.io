@@ -47,6 +47,7 @@ export const Wrap = styled.div`
 
 export const ContentWrap = styled.div`
   gap: 0.5rem;
+
   & > span {
     height: 32px;
     display: flex;
@@ -62,12 +63,28 @@ export const BorderBox = styled.ol`
   list-style: none;
   border: 1px solid ${({ theme }) => theme.palette.borderColor};
   border-radius: 8px;
-  padding: 1rem;
+  padding: 0;
   margin-bottom: 1rem;
+  cursor: pointer;
 
   & > li {
     padding: 0.5rem 1rem;
     display: flex;
-    justify-content: space-between;
+    //justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid ${({ theme }) => theme.palette.borderColor};
+    &:last-child {
+      border-bottom: 1px solid transparent;
+    }
+    &:hover {
+      background-color: ${({ theme }) => theme.palette.background1};
+    }
+
+    & > .desc-div {
+      padding: 0.5rem 0;
+    }
+  }
+  & > .detail-li {
+    //display: none;
   }
 `
