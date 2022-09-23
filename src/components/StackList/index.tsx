@@ -69,7 +69,8 @@ const EachStack = ({ v }: { v: Stack }) => {
             <div className="flex-center" style={{ marginRight: '8px' }}>
               {isStar ? <FillStar /> : <Star />}
             </div>
-            {v.level}
+            {/*{v.level} 레벨 적는거 비추천이라고 함*/}
+            {isStar ? 'Starred' : 'Star'}
           </div>
         </SelectBtn>
       </div>

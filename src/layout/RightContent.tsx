@@ -10,7 +10,6 @@ const RightContent = () => {
   return (
     <Wrap>
       <TitleCarousel />
-
       <br />
       <About />
       <br />
@@ -19,6 +18,10 @@ const RightContent = () => {
       <Experience />
       <br />
       <Education />
+      <br />
+      <p style={{ marginBottom: '5rem' }}>
+        부족한 점이 많지만 최선을 다하겠습니다. 감사합니다!
+      </p>
     </Wrap>
   )
 }
