@@ -10,7 +10,7 @@ export const StacksArray = [
     svg: '/images/React-icon.png',
     svgName: 'React',
     updated: 'Updated now',
-    starred: 1,
+    starred: 0,
     level: '60%',
   },
   {
@@ -21,7 +21,7 @@ export const StacksArray = [
     svg: '/images/JavaScript_logo_2.png',
     svgName: 'JavaScript',
     updated: 'Updated 29 seconds ago',
-    starred: 1,
+    starred: 0,
     level: '60%',
   },
   {
@@ -39,7 +39,7 @@ export const StacksArray = [
     id: 3,
     name: 'Next.js',
     isPublic: 1,
-    desc: '지금의 github.io 페이지는 Next.js 와 emotion 을 사용하여 개발했습니다.',
+    desc: '지금의 github.io 페이지는 Next.js 와 emotion 을 사용하여 개발했습니다. 사용경험이 많지않아 더욱 열심히 공부하려 합니다.',
     svg: <Next />,
     svgName: 'Next.js by Vercel',
     updated: 'Updated 20 days ago',

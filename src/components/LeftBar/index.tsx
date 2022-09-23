@@ -54,9 +54,9 @@ const LeftBar = ({ changeMode }: any) => {
         <NameInfo className="flex-c-start">
           <h4>이한울</h4>
 
-          <div className="flex-sb" style={{ padding: '0 1rem 0 0' }}>
+          <div className="flex-sb" style={{ padding: '0 1rem ' }}>
             <span>lnuvy</span>
-            <i>1997.02.24</i>
+            {/*<i>1997.02.24</i>*/}
           </div>
         </NameInfo>
 

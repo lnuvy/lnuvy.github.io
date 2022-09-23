@@ -36,6 +36,10 @@ const Button = styled.button<BtnProps>`
   background-color: ${({ theme }) => theme.palette.background1};
   color: ${({ theme }) => theme.palette.text4};
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   &:hover {
     background-color: ${({ theme }) => theme.palette.background3};
     border-color: ${({ theme }) => theme.palette.background4};

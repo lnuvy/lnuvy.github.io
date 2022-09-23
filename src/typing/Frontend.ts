@@ -11,3 +11,14 @@ export interface Stack {
   starred: number
   level: string
 }
+
+export interface Company {
+  id: string
+  name: string
+  subName: string
+  startDate: string
+  lastDay: string
+  position: string
+  desc: string
+  summary: string[]
+}

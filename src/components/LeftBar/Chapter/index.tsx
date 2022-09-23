@@ -38,7 +38,7 @@ const Wrap = styled.div`
       content: '';
       border-bottom: solid 2px ${({ theme }) => theme.palette.borderColor};
       transform: scaleX(0);
-      transition: transform 0.2s;
+      transition: transform 0.3s;
     }
 
     &:hover:after {

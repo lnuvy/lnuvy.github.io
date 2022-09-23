@@ -16,7 +16,6 @@ const RightContent = () => {
       <Stacks />
       <br />
       <Experience />
-      <h3>테스트</h3>
     </Wrap>
   )
 }

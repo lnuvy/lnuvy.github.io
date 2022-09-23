@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import Test from './my-mdx-page.mdx'
-import MarkdownView from '@components/markdown'
+import { CompanyArray } from '@constant/CompanyArray'
+import ExpBox from '@components/ExpBox'
 
 const Experience = () => {
   return (
@@ -9,6 +9,10 @@ const Experience = () => {
       <br />
       <h2>🧑‍💻 Experience.</h2>
       <br />
+
+      {CompanyArray.map((company, i) => (
+        <ExpBox key={company.id} company={company} />
+      ))}
     </Wrap>
   )
 }

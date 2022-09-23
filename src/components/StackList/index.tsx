@@ -3,10 +3,8 @@ import { ListWrap, Label, Description, StackInfo } from './StackListStyles'
 import { StacksArray } from '@constant/StacksArray'
 import SelectBtn from '../../elements/SelectBtn'
 import { Stack } from '@typing/Frontend'
-import AWS from 'public/svg/AWS'
 import Star from 'public/svg/Star'
 import FillStar from 'public/svg/FillStar'
-import Next from '../../../public/svg/Next'
 
 const StackList = () => {
   return (
