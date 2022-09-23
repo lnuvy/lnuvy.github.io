@@ -97,6 +97,7 @@ type ListProps = {
 export const DetailList = styled.li<ListProps>`
   transition: 0.3s;
   //display: flex;
+  padding: 0.5rem 1rem;
 
   animation-name: ${({ index }) => (index !== null ? 't2b;' : 'b2t;')};
   animation-duration: 0.5s;
