@@ -68,7 +68,7 @@ export const BorderBox = styled.ol`
 
   & > li {
     border-bottom: 1px solid ${({ theme }) => theme.palette.borderColor};
-    transition: 0.3s;
+
     &:last-child {
       border-bottom: 1px solid transparent;
     }
@@ -84,9 +84,23 @@ export const BorderBox = styled.ol`
     align-items: center;
     cursor: pointer;
     padding: 0.5rem 1rem;
-    &:hover {
-      background-color: ${({ theme }) => theme.palette.background1};
+
+    @media (hover: hover) {
+      &:hover {
+        background-color: ${({ theme }) => theme.palette.background1};
+      }
     }
+
+    //&:focus,
+    //&:active {
+    //  background-color: #fff;
+    //}
+  }
+  .active-color {
+    background-color: ${({ theme }) => theme.palette.background1};
+  }
+  .inactive {
+    background-color: ${({ theme }) => theme.palette.backgroundColor};
   }
 `
 

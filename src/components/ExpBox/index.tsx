@@ -56,7 +56,9 @@ const ExpBox = ({ company }: { company: Company }) => {
               ) => (
                 <React.Fragment key={`${i}_${title}`}>
                   <li
-                    className="title-li"
+                    className={`title-li ${
+                      openIndex === i ? 'active-color' : 'inactive'
+                    }`}
                     onClick={() => {
                       onClickOpen(i)
                     }}
