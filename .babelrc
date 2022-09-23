@@ -9,7 +9,6 @@
     }
   ],
   "plugins": [
-    ["@emotion/babel-plugin"],
     [
       "module-resolver",
       {
@@ -27,6 +26,9 @@
           "@markdown": "./src/markdown"
         }
       }
+    ],
+    [
+      "@emotion/babel-plugin"
     ]
   ]
 }
