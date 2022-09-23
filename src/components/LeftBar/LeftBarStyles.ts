@@ -103,6 +103,7 @@ export const NameInfo = styled.div`
     margin: 0;
     font-size: 24px;
     line-height: 1.25;
+    padding: 0 1rem;
   }
   & span {
     font-size: 20px;

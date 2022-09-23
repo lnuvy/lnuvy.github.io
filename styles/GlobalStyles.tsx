@@ -90,7 +90,7 @@ const dark = css`
 `
 
 const GlobalStyles = ({ isDark }: ThemeProps) => {
-  console.log('???', isDark)
+  // console.log('???', isDark)
   if (isDark) return <Global styles={dark} />
   else return <Global styles={light} />
 }
