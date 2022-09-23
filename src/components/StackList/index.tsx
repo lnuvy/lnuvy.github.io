@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import Image from 'next/image'
 import { ListWrap, Label, Description, StackInfo } from './StackListStyles'
 import { StacksArray } from '@constant/StacksArray'
 import SelectBtn from '../../elements/SelectBtn'
@@ -44,7 +45,7 @@ const EachStack = ({ v }: { v: Stack }) => {
               style={{ width: 16, marginRight: '4px' }}
             >
               {typeof v.svg === 'string' ? (
-                <img
+                <Image
                   src={v.svg}
                   alt={v.svg}
                   style={{ width: '100%', height: '100%' }}

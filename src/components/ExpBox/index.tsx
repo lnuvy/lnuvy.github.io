@@ -49,7 +49,7 @@ const ExpBox = ({ company }: { company: Company }) => {
             </i>
           </span>
           <BorderBox>
-            {posts.map(
+            {posts?.map(
               (
                 { title, content }: { title: string; content: string },
                 i: number,

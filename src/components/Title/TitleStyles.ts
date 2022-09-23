@@ -31,15 +31,6 @@ export const Item = styled.div`
   background: linear-gradient(to left, #0b0719, #2d333b);
   color: ${({ theme }) => theme.palette.text4};
 
-  //background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-  //  url('/images/lnuvy고양이.jpg');
-  //background-size: cover;
-  //background-repeat: no-repeat;
-  //background-position: right center;
-  //opacity: 0.5;
-
-  //background-position: top;
-
   & > h3 {
   }
 
@@ -60,12 +51,6 @@ export const TextBox = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  //background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-  //  url('/images/lnuvy고양이.jpg');
-  //background-size: cover;
-  //background-repeat: no-repeat;
-  //background-position: left center;
-  //opacity: 0.5;
 
   & > p {
     margin: 0;
