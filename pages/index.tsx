@@ -12,7 +12,6 @@ import { createContext } from 'react'
 export const MDContext = createContext({})
 
 const Home: NextPage = ({ changeMode, posts }: any) => {
-  console.log(posts)
   const contextValue = { posts }
   return (
     <MDContext.Provider value={contextValue}>
