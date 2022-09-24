@@ -4,8 +4,8 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    loader: 'akamai',
-    path: '',
+    loader: 'imgix',
+    domain: [process.env.CLIENT], // 이미지 도메인
   },
   assetPrefix:
     process.env.NODE_ENV === 'production' ? 'https://lnuvy.github.io' : '',

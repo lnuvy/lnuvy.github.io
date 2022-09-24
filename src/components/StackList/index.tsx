@@ -48,6 +48,8 @@ const EachStack = ({ v }: { v: Stack }) => {
                 <Image
                   src={v.svg}
                   alt={v.svg}
+                  width={16}
+                  height={16}
                   style={{ width: '100%', height: '100%' }}
                 />
               ) : (
