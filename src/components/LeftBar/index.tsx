@@ -49,7 +49,7 @@ const LeftBar = ({ changeMode }: any) => {
       <Wrap mobileToggle={sidebarToggle}>
         <ImageProfile>
           <Image
-            src="images/profile.JPG"
+            src="/images/profile.JPG"
             alt="my_img"
             onClick={() => window.open('https://github.com/lnuvy')}
           />

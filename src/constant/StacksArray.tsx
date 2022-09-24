@@ -7,7 +7,7 @@ export const StacksArray = [
     name: 'React',
     isPublic: 1,
     desc: '함수형 컴포넌트와 훅, 의존성 주입 등 기본적인 개념을 알고있으며 클린코드와 커스텀 훅에 관심이 많습니다.',
-    svg: 'images/React-icon.png',
+    svg: '/images/React-icon.png',
     svgName: 'React',
     updated: 'Updated now',
     starred: 0,
