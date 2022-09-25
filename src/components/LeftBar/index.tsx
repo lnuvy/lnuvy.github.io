@@ -14,14 +14,15 @@ import { useCheck } from '@hooks/useInput'
 import AutoSizeImage from '@components/LeftBar/AutoSizeImage'
 
 const LeftBar = ({ changeMode }: any) => {
-  const [sidebarToggle, onChangeToggle, setSidebarToggle] = useCheck(false)
-  const [checked, setChecked] = useState<any>(false)
+  const [sidebarToggle, onChangeToggle, setSidebarToggle] = useCheck(true)
+  const [checked, setChecked] = useState<any>(true)
 
   useEffect(() => {
     const localTheme = localStorage.getItem('theme')
     setChecked(localTheme === 'dark')
   }, [])
 
+  console.log(checked)
   return (
     <>
       <br />
@@ -47,17 +48,6 @@ const LeftBar = ({ changeMode }: any) => {
 
       <Wrap mobileToggle={sidebarToggle}>
         <br />
-        {/*<ImageProfile>*/}
-        {/*  <Image*/}
-        {/*    src="/images/profile.JPG"*/}
-        {/*    className="profile-img"*/}
-        {/*    alt="my_img"*/}
-        {/*    layout="fill"*/}
-        {/*    // width={100}*/}
-        {/*    // height={100}*/}
-        {/*    onClick={() => window.open('https://github.com/lnuvy')}*/}
-        {/*  />*/}
-        {/*</ImageProfile>*/}
 
         <AutoSizeImage
           src="images/profile.jpg"

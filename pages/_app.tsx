@@ -15,6 +15,8 @@ function MyApp({ Component, pageProps }: AppProps) {
       } else {
         setIsDark(false)
       }
+    } else {
+      localStorage.setItem('theme', 'dark')
     }
     // return () => {
     //   localStorage.removeItem('theme')
