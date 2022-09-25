@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import {
   Wrap,
   ImageProfile,
-  Image,
+  // Image,
   NameInfo,
   Span,
   Footer,
@@ -10,6 +10,7 @@ import {
   BurgerIcon,
   ModeChangeWrap,
 } from './LeftBarStyles'
+import Image from 'next/image'
 import Chapter from '@components/LeftBar/Chapter'
 import ToggleBox from '@elements/ToggleBox'
 import { useCheck } from '@hooks/useInput'
@@ -51,6 +52,7 @@ const LeftBar = ({ changeMode }: any) => {
           <Image
             src="/images/profile.JPG"
             alt="my_img"
+            layout="fill"
             onClick={() => window.open('https://github.com/lnuvy')}
           />
         </ImageProfile>

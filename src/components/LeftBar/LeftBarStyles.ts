@@ -71,6 +71,8 @@ export const ImageProfile = styled.div`
   width: 260px;
   height: 260px;
   margin: 0 auto;
+  border-radius: 50%;
+  border: 1px solid ${({ theme }) => theme.palette.borderColor};
 
   @media ${({ theme }) => theme.device.tablet} {
     width: 200px;
@@ -86,8 +88,6 @@ export const ImageProfile = styled.div`
 export const Image = styled.img`
   width: 100%;
   height: 100%;
-  border-radius: 50%;
-  border: 1px solid ${({ theme }) => theme.palette.borderColor};
 `
 
 export const NameInfo = styled.div`
