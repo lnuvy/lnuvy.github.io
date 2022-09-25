@@ -46,6 +46,7 @@ const LeftBar = ({ changeMode }: any) => {
       <br />
 
       <Wrap mobileToggle={sidebarToggle}>
+        <br />
         {/*<ImageProfile>*/}
         {/*  <Image*/}
         {/*    src="/images/profile.JPG"*/}
@@ -59,9 +60,9 @@ const LeftBar = ({ changeMode }: any) => {
         {/*</ImageProfile>*/}
 
         <AutoSizeImage
-          src="/images/profile.JPG"
+          src="images/profile.jpg"
           onClick={() => window.open('https://github.com/lnuvy')}
-          alt="my_img"
+          alt="profile"
           layout="fill"
         />
 
