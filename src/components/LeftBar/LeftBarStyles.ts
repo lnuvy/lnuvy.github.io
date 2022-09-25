@@ -67,29 +67,6 @@ export const Wrap = styled.div<SidebarProps>`
   }
 `
 
-export const ImageProfile = styled.div`
-  width: 260px;
-  height: 260px;
-  margin: 0 auto;
-  border-radius: 50%;
-  border: 1px solid ${({ theme }) => theme.palette.borderColor};
-
-  @media ${({ theme }) => theme.device.tablet} {
-    width: 200px;
-    height: 200px;
-  }
-
-  @media ${({ theme }) => theme.device.mobile} {
-    width: 150px;
-    height: 150px;
-  }
-`
-
-export const Image = styled.img`
-  width: 100%;
-  height: 100%;
-`
-
 export const NameInfo = styled.div`
   padding: 0.5rem 1rem;
   gap: 0.5rem;

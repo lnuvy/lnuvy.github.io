@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {
   Wrap,
-  ImageProfile,
-  // Image,
   NameInfo,
   Span,
   Footer,
@@ -10,10 +8,10 @@ import {
   BurgerIcon,
   ModeChangeWrap,
 } from './LeftBarStyles'
-import Image from 'next/image'
 import Chapter from '@components/LeftBar/Chapter'
 import ToggleBox from '@elements/ToggleBox'
 import { useCheck } from '@hooks/useInput'
+import AutoSizeImage from '@components/LeftBar/AutoSizeImage'
 
 const LeftBar = ({ changeMode }: any) => {
   const [sidebarToggle, onChangeToggle, setSidebarToggle] = useCheck(false)
@@ -48,14 +46,24 @@ const LeftBar = ({ changeMode }: any) => {
       <br />
 
       <Wrap mobileToggle={sidebarToggle}>
-        <ImageProfile>
-          <Image
-            src="/images/profile.JPG"
-            alt="my_img"
-            layout="fill"
-            onClick={() => window.open('https://github.com/lnuvy')}
-          />
-        </ImageProfile>
+        {/*<ImageProfile>*/}
+        {/*  <Image*/}
+        {/*    src="/images/profile.JPG"*/}
+        {/*    className="profile-img"*/}
+        {/*    alt="my_img"*/}
+        {/*    layout="fill"*/}
+        {/*    // width={100}*/}
+        {/*    // height={100}*/}
+        {/*    onClick={() => window.open('https://github.com/lnuvy')}*/}
+        {/*  />*/}
+        {/*</ImageProfile>*/}
+
+        <AutoSizeImage
+          src="/images/profile.JPG"
+          onClick={() => window.open('https://github.com/lnuvy')}
+          alt="my_img"
+          layout="fill"
+        />
 
         <NameInfo className="flex-c-start">
           <h4>이한울</h4>
