@@ -14,7 +14,7 @@ import { useCheck } from '@hooks/useInput'
 import AutoSizeImage from '@components/LeftBar/AutoSizeImage'
 
 const LeftBar = ({ changeMode }: any) => {
-  const [sidebarToggle, onChangeToggle, setSidebarToggle] = useCheck(true)
+  const [sidebarToggle, onChangeToggle, setSidebarToggle] = useCheck(false)
   const [checked, setChecked] = useState<any>(true)
 
   useEffect(() => {
@@ -22,7 +22,6 @@ const LeftBar = ({ changeMode }: any) => {
     setChecked(localTheme === 'dark')
   }, [])
 
-  console.log(checked)
   return (
     <>
       <br />

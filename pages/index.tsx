@@ -55,11 +55,6 @@ const Container = styled.div`
 export async function getStaticProps() {
   const files = fs.readdirSync(path.join('posts', 'alim'))
 
-  console.log(files)
-  console.log(files)
-  console.log(files)
-  console.log(files)
-
   const posts = files
     .filter((filename) => filename.includes('.md'))
     .map((filename) => {
