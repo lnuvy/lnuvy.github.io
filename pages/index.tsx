@@ -1,4 +1,4 @@
-import type { NextPage } from 'next'
+import type { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
 import styled from '@emotion/styled'
 import LeftBar from '@components/LeftBar'
@@ -12,13 +12,14 @@ import { MDFile } from '@typing/Frontend'
 
 export const MDContext = createContext({})
 
-interface IndexProps {
+interface IndexProps extends GetStaticProps {
   changeMode: () => void
-  // posts: MDFile[]
-  posts: any
+  // // posts: MDFile[]
+  posts: MDFile[]
 }
 
-const Home: NextPage = ({ changeMode, posts }: any) => {
+const Home: NextPage = (props: IndexProps) => {
+  const { posts, changeMode } = props
   const contextValue = { posts }
 
   return (
@@ -60,7 +61,7 @@ const Container = styled.div`
   //padding: 0 1rem;
 `
 
-export async function getStaticProps() {
+export const getStaticProps = async () => {
   const files = fs.readdirSync(path.join('posts', 'alim'))
 
   const posts = files
@@ -80,16 +81,9 @@ export async function getStaticProps() {
         content,
       }
     })
-  // .sort(
-  //   (a, b) =>
-  //     new Date(b.frontMatter.date).getTime() -
-  //     new Date(a.frontMatter.date).getTime(),
-  // )
 
   return {
-    props: {
-      posts,
-    },
+    props: { posts },
   }
 }
 
