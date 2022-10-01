@@ -18,9 +18,6 @@ function MyApp({ Component, pageProps }: AppProps) {
     } else {
       localStorage.setItem('theme', 'dark')
     }
-    // return () => {
-    //   localStorage.removeItem('theme')
-    // }
   }, [])
 
   const changeMode = useCallback(() => {

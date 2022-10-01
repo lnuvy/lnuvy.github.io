@@ -20,7 +20,7 @@ interface IndexProps {
 
 const Home: NextPage = ({ changeMode, posts }: any) => {
   const contextValue = { posts }
-  console.log(posts)
+
   return (
     <MDContext.Provider value={contextValue}>
       <GlobalWrap>
@@ -66,8 +66,6 @@ export async function getStaticProps() {
   const posts = files
     .filter((filename) => filename.includes('.md'))
     .map((filename) => {
-      console.log(filename)
-      // Create slug
       const title = filename.replace('.md', '')
 
       const markdownWithMeta = fs.readFileSync(

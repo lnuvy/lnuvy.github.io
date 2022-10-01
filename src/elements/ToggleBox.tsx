@@ -10,7 +10,6 @@ const ToggleBox = ({
 }) => {
   const [check, setCheck] = useState(true)
 
-  console.log(check)
   useEffect(() => {
     // setCheck(checked || true)
     setCheck(checked ?? true)
