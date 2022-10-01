@@ -1,11 +1,14 @@
 import React from 'react'
 import styled from '@emotion/styled'
 
-type BtnType = {
-  children: React.ReactNode
+interface BtnProps {
   padding: string
-  pointer?: boolean | any
-  mini?: boolean | any
+  pointer?: boolean
+  mini?: boolean
+}
+
+interface BtnType extends BtnProps {
+  children: React.ReactNode
   onClick?: () => void
 }
 
@@ -15,12 +18,6 @@ const SelectBtn = ({ children, padding, pointer, mini, onClick }: BtnType) => {
       {children}
     </Button>
   )
-}
-
-type BtnProps = {
-  padding: string
-  pointer: boolean
-  mini: boolean
 }
 
 const Button = styled.button<BtnProps>`
