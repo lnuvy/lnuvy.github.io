@@ -18,7 +18,7 @@ interface IndexProps {
   posts: any
 }
 
-const Home: NextPage = ({ changeMode, posts }: IndexProps) => {
+const Home: NextPage = ({ changeMode, posts }: any) => {
   const contextValue = { posts }
   console.log(posts)
   return (
