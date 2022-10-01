@@ -30,15 +30,23 @@ export const Item = styled.div`
   //padding: 0 0 5rem;
   background: linear-gradient(to left, #0b0719, #2d333b);
   color: ${({ theme }) => theme.palette.text4};
+  font-size: 0.9rem;
 
   & > h3 {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+
+    @media ${({ theme }) => theme.device.mobile} {
+      font-size: 1rem;
+    }
   }
 
   & > p {
     margin: 0.2rem;
     padding: 0 3rem;
     @media ${({ theme }) => theme.device.mobile} {
-      padding: 0 2rem;
+      padding: 0 1rem;
+      font-size: 0.8rem;
     }
   }
 `
@@ -55,8 +63,12 @@ export const TextBox = styled.div`
   & > p {
     margin: 0;
     color: ${({ theme }) => theme.palette.text4};
-
+    font-size: 0.9rem;
     animation: moveDown 3s;
+
+    @media ${({ theme }) => theme.device.mobile} {
+      font-size: 0.7rem;
+    }
 
     @keyframes moveDown {
       0% {

@@ -78,5 +78,3 @@ export const StackInfo = styled.div`
   font-size: 12px;
   color: ${({ theme }) => theme.palette.text3};
 `
-
-export const StackImg = styled.img``
