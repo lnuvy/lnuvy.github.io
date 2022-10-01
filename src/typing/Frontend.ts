@@ -22,3 +22,9 @@ export interface Company {
   desc: string
   summary: string[]
 }
+
+export interface MDFile {
+  content: string
+  title: string
+  frontMatter: {}
+}

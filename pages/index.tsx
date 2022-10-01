@@ -8,11 +8,18 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { createContext } from 'react'
+import { MDFile } from '@typing/Frontend'
 
 export const MDContext = createContext({})
 
-const Home: NextPage = ({ changeMode, posts }: any) => {
+interface IndexProps {
+  changeMode: () => void
+  posts: any[]
+}
+
+const Home: NextPage = ({ changeMode, posts }: IndexProps) => {
   const contextValue = { posts }
+  console.log(posts)
   return (
     <MDContext.Provider value={contextValue}>
       <GlobalWrap>

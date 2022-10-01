@@ -1,6 +1,6 @@
 import type { AppProps } from 'next/app'
 import { ThemeProvider } from '@emotion/react'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { theme } from '../styles/theme'
 import GlobalStyles from '../styles/GlobalStyles'
 
@@ -23,12 +23,12 @@ function MyApp({ Component, pageProps }: AppProps) {
     // }
   }, [])
 
-  const changeMode = () => {
+  const changeMode = useCallback(() => {
     isDark
       ? localStorage.setItem('theme', 'light')
       : localStorage.setItem('theme', 'dark')
     setIsDark(!isDark)
-  }
+  }, [isDark])
 
   return (
     <ThemeProvider
