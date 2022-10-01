@@ -14,7 +14,8 @@ export const MDContext = createContext({})
 
 interface IndexProps {
   changeMode: () => void
-  posts: any[]
+  // posts: MDFile[]
+  posts: any
 }
 
 const Home: NextPage = ({ changeMode, posts }: IndexProps) => {
