@@ -30,14 +30,34 @@ const EachStack = ({ v }: { v: Stack }) => {
 
   return (
     <li>
-      <div className="stack-left">
-        <div>
-          <h3 onClick={() => setIsPublic(!isPublic)}>{v.name}</h3>
-          <Label>{isPublic ? 'Public' : 'Private'}</Label>
+      <div className="each-stack-top">
+        <div className="stack-left">
+          <div>
+            <h3 onClick={() => setIsPublic(!isPublic)}>{v.name}</h3>
+            <Label>{isPublic ? 'Public' : 'Private'}</Label>
+          </div>
+
+          <Description>{v.desc}</Description>
         </div>
 
-        <Description>{v.desc}</Description>
-
+        <div className="flex-center">
+          <SelectBtn
+            padding="3px 12px"
+            mini
+            pointer
+            onClick={() => setIsStar(!isStar)}
+          >
+            <div className="flex-center">
+              <div className="flex-center" style={{ marginRight: '8px' }}>
+                {isStar ? <FillStar /> : <Star />}
+              </div>
+              {/*{v.level} 레벨 적는거 비추천이라고 함*/}
+              {isStar ? 'Starred' : 'Star'}
+            </div>
+          </SelectBtn>
+        </div>
+      </div>
+      <div>
         <StackInfo className="flex-start">
           <div className="flex-start" style={{ marginRight: '16px' }}>
             <div
@@ -60,22 +80,6 @@ const EachStack = ({ v }: { v: Stack }) => {
           </div>
           {v.updated}
         </StackInfo>
-      </div>
-      <div className="flex-center">
-        <SelectBtn
-          padding="3px 12px"
-          mini
-          pointer
-          onClick={() => setIsStar(!isStar)}
-        >
-          <div className="flex-center">
-            <div className="flex-center" style={{ marginRight: '8px' }}>
-              {isStar ? <FillStar /> : <Star />}
-            </div>
-            {/*{v.level} 레벨 적는거 비추천이라고 함*/}
-            {isStar ? 'Starred' : 'Star'}
-          </div>
-        </SelectBtn>
       </div>
     </li>
   )

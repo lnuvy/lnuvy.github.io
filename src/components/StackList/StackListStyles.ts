@@ -9,7 +9,7 @@ export const ListWrap = styled.div`
     & > li {
       width: 100%;
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
       padding: 2rem 0;
       border-top: 1px solid ${({ theme }) => theme.palette.borderColor};
       //border-bottom: 1px solid #373e47;
@@ -19,23 +19,30 @@ export const ListWrap = styled.div`
         border-bottom: 1px solid ${({ theme }) => theme.palette.borderColor};
       }
 
-      & > .stack-left {
-        width: 80%;
-        & > div {
-          margin-bottom: 4px;
-          display: flex;
-          & > h3 {
-            user-select: none;
-            font-size: 20px;
-            font-weight: 600;
-            margin: 0 0.5rem 2px 0;
-            word-break: break-all;
-            width: fit-content;
-            color: ${({ theme }) => theme.palette.linkColor};
-            border-bottom: 2px solid transparent;
-            &:hover {
-              cursor: pointer;
-              border-bottom: 2px solid ${({ theme }) => theme.palette.linkColor};
+      & > .each-stack-top {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        & > .stack-left {
+          width: 80%;
+          & > div {
+            margin-bottom: 4px;
+            display: flex;
+            & > h3 {
+              user-select: none;
+              font-size: 20px;
+              font-weight: 600;
+              margin: 0 0.5rem 2px 0;
+              word-break: break-all;
+              width: fit-content;
+              color: ${({ theme }) => theme.palette.linkColor};
+              border-bottom: 2px solid transparent;
+              &:hover {
+                cursor: pointer;
+                border-bottom: 2px solid
+                  ${({ theme }) => theme.palette.linkColor};
+              }
             }
           }
         }
@@ -61,7 +68,7 @@ export const Description = styled.p`
   display: inline-block;
   color: #768390;
   font-size: 0.9rem;
-  width: 75%;
+  width: 85%;
   margin: 4px 0 0.5rem;
   line-height: 1.5;
 `
