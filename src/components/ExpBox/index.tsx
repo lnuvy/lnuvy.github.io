@@ -5,10 +5,6 @@ import { Company } from '@typing/Frontend'
 import { marked } from 'marked'
 import { MDContext } from '../../../pages'
 
-import matter from 'gray-matter'
-// import SelectBtn from '@elements/SelectBtn'
-// import Inequality from '../../../public/svg/Inequality'
-
 const ExpBox = ({ company }: { company: Company }) => {
   const { posts }: any = useContext(MDContext)
 

@@ -19,6 +19,7 @@ const AWS = () => {
       id="Layer_1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 304 182"
+      width={16}
     >
       <g>
         <path

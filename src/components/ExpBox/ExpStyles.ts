@@ -47,6 +47,7 @@ export const Wrap = styled.div`
 
 export const ContentWrap = styled.div`
   gap: 0.5rem;
+  width: fit-content;
 
   & > span {
     height: 32px;
@@ -65,12 +66,19 @@ export const BorderBox = styled.ol`
   border-radius: 8px;
   padding: 0;
   margin-bottom: 1rem;
+  width: 100%;
 
   & > li {
+    &:first-child {
+      border-radius: 8px 8px 0 0;
+    }
     border-bottom: 1px solid ${({ theme }) => theme.palette.borderColor};
+    //border-radius: 8px;
+    //width: fit-content;
 
     &:last-child {
       border-bottom: 1px solid transparent;
+      border-radius: 0 0 8px 8px;
     }
 
     & > .desc-div {
@@ -88,6 +96,11 @@ export const BorderBox = styled.ol`
     @media (hover: hover) {
       &:hover {
         background-color: ${({ theme }) => theme.palette.background1};
+        //border-radius: 8px;
+        //}
+        &:first-child {
+          border-radius: 8px 8px 0 0;
+        }
       }
     }
 
@@ -145,7 +158,8 @@ export const DetailList = styled.li<ListProps>`
   }
 
   & > .detail-div {
-    width: calc(100% - 2rem);
+    //width: calc(100% - 2rem);
+    //width: inherit;
     margin: 0 1rem;
   }
 
