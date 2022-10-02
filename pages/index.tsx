@@ -18,6 +18,7 @@ interface IndexProps extends GetStaticProps {
   posts: MDFile[]
 }
 
+// getStaticProps 사용했을때의 타입 잘 모르겠음
 const Home: NextPage = (props: IndexProps | any) => {
   const { posts, changeMode } = props
   const contextValue = { posts }
