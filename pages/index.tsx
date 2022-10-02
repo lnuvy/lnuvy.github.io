@@ -18,7 +18,7 @@ interface IndexProps extends GetStaticProps {
   posts: MDFile[]
 }
 
-const Home: NextPage = (props: IndexProps) => {
+const Home: NextPage = (props: IndexProps | any) => {
   const { posts, changeMode } = props
   const contextValue = { posts }
 
@@ -43,7 +43,6 @@ const Home: NextPage = (props: IndexProps) => {
 }
 
 const GlobalWrap = styled.div`
-  //max-width: 100vw;
   transition: background-color 0.3s;
   background: ${({ theme }) => theme.palette.backgroundColor};
   color: ${({ theme }) => theme.palette.text2};
