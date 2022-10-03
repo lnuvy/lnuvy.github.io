@@ -1,5 +1,5 @@
 import Next from 'public/svg/Next'
-import AWS from 'public/svg/AWS'
+import Aws from 'public/svg/Aws'
 
 export const StacksArray = [
   {
@@ -48,10 +48,10 @@ export const StacksArray = [
   },
   {
     id: 4,
-    name: 'AWS',
+    name: 'Aws',
     isPublic: 1,
     desc: 'Spring Boot JPA로 만든 REST-API와 파이썬 flask 서버를 EC2로 배포한 경험이 있고, SPA 배포가 간편한 S3를 사용해보았습니다.',
-    svg: <AWS />,
+    svg: <Aws />,
     svgName: 'Amazon Web Service',
     updated: 'Updated 13 days ago',
     starred: 0,

@@ -10,7 +10,7 @@ export const Svg = styled.svg`
   }
 `
 
-const AWS = () => {
+const Aws = () => {
   // xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
   // xml:space="preserve"
   return (
@@ -65,4 +65,4 @@ const AWS = () => {
   )
 }
 
-export default AWS
+export default Aws
