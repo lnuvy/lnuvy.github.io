@@ -92,14 +92,13 @@ interface H1Props {
 
 export const H1 = styled.h1<H1Props>`
   width: 100%;
-  padding: 0 0.5rem;
   text-align: start;
   margin-top: 0;
   margin-bottom: 1rem;
   color: ${({ theme }) => theme.palette.text4};
-  margin-left: ${({ pos }) => `calc(8rem * ${pos + 1});`};
+  padding-left: ${({ pos }) => `calc(5rem * ${pos + 1});`};
   @media ${({ theme }) => theme.device.mobile} {
-    margin-left: ${({ pos }) => `calc(4rem * ${pos + 1});`};
+    padding-left: ${({ pos }) => `calc(3rem * ${pos + 1});`};
   }
   font-family: 'Cinzel', serif;
 
@@ -107,7 +106,7 @@ export const H1 = styled.h1<H1Props>`
   @keyframes moveUp {
     from {
       opacity: 0;
-      transform: translate3d(0, -100%, 0);
+      transform: translate3d(-20%, 0, 0);
     }
     to {
       opacity: 1;
