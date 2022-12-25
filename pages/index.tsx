@@ -62,25 +62,35 @@ const Container = styled.div`
 `
 
 export const getStaticProps = async () => {
-  const files = fs.readdirSync(path.join('posts', 'alim'))
+  const roots = fs.readdirSync(path.join('posts'))
 
-  const posts = files
-    .filter((filename) => filename.includes('.md'))
-    .map((filename) => {
-      const title = filename.replace('.md', '')
+  const posts = roots.map((folder) => {
+    const files = fs.readdirSync(path.join('posts', folder))
 
-      const markdownWithMeta = fs.readFileSync(
-        path.join('posts', 'alim', filename),
-        'utf-8',
-      )
+    return {
+      [folder]: files
+        .filter((filename) => filename.includes('.md'))
+        .map((filename) => {
+          const title = filename.replace('.md', '')
 
-      const { data: frontMatter, content } = matter(markdownWithMeta)
-      return {
-        title,
-        frontMatter,
-        content,
-      }
-    })
+          const markdownWithMeta = fs.readFileSync(
+            path.join('posts', folder, filename),
+            'utf-8',
+          )
+
+          //   const { content } = matter(markdownWithMeta)
+
+          //   return JSON.stringify({ [title]: content })
+          // }),
+          const { data: frontMatter, content } = matter(markdownWithMeta)
+          return {
+            title,
+            frontMatter,
+            content,
+          }
+        }),
+    }
+  })
 
   return {
     props: { posts },

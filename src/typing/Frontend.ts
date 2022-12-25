@@ -16,6 +16,7 @@ export interface Company {
   id: string
   name: string
   subName: string
+  folderName: string
   startDate: string
   lastDay: string
   position: string

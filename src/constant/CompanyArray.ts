@@ -3,6 +3,7 @@ export const CompanyArray = [
     id: '834-86-02026',
     name: '(주)에이림',
     subName: 'Alim',
+    folderName: 'alim',
     startDate: '2022-05-30',
     lastDay: '2022-09-14',
     position: '개발부/사원',
@@ -14,7 +15,21 @@ export const CompanyArray = [
       '사용자들을 늘리기 위한 식단관리 화면 개발',
     ],
   },
-
+  {
+    id: '250-81-02543',
+    name: '(주)알파벳에이',
+    subName: 'alphabetA',
+    folderName: 'ffeed',
+    startDate: '2022-11-07',
+    lastDay: '',
+    position: '프론트엔드',
+    desc: 'ffeed | 브랜드 가구 세컨핸드 커뮤니티 플랫폼',
+    summary: [
+      '낙후된 브랜드 가구 시장의 인프라를 개선',
+      '개발팀과의 협업, 프로젝트 리팩토링',
+      'google search console, Analytics 를 활용한 SEO, 유저들의 니즈 파악 및 개선',
+    ],
+  },
   {
     id: 'last-career',
     name: '더 많은 커리어가 추가 될 예정입니다 :)',
