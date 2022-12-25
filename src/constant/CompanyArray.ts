@@ -34,6 +34,7 @@ export const CompanyArray = [
     id: 'last-career',
     name: '더 많은 커리어가 추가 될 예정입니다 :)',
     subName: '',
+    folderName: '',
     startDate: '',
     lastDay: '',
     position: '',

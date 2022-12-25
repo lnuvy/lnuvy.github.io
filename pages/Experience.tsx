@@ -10,7 +10,7 @@ const Experience = () => {
       <h2>🧑‍💻 Experience.</h2>
       <br />
 
-      {CompanyArray.map((company, i) => (
+      {CompanyArray.map((company) => (
         <ExpBox key={company.id} company={company} />
       ))}
     </Wrap>

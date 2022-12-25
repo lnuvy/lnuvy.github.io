@@ -18,6 +18,8 @@ const ExpBox = ({ company }: { company: Company }) => {
     [openIndex],
   )
 
+  if (!company) return <></>
+
   if (company.id === 'last-career')
     return (
       <Wrap>
