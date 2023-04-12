@@ -1,7 +1,7 @@
-import type { NextPage } from 'next'
 import styled from '@emotion/styled'
+import React from 'react'
 
-const About: NextPage = () => {
+const About = () => {
   return (
     <Wrap id="About">
       <br />
@@ -36,6 +36,8 @@ const About: NextPage = () => {
   )
 }
 
+export default About
+
 const Wrap = styled.div`
   line-height: 1.8;
   & > p {
@@ -54,5 +56,3 @@ const Wrap = styled.div`
     }
   }
 `
-
-export default About

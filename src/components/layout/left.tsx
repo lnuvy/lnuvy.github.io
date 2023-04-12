@@ -7,7 +7,7 @@ import {
   SidebarBtn,
   BurgerIcon,
   ModeChangeWrap,
-} from './LeftBarStyles'
+} from './styles/left-style'
 import Chapter from '@components/LeftBar/Chapter'
 import ToggleBox from '@elements/ToggleBox'
 import { useCheck } from '@hooks/use-input'
