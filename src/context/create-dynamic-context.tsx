@@ -1,5 +1,5 @@
 import useSafeContext from '@hooks/use-safe-context'
-import React, { useMemo } from 'react'
+import React from 'react'
 
 /**
  * 동적으로 생성가능한 context provider

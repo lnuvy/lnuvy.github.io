@@ -5,7 +5,12 @@ import Image, { ImageProps } from 'next/image'
 const AutoSizeImage = ({ ...props }: ImageProps): React.ReactElement => {
   return (
     <ImageWrapper>
-      <Image layout="fill" className="autoImage" {...props} />
+      <Image
+        layout="fill"
+        className="autoImage"
+        {...props}
+        alt="lnuvy profile 사진입니다!"
+      />
     </ImageWrapper>
   )
 }
