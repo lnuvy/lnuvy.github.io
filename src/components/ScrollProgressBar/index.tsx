@@ -35,9 +35,9 @@ const ScrollProgress = () => {
   const colorMemo = useMemo(() => getProgressColor(width), [width])
 
   return (
-    <div className={styles.ScrollProgress} ref={progressRef}>
+    <div className={styles['scroll-progress']} ref={progressRef}>
       <div
-        className={styles.ScrollProgressItem}
+        className={styles['scroll-item']}
         style={{ width: width + '%', background: `${colorMemo}` }}
       />
     </div>

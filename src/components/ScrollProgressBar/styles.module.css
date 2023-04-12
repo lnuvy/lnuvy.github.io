@@ -1,4 +1,4 @@
-.ScrollProgress {
+.scroll-progress {
   width: 100%;
   height: 4px;
   background-color: gray;
@@ -9,7 +9,7 @@
   z-index: 10;
 }
 
-.ScrollProgressItem {
+.scroll-item {
   height: 100%;
   /*background-color: #39d353;*/
 }
