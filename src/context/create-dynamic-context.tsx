@@ -18,16 +18,21 @@ export const createDynamicContext = <TProps extends object>() => {
     <Context.Provider value={props as TProps}>{children}</Context.Provider>
   )
 
-  const withContextProvider =
-    (Component: React.FunctionComponent<TProps>) => (props: TProps) => {
-      // const Memoized = useMemo(() => React.memo<TProps>(Component), [])
+  const withContextProvider = (Component: React.FunctionComponent<TProps>) => {
+    const WithContextProvider = (props: TProps) => {
       return (
         <ContextProvider {...props}>
           <Component {...props} />
-          {/* <Memoized {...props} /> */}
         </ContextProvider>
       )
     }
+
+    // displayName 설정
+    const componentName = Component.displayName || Component.name || 'Component'
+    WithContextProvider.displayName = `withContextProvider(${componentName})`
+
+    return WithContextProvider
+  }
 
   return { useContext, Context, ContextProvider, withContextProvider }
 }
