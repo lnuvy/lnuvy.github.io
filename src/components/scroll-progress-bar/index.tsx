@@ -7,7 +7,7 @@ import React, {
   useMemo,
 } from 'react'
 import styles from './styles.module.css'
-import { getProgressColor } from '@utils/function'
+import { getProgressColor } from '@helpers/function'
 
 const ScrollProgress = () => {
   const [width, setWidth] = useState<number>(0)

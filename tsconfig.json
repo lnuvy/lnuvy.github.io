@@ -18,7 +18,7 @@
     "paths": {
       "@pages/*": ["pages/*"],
       "@constant/*": ["src/constant/*"],
-      "@utils/*": ["src/utils/*"],
+      "@helpers/*": ["src/helpers/*"],
       "@hooks/*": ["src/hooks/*"],
       "@components/*": ["src/components/*"],
       "@context/*": ["src/context/*"],

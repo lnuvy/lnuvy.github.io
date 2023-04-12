@@ -1,7 +1,7 @@
 import type { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
 import styled from '@emotion/styled'
-import ScrollProgress from '@components/ScrollProgressBar'
+import ScrollProgress from '@components/scroll-progress-bar'
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
