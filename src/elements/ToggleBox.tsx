@@ -1,30 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import styled from '@emotion/styled'
+import { useThemeContext } from '@context/theme-context'
 
-const ToggleBox = ({
-  checked,
-  changeMode,
-}: {
-  checked: boolean | undefined
-  changeMode?: () => void | undefined
-}) => {
-  const [check, setCheck] = useState(true)
+const ToggleBox = () => {
+  const { isDark, onChangeTheme } = useThemeContext()
 
-  useEffect(() => {
-    // setCheck(checked || true)
-    setCheck(checked ?? true)
-  }, [checked])
-
-  return (
-    <CheckBox
-      type="checkbox"
-      onChange={(e) => {
-        setCheck(e.target.checked)
-        if (changeMode) changeMode()
-      }}
-      checked={check}
-    />
-  )
+  return <CheckBox type="checkbox" onChange={onChangeTheme} checked={isDark} />
 }
 
 // width: 5rem;

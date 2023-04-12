@@ -13,10 +13,10 @@ const common = css`
       'Segoe UI Symbol', sans-serif;
     scroll-behavior: smooth;
   }
-
+  /* 
   html {
     font-size: 62.5%;
-  }
+  } */
 
   a {
     color: inherit;

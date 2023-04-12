@@ -14,13 +14,12 @@ export const MDContext = createContext({})
 
 interface IndexProps extends GetStaticProps {
   changeMode: () => void
-  // // posts: MDFile[]
   posts: MDFile[]
 }
 
 // getStaticProps 사용했을때의 타입 잘 모르겠음
 const Home: NextPage = (props: IndexProps | any) => {
-  const { posts, changeMode } = props
+  const { posts } = props
   const contextValue = { posts }
 
   return (
@@ -35,7 +34,7 @@ const Home: NextPage = (props: IndexProps | any) => {
         <ScrollProgress />
 
         <Container>
-          <LeftBar changeMode={changeMode} />
+          <LeftBar />
           <RightContent />
         </Container>
       </GlobalWrap>
@@ -58,7 +57,6 @@ const Container = styled.div`
   @media ${({ theme }) => theme.device.mobile} {
     gap: 0;
   }
-  //padding: 0 1rem;
 `
 
 export const getStaticProps = async () => {
@@ -78,10 +76,6 @@ export const getStaticProps = async () => {
             'utf-8',
           )
 
-          //   const { content } = matter(markdownWithMeta)
-
-          //   return JSON.stringify({ [title]: content })
-          // }),
           const { data: frontMatter, content } = matter(markdownWithMeta)
           return {
             title,

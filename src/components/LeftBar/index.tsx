@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import {
   Wrap,
   NameInfo,
@@ -13,14 +13,8 @@ import ToggleBox from '@elements/ToggleBox'
 import { useCheck } from '@hooks/use-input'
 import AutoSizeImage from '@components/LeftBar/AutoSizeImage'
 
-const LeftBar = ({ changeMode }: any) => {
+const LeftBar = () => {
   const [sidebarToggle, onChangeToggle, setSidebarToggle] = useCheck(false)
-  const [checked, setChecked] = useState<any>(true)
-
-  useEffect(() => {
-    const localTheme = localStorage.getItem('theme')
-    setChecked(localTheme === 'dark')
-  }, [])
 
   return (
     <>
@@ -72,7 +66,7 @@ const LeftBar = ({ changeMode }: any) => {
           </Footer>
         </div>
         <ModeChangeWrap className="flex-center">
-          <ToggleBox checked={checked} changeMode={changeMode} />
+          <ToggleBox />
         </ModeChangeWrap>
       </Wrap>
     </>

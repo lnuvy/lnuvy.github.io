@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import TitleCarousel from '@components/Title'
-import About from '../../pages/About'
-import Stacks from '../../pages/Stacks'
-import Experience from '../../pages/Experience'
-import Education from '../../pages/Education'
+import About from '@pages/About'
+import Stacks from '@pages/Stacks'
+import Experience from '@pages/Experience'
+import Education from '@pages/Education'
 
 const RightContent = () => {
   return (
