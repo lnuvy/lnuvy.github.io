@@ -20,7 +20,7 @@ export const useInput = <T = any>(initialData: T): ReturnTypes => {
   return [value, handler, setValue]
 }
 
-const useInputs = <T = any>(initialData: T): ReturnTypes => {
+export const useInputs = <T = any>(initialData: T): ReturnTypes => {
   const [values, setValues] = useState(initialData)
 
   const handler = useCallback((e: ChangeEvent<HTMLInputElement>) => {

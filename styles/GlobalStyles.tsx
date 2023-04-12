@@ -1,9 +1,6 @@
 import React from 'react'
 import { Global, css } from '@emotion/react'
-
-type ThemeProps = {
-  isDark: boolean
-}
+import { useThemeContext } from '@context/theme-context'
 
 const common = css`
   html,
@@ -15,6 +12,10 @@ const common = css`
       'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji',
       'Segoe UI Symbol', sans-serif;
     scroll-behavior: smooth;
+  }
+
+  html {
+    font-size: 62.5%;
   }
 
   a {
@@ -78,6 +79,7 @@ const light = css`
   html,
   body {
     background-color: #fff;
+    transition: all 0.2s ease-in-out;
   }
 `
 
@@ -86,11 +88,13 @@ const dark = css`
   html,
   body {
     background-color: #22272e;
+    transition: all 0.2s ease-in-out;
   }
 `
 
-const GlobalStyles = ({ isDark }: ThemeProps) => {
-  // console.log('???', isDark)
+const GlobalStyles = () => {
+  const { isDark } = useThemeContext()
+
   if (isDark) return <Global styles={dark} />
   else return <Global styles={light} />
 }

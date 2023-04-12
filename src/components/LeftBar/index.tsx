@@ -10,7 +10,7 @@ import {
 } from './LeftBarStyles'
 import Chapter from '@components/LeftBar/Chapter'
 import ToggleBox from '@elements/ToggleBox'
-import { useCheck } from '@hooks/useInput'
+import { useCheck } from '@hooks/use-input'
 import AutoSizeImage from '@components/LeftBar/AutoSizeImage'
 
 const LeftBar = ({ changeMode }: any) => {

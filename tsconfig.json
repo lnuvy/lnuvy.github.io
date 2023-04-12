@@ -20,10 +20,12 @@
       "@utils/*": ["src/utils/*"],
       "@hooks/*": ["src/hooks/*"],
       "@components/*": ["src/components/*"],
+      "context/*": ["src/context/*"],
       "@layout/*": ["src/layout/*"],
       "@typing/*": ["src/typing/*"],
       "@elements/*": ["src/elements/*"],
       "@markdown/*": ["src/markdown/*"],
+      "@styles/*": ["src/styles/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

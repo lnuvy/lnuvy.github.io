@@ -7,11 +7,11 @@ import React, {
   useMemo,
 } from 'react'
 import styles from './styles.module.css'
-import { getProgressColor } from '@utils/Function'
+import { getProgressColor } from '@utils/function'
 
 const ScrollProgress = () => {
   const [width, setWidth] = useState<number>(0)
-  const progressRef = useRef<HTMLDivElement | null>(null)
+  const progressRef = useRef<HTMLDivElement>(null)
 
   const handleScroll = useCallback((): void => {
     const { scrollTop, scrollHeight, clientHeight } = document.documentElement
