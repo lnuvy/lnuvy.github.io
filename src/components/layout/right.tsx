@@ -34,6 +34,7 @@ const Wrap = styled.div`
     margin-left: 0;
   }
   background-color: ${({ theme }) => theme.palette.backgroundColor};
+  /* transition: background-color 0.2s ease-in-out; */
 `
 
 // const Title = styled.div`

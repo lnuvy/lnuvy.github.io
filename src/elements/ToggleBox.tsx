@@ -8,11 +8,6 @@ const ToggleBox = () => {
   return <CheckBox type="checkbox" onChange={onChangeTheme} checked={isDark} />
 }
 
-// width: 5rem;
-// height: 2rem;
-// background: ${({ theme }) => theme.textColor};
-// color: ${({ theme }) => theme.backgroundColor};
-// border-radius: 50%;
 const CheckBox = styled.input`
   all: unset;
   cursor: pointer;

@@ -30,7 +30,7 @@ export const BurgerIcon = styled.label<SidebarProps>`
       left: 0;
       width: 100%;
       position: absolute;
-      transition: 0.3s;
+      /* transition: 0.2s; */
 
       &:nth-of-type(1) {
         ${({ mobileToggle }) =>
@@ -53,7 +53,8 @@ export const Wrap = styled.div<SidebarProps>`
   width: 30vw;
   position: fixed;
   top: 0;
-  transition: left 0.5s;
+  /* transition: all 0.2s ease-in-out; */
+  transition: left 0.4s;
   background-color: ${({ theme }) => theme.palette.backgroundColor};
 
   @media ${({ theme }) => theme.device.mobile} {

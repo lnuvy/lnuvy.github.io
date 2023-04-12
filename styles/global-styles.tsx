@@ -79,7 +79,6 @@ const light = css`
   html,
   body {
     background-color: #fff;
-    transition: all 0.2s ease-in-out;
   }
 `
 
@@ -88,7 +87,6 @@ const dark = css`
   html,
   body {
     background-color: #22272e;
-    transition: all 0.2s ease-in-out;
   }
 `
 

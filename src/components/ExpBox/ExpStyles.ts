@@ -122,7 +122,7 @@ type ListProps = {
 }
 
 export const DetailList = styled.li<ListProps>`
-  transition: 0.3s;
+  /* transition: 0.3s; */
   //display: flex;
   padding: 0.5rem 1rem;
 

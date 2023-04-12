@@ -38,7 +38,7 @@ const Wrap = styled.div`
       content: '';
       border-bottom: solid 2px ${({ theme }) => theme.palette.borderColor};
       transform: scaleX(0);
-      transition: transform 0.3s;
+      /* transition: transform 0.3s; */
     }
 
     &:hover:after {
@@ -51,7 +51,7 @@ const Wrap = styled.div`
 
       &:hover {
         color: ${({ theme }) => theme.palette.text1};
-        transition: all 0.3s;
+        /* transition: all 0.3s; */
       }
     }
   }

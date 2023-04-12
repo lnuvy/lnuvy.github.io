@@ -42,12 +42,12 @@ const LeftBar = () => {
       <Wrap mobileToggle={sidebarToggle}>
         <br />
 
-        {/* <AutoSizeImage
+        <AutoSizeImage
           src="images/profile.jpg"
           onClick={() => window.open('https://github.com/lnuvy')}
           alt="profile"
           layout="fill"
-        /> */}
+        />
 
         <NameInfo className="flex-c-start">
           <h4>이한울</h4>

@@ -23,32 +23,21 @@ const Home: NextPage = (props: IndexProps | any) => {
 
   return (
     <MDContext.Provider value={contextValue}>
-      <GlobalWrap>
+      <Frame>
         <ScrollProgress />
         <Layout>
           <Layout.Left />
           <Layout.Right />
         </Layout>
-      </GlobalWrap>
+      </Frame>
     </MDContext.Provider>
   )
 }
 
-const GlobalWrap = styled.div`
-  transition: background-color 0.3s;
+const Frame = styled.div`
+  /* transition: all 0.2s ease-in-out; */
   background: ${({ theme }) => theme.palette.backgroundColor};
   color: ${({ theme }) => theme.palette.text2};
-`
-
-const Container = styled.div`
-  width: 90vw;
-  display: flex;
-  flex: 1;
-  margin: 0 auto;
-
-  @media ${({ theme }) => theme.device.mobile} {
-    gap: 0;
-  }
 `
 
 export const getStaticProps = async () => {
