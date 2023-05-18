@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useState } from 'react'
 import { Wrap, ContentWrap, BorderBox, DetailList } from './ExpStyles'
 import Octicon from 'public/svg/Octicon'
-import { Company } from '@typing/Frontend'
+import { Company } from '@typing/front'
 import { marked } from 'marked'
 import { MDContext } from '../../../pages'
 

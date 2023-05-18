@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { ListWrap, Label, Description, StackInfo } from './StackListStyles'
 import { StacksArray } from '@constant/StacksArray'
 import SelectBtn from '../../elements/SelectBtn'
-import { Stack } from '@typing/Frontend'
+import { Stack } from '@typing/front'
 import Star from 'public/svg/Star'
 import FillStar from 'public/svg/FillStar'
 

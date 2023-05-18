@@ -38,7 +38,11 @@ const ScrollProgress = () => {
     <div className={styles['scroll-progress']} ref={progressRef}>
       <div
         className={styles['scroll-item']}
-        style={{ width: width + '%', background: `${colorMemo}` }}
+        style={{
+          width: width + '%',
+          background: `${colorMemo}`,
+          transition: 'background-color 0.3s ease',
+        }}
       />
     </div>
   )

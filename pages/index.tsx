@@ -6,7 +6,7 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { createContext } from 'react'
-import { MDFile } from '@typing/Frontend'
+import { MDFile } from '@typing/front'
 import Layout from '@components/layout'
 
 export const MDContext = createContext({})
