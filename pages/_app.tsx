@@ -1,7 +1,7 @@
-import type { AppProps } from 'next/app'
-import GlobalStyles from '../styles/global-styles'
-import ThemeContextProvider from 'src/context/theme-context'
-import OGCommon from '@components/open-graph/og-common'
+import OGCommon from '@components/open-graph/og-common';
+import type { AppProps } from 'next/app';
+import ThemeContextProvider from 'src/context/theme-context';
+import GlobalStyles from '../styles/global-styles';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Component {...pageProps} />
       </ThemeContextProvider>
     </>
-  )
+  );
 }
 
-export default MyApp
+export default MyApp;

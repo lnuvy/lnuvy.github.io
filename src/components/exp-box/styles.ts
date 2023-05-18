@@ -1,6 +1,7 @@
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
 
 export const Wrap = styled.div`
+  width: 100%;
   position: relative;
   display: flex;
   padding: 16px 0;
@@ -18,13 +19,6 @@ export const Wrap = styled.div`
   }
 
   & > .exp-badge {
-    //height: 16px;
-    //margin-top: 8px;
-    //margin-bottom: 8px;
-    ////color: var(--color-fg-muted);
-    ////background-color: var(--color-canvas-default);
-    //border: 0;
-
     position: relative;
     z-index: 1;
     display: flex;
@@ -32,7 +26,6 @@ export const Wrap = styled.div`
     height: 32px;
     margin-right: 8px;
     margin-left: -15px;
-    //color: var(--color-fg-muted);
     align-items: center;
     border: 2px solid transparent;
     border-radius: 50%;
@@ -43,11 +36,11 @@ export const Wrap = styled.div`
       background-color: ${({ theme }) => theme.palette.backgroundColor};
     }
   }
-`
+`;
 
 export const ContentWrap = styled.div`
   gap: 0.5rem;
-  width: fit-content;
+  width: 100%;
 
   & > span {
     height: 32px;
@@ -58,7 +51,7 @@ export const ContentWrap = styled.div`
       font-size: 0.8rem;
     }
   }
-`
+`;
 
 export const BorderBox = styled.ol`
   list-style: none;
@@ -115,15 +108,13 @@ export const BorderBox = styled.ol`
   .inactive {
     background-color: ${({ theme }) => theme.palette.backgroundColor};
   }
-`
+`;
 
 type ListProps = {
-  index: number | null
-}
+  index: number | null;
+};
 
 export const DetailList = styled.li<ListProps>`
-  /* transition: 0.3s; */
-  //display: flex;
   padding: 0.5rem 1rem;
 
   animation-name: ${({ index }) => (index !== null ? 't2b;' : 'b2t;')};
@@ -166,4 +157,4 @@ export const DetailList = styled.li<ListProps>`
   //& .md-div {
   //  width: 100%;
   //}
-`
+`;

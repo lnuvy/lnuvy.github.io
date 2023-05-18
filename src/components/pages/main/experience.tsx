@@ -1,7 +1,6 @@
-import React from 'react'
-import styled from '@emotion/styled'
-import { CompanyArray } from '@constant/CompanyArray'
-import ExpBox from '@components/ExpBox'
+import ExpBox from '@components/exp-box';
+import { CompanyArray } from '@constant/CompanyArray';
+import styled from '@emotion/styled';
 
 const Experience = () => {
   return (
@@ -14,12 +13,12 @@ const Experience = () => {
         <ExpBox key={company.id} company={company} />
       ))}
     </Wrap>
-  )
-}
+  );
+};
 
 const Wrap = styled.div`
   //min-height: 100vh;
   padding: 1rem 0;
-`
+`;
 
-export default Experience
+export default Experience;
