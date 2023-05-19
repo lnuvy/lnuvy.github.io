@@ -1,4 +1,4 @@
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
 
 export const ListWrap = styled.div`
   padding: 0 0.5rem;
@@ -40,8 +40,7 @@ export const ListWrap = styled.div`
               border-bottom: 2px solid transparent;
               &:hover {
                 cursor: pointer;
-                border-bottom: 2px solid
-                  ${({ theme }) => theme.palette.linkColor};
+                border-bottom: 2px solid ${({ theme }) => theme.palette.linkColor};
               }
             }
           }
@@ -49,7 +48,7 @@ export const ListWrap = styled.div`
       }
     }
   }
-`
+`;
 
 export const Label = styled.span`
   color: #768390;
@@ -62,7 +61,7 @@ export const Label = styled.span`
   margin-bottom: 6px;
   vertical-align: middle;
   line-height: 18px;
-`
+`;
 
 export const Description = styled.p`
   display: inline-block;
@@ -71,10 +70,10 @@ export const Description = styled.p`
   width: 85%;
   margin: 4px 0 0.5rem;
   line-height: 1.5;
-`
+`;
 
 export const StackInfo = styled.div`
   margin-top: 8px;
   font-size: 12px;
   color: ${({ theme }) => theme.palette.text3};
-`
+`;
