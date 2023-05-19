@@ -1,46 +1,45 @@
-import React from 'react'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
-import { settings } from '@constant/CarouselSetting'
-import { Wrap, StyledSlider, Item, TextBox, H1 } from './TitleStyles'
+import { settings } from '@constant/CarouselSetting';
+import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
+import { H1, Item, StyledSlider, TextBox, TitleWrapper, Wrap } from './styles';
 
 const TitleCarousel = () => {
   return (
     <Wrap id="Top">
       <StyledSlider {...settings}>
         {[...Array(2)].map((_, i) => {
-          if (i === 0) return <Page key={i} />
+          if (i === 0) return <Page key={i} />;
           else
             return (
               <Item key={i}>
-                <h3>50점짜리 개발자, 더욱 성장할 기회를 잡기위해</h3>
-
-                <p>{'프로그램은 돌아가면 된다. 제가 많이 들었던 말입니다.'}</p>
-                <p>이젠 기술적인 성장을 향해 나아가고 싶습니다.</p>
+                <h3>변화를 좋아하고 시대의 흐름에 서핑하는</h3>
+                <p>해당 사진은 알파벳에이(주) 근무 당시 개발자 팀원들과 코드리뷰하는 모습입니다.</p>
               </Item>
-            )
+            );
         })}
       </StyledSlider>
     </Wrap>
-  )
-}
+  );
+};
 
-const array = ['React/Node', 'Frontend', 'Developer']
+const array = ['Frontend', 'Developer'];
 
 const Page = () => {
   return (
     <TextBox>
-      {array.map((t, i) => {
-        return (
-          <H1 key={`${i}_${i}`} pos={i}>
-            {t}
-          </H1>
-        )
-      })}
+      <TitleWrapper>
+        {array.map((t, i) => {
+          return (
+            <H1 key={`${i}_${i}`} pos={i}>
+              {t}
+            </H1>
+          );
+        })}
+      </TitleWrapper>
 
-      <p>JavaScript / TypeScript / React / MySQL / MongoDB </p>
+      <p>JS(TS)를 기반으로 다양한 프론트엔드 기술을 공부합니다.</p>
     </TextBox>
-  )
-}
+  );
+};
 
-export default TitleCarousel
+export default TitleCarousel;

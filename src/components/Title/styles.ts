@@ -1,24 +1,25 @@
-import styled from '@emotion/styled'
-import Slider from 'react-slick'
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
+import Slider from 'react-slick';
 
 export const Wrap = styled.div`
   width: 100%;
   min-height: 100vh;
-`
+`;
 
 export const StyledSlider = styled(Slider)`
   height: 100vh;
-  //width: 100%;
-
-  //.slick-slider {
-  //  max-width: calc(100vw - 30vw);
-  //}
 
   .slick-slide div {
     outline: none; // 슬라이드 클릭시 파란선을 제거하기 위해서 작성
     //width: 100%;
   }
-`
+`;
+
+const CommonBackground = css`
+  background-size: cover;
+  background-position: right 50% bottom 45%;
+`;
 
 export const Item = styled.div`
   width: 100%;
@@ -27,8 +28,10 @@ export const Item = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  //padding: 0 0 5rem;
-  background: linear-gradient(to left, #0b0719, #2d333b);
+  ${CommonBackground}
+  background-position: right;
+  background-image: url('/images/main2.jpg');
+
   color: ${({ theme }) => theme.palette.text4};
   font-size: 0.9rem;
 
@@ -49,20 +52,24 @@ export const Item = styled.div`
       font-size: 0.8rem;
     }
   }
-`
+`;
 
 export const TextBox = styled.div`
-  background: linear-gradient(to left, #2d333b, #0b0719);
+  /* background: linear-gradient(to left, #2d333b, #0b0719); */
+  background-image: url('/images/main.jpg');
+  ${CommonBackground}
+  background-color: rgba(0, 0, 0, 0.7);
 
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+  /* justify-content: center; */
+  /* align-items: center; */
 
   & > p {
-    margin: 0;
-    color: ${({ theme }) => theme.palette.text4};
+    margin: 0 auto 5rem;
+    color: grey;
     font-size: 0.9rem;
     animation: moveDown 3s;
 
@@ -84,10 +91,14 @@ export const TextBox = styled.div`
       }
     }
   }
-`
+`;
+
+export const TitleWrapper = styled.div`
+  margin-top: 8rem;
+`;
 
 interface H1Props {
-  pos: number
+  pos: number;
 }
 
 export const H1 = styled.h1<H1Props>`
@@ -95,7 +106,8 @@ export const H1 = styled.h1<H1Props>`
   text-align: start;
   margin-top: 0;
   margin-bottom: 1rem;
-  color: ${({ theme }) => theme.palette.text4};
+  /* color: ${({ theme }) => theme.palette.text4}; */
+  color: #000;
   padding-left: ${({ pos }) => `calc(5rem * ${pos + 1});`};
   @media ${({ theme }) => theme.device.mobile} {
     padding-left: ${({ pos }) => `calc(3rem * ${pos + 1});`};
@@ -113,4 +125,4 @@ export const H1 = styled.h1<H1Props>`
       transform: translateZ(0);
     }
   }
-`
+`;
