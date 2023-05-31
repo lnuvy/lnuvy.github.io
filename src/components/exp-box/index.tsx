@@ -5,6 +5,7 @@ import React, { useCallback, useContext, useState } from 'react';
 import { MDContext } from '../../../pages';
 import { BorderBox, ContentWrap, DetailList, Wrap } from './styles';
 
+//11
 const ExpBox = ({ company }: { company: Company }) => {
   const { posts }: any = useContext(MDContext);
 
