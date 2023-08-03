@@ -11,16 +11,19 @@ const Blog = ({}: Props) => {
       <br />
       <Para>
         노션페이지를 빌드시켜주는{' '}
-        <Link href="https://super.so/" target="_blank">
-          super.so
-        </Link>
+        <LinkSpan>
+          <Link href="https://super.so/">
+            <a target="_blank">super.so</a>
+          </Link>
+        </LinkSpan>
         를 통해 개인블로그를 작성중입니다.
       </Para>
-      <LinkP>
-        <Link href="https://lnuvy.super.site/blog/" target="_blank">
-          블로그 구경하기
+      <LinkSpan>
+        {'➤ '}
+        <Link href="https://lnuvy.super.site/blog/">
+          <a target="_blank">블로그 구경하기</a>
         </Link>
-      </LinkP>
+      </LinkSpan>
     </Wrap>
   );
 };
@@ -39,7 +42,7 @@ const Para = styled.p`
   }
 `;
 
-const LinkP = styled.p`
+const LinkSpan = styled.span`
   text-decoration: underline;
 
   &:hover {

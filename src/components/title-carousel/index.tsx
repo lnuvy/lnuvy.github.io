@@ -1,14 +1,14 @@
 import { settings } from '@constant/carousel-setting';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
-import { FirstSlider, H1, SecondSlider, StyledSlider, TextWrapper, Wrap } from './styles';
+import { FirstSlider, H1, StyledSlider, TextWrapper, Wrap } from './styles';
 
 const TitleCarousel = () => {
   return (
     <Wrap id="Top">
       <StyledSlider {...settings}>
         <FirstSlider />
-        <SecondSlider />
+        {/* <SecondSlider /> */}
       </StyledSlider>
       <TextWrapper>
         <H1>FrontEnd Developer</H1>
