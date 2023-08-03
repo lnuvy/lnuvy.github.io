@@ -6,6 +6,7 @@ import Stacks from '@components/pages/main/stacks';
 import TitleCarousel from '@components/title';
 import styled from '@emotion/styled';
 
+//
 const RightContent = () => {
   return (
     <Wrap>
