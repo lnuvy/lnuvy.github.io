@@ -1,12 +1,12 @@
-import React, { Dispatch, SetStateAction } from 'react'
-import styled from '@emotion/styled'
-import Link from 'next/link'
+import styled from '@emotion/styled';
+import Link from 'next/link';
+import { Dispatch, SetStateAction } from 'react';
 
-const chapterArray = ['Top', 'About', 'Stacks', 'Experience', 'Education']
+const chapterArray = ['Top', 'About', 'Stacks', 'Experience', 'Blog', 'Education'];
 
 type SetToggleProps<T = any> = {
-  setSidebarToggle: Dispatch<SetStateAction<T>>
-}
+  setSidebarToggle: Dispatch<SetStateAction<T>>;
+};
 
 const Chapter = ({ setSidebarToggle }: SetToggleProps) => {
   return (
@@ -18,11 +18,11 @@ const Chapter = ({ setSidebarToggle }: SetToggleProps) => {
               <span onClick={() => setSidebarToggle(false)}>{t}</span>
             </Link>
           </div>
-        )
+        );
       })}
     </Wrap>
-  )
-}
+  );
+};
 
 const Wrap = styled.div`
   padding: 2rem 0;
@@ -55,6 +55,6 @@ const Wrap = styled.div`
       }
     }
   }
-`
+`;
 
-export default Chapter
+export default Chapter;

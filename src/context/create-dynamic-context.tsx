@@ -1,22 +1,22 @@
-import useSafeContext from '@hooks/use-safe-context'
-import React from 'react'
+import useSafeContext from '@hooks/use-safe-context';
+import React from 'react';
 
 /**
  * 동적으로 생성가능한 context provider
  */
 export const createDynamicContext = <TProps extends object>() => {
-  const Context = React.createContext<TProps | null>(null)
+  const Context = React.createContext<TProps | null>(null);
 
   const useContext = () => {
-    return useSafeContext(Context)
-  }
+    return useSafeContext(Context);
+  };
 
   const ContextProvider = ({
     children,
     ...props
   }: { children: React.ReactElement | React.ReactElement[] } & TProps) => (
     <Context.Provider value={props as TProps}>{children}</Context.Provider>
-  )
+  );
 
   const withContextProvider = (Component: React.FunctionComponent<TProps>) => {
     const WithContextProvider = (props: TProps) => {
@@ -24,15 +24,15 @@ export const createDynamicContext = <TProps extends object>() => {
         <ContextProvider {...props}>
           <Component {...props} />
         </ContextProvider>
-      )
-    }
+      );
+    };
 
     // displayName 설정
-    const componentName = Component.displayName || Component.name || 'Component'
-    WithContextProvider.displayName = `withContextProvider(${componentName})`
+    const componentName = Component.displayName || Component.name || 'Component';
+    WithContextProvider.displayName = `withContextProvider(${componentName})`;
 
-    return WithContextProvider
-  }
+    return WithContextProvider;
+  };
 
-  return { useContext, Context, ContextProvider, withContextProvider }
-}
+  return { useContext, Context, ContextProvider, withContextProvider };
+};

@@ -21,7 +21,7 @@ export const CompanyArray = [
     subName: 'alphabetA',
     folderName: 'ffeed',
     startDate: '2022-11-07',
-    lastDay: '',
+    lastDay: '2023-04-27',
     position: '프론트엔드',
     desc: 'ffeed | 브랜드 가구 세컨핸드 커뮤니티 플랫폼',
     summary: [
@@ -41,4 +41,4 @@ export const CompanyArray = [
     desc: '',
     summary: [],
   },
-]
+];

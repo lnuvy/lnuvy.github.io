@@ -1,5 +1,5 @@
 import ExpBox from '@components/exp-box';
-import { CompanyArray } from '@constant/CompanyArray';
+import { CompanyArray } from '@constant/company-array';
 import styled from '@emotion/styled';
 
 const Experience = () => {

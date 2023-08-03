@@ -8,7 +8,7 @@ export const Wrap = styled.div`
 `;
 
 export const StyledSlider = styled(Slider)`
-  height: 100vh;
+  height: 80vh;
 
   .slick-slide div {
     outline: none; // 슬라이드 클릭시 파란선을 제거하기 위해서 작성
@@ -21,9 +21,9 @@ const CommonBackground = css`
   background-position: right 50% bottom 45%;
 `;
 
-export const Item = styled.div`
+export const SecondSlider = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 80vh;
   display: flex !important;
   flex-direction: column;
   justify-content: center;
@@ -54,13 +54,13 @@ export const Item = styled.div`
   }
 `;
 
-export const TextBox = styled.div`
+export const FirstSlider = styled.div`
   /* background: linear-gradient(to left, #2d333b, #0b0719); */
   background-image: url('/images/main.jpg');
   ${CommonBackground}
   background-color: rgba(0, 0, 0, 0.7);
 
-  height: 100vh;
+  height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -94,7 +94,8 @@ export const TextBox = styled.div`
 `;
 
 export const TitleWrapper = styled.div`
-  margin-top: 8rem;
+  position: absolute;
+  bottom: 0;
 `;
 
 interface H1Props {

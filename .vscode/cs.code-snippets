@@ -1,0 +1,21 @@
+{
+  "emotion rafce": {
+    "prefix": "erafce",
+    "body": [
+      "import React from 'react';",
+      "import styled from '@emotion/styled';",
+      "",
+      "interface Props {}",
+      "",
+      "const ${1:name} = ({}: Props) => {",
+      "  return <Frame></Frame>;",
+      "};",
+      "",
+      "export default ${1:name};",
+      "",
+      "const Frame = styled.div``;",
+      ""
+    ],
+    "description": "emotion rafce"
+  }
+}

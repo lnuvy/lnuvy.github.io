@@ -1,4 +1,5 @@
 import About from '@components/pages/main/about';
+import Blog from '@components/pages/main/blog';
 import Education from '@components/pages/main/education';
 import Experience from '@components/pages/main/experience';
 import Stacks from '@components/pages/main/stacks';
@@ -15,6 +16,8 @@ const RightContent = () => {
       <Stacks />
       <br />
       <Experience />
+      <br />
+      <Blog />
       <br />
       <Education />
       <br />

@@ -1,20 +1,11 @@
-import React from 'react'
-import {
-  Wrap,
-  NameInfo,
-  Span,
-  Footer,
-  SidebarBtn,
-  BurgerIcon,
-  ModeChangeWrap,
-} from './styles/left-style'
-import Chapter from '@components/LeftBar/Chapter'
-import ToggleBox from '@elements/ToggleBox'
-import { useCheck } from '@hooks/use-input'
-import AutoSizeImage from '@components/LeftBar/AutoSizeImage'
+import AutoSizeImage from '@components/LeftBar/AutoSizeImage';
+import Chapter from '@components/LeftBar/Chapter';
+import ToggleBox from '@elements/ToggleBox';
+import { useCheck } from '@hooks/use-input';
+import { BurgerIcon, Footer, ModeChangeWrap, NameInfo, SidebarBtn, Span, Wrap } from './styles/left-style';
 
 const LeftBar = () => {
-  const [sidebarToggle, onChangeToggle, setSidebarToggle] = useCheck(false)
+  const [sidebarToggle, onChangeToggle, setSidebarToggle] = useCheck(false);
 
   return (
     <>
@@ -27,11 +18,7 @@ const LeftBar = () => {
           checked={sidebarToggle}
           onChange={onChangeToggle}
         />
-        <BurgerIcon
-          mobileToggle={sidebarToggle}
-          htmlFor="sidebar"
-          onClick={(e) => e.stopPropagation()}
-        >
+        <BurgerIcon mobileToggle={sidebarToggle} htmlFor="sidebar" onClick={(e) => e.stopPropagation()}>
           <span />
           <span />
           <span />
@@ -70,7 +57,7 @@ const LeftBar = () => {
         </ModeChangeWrap>
       </Wrap>
     </>
-  )
-}
+  );
+};
 
-export default LeftBar
+export default LeftBar;
