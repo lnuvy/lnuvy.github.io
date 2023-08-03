@@ -62,14 +62,14 @@ export const BorderBox = styled.ol`
   width: 100%;
 
   & > li {
-    &:first-child {
+    &:first-of-type {
       border-radius: 8px 8px 0 0;
     }
     border-bottom: 1px solid ${({ theme }) => theme.palette.borderColor};
     //border-radius: 8px;
     //width: fit-content;
 
-    &:last-child {
+    &:last-of-type {
       border-bottom: 1px solid transparent;
       border-radius: 0 0 8px 8px;
     }
@@ -91,7 +91,7 @@ export const BorderBox = styled.ol`
         background-color: ${({ theme }) => theme.palette.background1};
         //border-radius: 8px;
         //}
-        &:first-child {
+        &:first-of-type {
           border-radius: 8px 8px 0 0;
         }
       }

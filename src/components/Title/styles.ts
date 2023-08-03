@@ -66,7 +66,37 @@ export const FirstSlider = styled.div`
   justify-content: space-between;
   /* justify-content: center; */
   /* align-items: center; */
+`;
 
+export const TitleWrapper = styled.div`
+  position: absolute;
+  bottom: 0;
+`;
+
+export const H1 = styled.h1`
+  width: 100%;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: ${({ theme }) => theme.palette.text2};
+
+  /* font-family: 'Cinzel', serif; */
+
+  animation: moveUp 1.5s;
+  @keyframes moveUp {
+    from {
+      opacity: 0;
+      transform: translate3d(-20%, 0, 0);
+    }
+    to {
+      opacity: 1;
+      transform: translateZ(0);
+    }
+  }
+`;
+
+export const TextWrapper = styled.div`
+  padding: 1rem;
   & > p {
     margin: 0 auto 5rem;
     color: grey;
@@ -89,41 +119,6 @@ export const FirstSlider = styled.div`
         opacity: 1;
         transform: translateZ(0);
       }
-    }
-  }
-`;
-
-export const TitleWrapper = styled.div`
-  position: absolute;
-  bottom: 0;
-`;
-
-interface H1Props {
-  pos: number;
-}
-
-export const H1 = styled.h1<H1Props>`
-  width: 100%;
-  text-align: start;
-  margin-top: 0;
-  margin-bottom: 1rem;
-  /* color: ${({ theme }) => theme.palette.text4}; */
-  color: #000;
-  padding-left: ${({ pos }) => `calc(5rem * ${pos + 1});`};
-  @media ${({ theme }) => theme.device.mobile} {
-    padding-left: ${({ pos }) => `calc(3rem * ${pos + 1});`};
-  }
-  font-family: 'Cinzel', serif;
-
-  animation: moveUp 1.5s;
-  @keyframes moveUp {
-    from {
-      opacity: 0;
-      transform: translate3d(-20%, 0, 0);
-    }
-    to {
-      opacity: 1;
-      transform: translateZ(0);
     }
   }
 `;
