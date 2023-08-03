@@ -3,7 +3,7 @@ import Blog from '@components/pages/main/blog';
 import Education from '@components/pages/main/education';
 import Experience from '@components/pages/main/experience';
 import Stacks from '@components/pages/main/stacks';
-import TitleCarousel from '@components/title';
+import TitleCarousel from '@components/title-carousel';
 import styled from '@emotion/styled';
 
 //
