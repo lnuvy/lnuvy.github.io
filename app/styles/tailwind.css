@@ -1,0 +1,44 @@
+@config "../../tailwind.config.ts";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: '#fff'; /* backgroundColor */
+  --bg-secondary: '#f6f8fb'; /* background1 */
+  --bg-tertiary: '#d6d8db'; /* background2 */
+  --bg-quaternary: '#f3f4f6'; /* background3 */
+  --bg-quinary: '#d3d4d7'; /* background4 */
+
+  --text-primary: '#57606a';
+  --text-secondary: '#24292f';
+  --text-tertiary: '#adbac7';
+  --text-quaternary: '#adbac7';
+  --text-aws: '#252f3e';
+  --text-border: 'd0d7de';
+  --text-stack: '#d0d7de';
+  --text-link: '#0969da';
+  --text-chapter: 'rgba(205, 217, 229, 0.5)';
+  --text-label: '#768390';
+}
+
+@layer utilities {
+  .dark {
+    --bg-primary: '#22272e'; /* backgroundColor */
+    --bg-secondary: '#373e48'; /* background1 */
+    --bg-tertiary: '#454e58'; /* background2 */
+    --bg-quaternary: '#454c56'; /* background3 */
+    --bg-quinary: '#758390'; /* background4 */
+
+    --text-primary: 'rgba(205, 217, 229, 0.5)';
+    --text-secondary: 'rgba(205, 217, 229, 0.7)';
+    --text-tertiary: '#768390';
+    --text-quaternary: '#adbac7';
+    --text-aws: '#fff';
+    --text-border: '444c56';
+    --text-stack: '#373e47';
+    --text-link: '#539bf5';
+    --text-chapter: 'rgba(205, 217, 229, 0.5)';
+    --text-label: '#768390';
+  }
+}
