@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from 'react'
 import styled from '@emotion/styled'
 import Link from 'next/link'
 
-const chapterArray = ['Top', 'About', 'Stacks', 'Experience', 'Blog', 'Education']
+const chapterArray = ['Top', 'About', 'Stacks', 'Experience', 'Blog']
 
 type SetToggleProps<T = any> = {
   setSidebarToggle: Dispatch<SetStateAction<T>>

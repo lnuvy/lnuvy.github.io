@@ -11,13 +11,13 @@ const AutoSizeImage = ({ ...props }: ImageProps): React.ReactElement => {
 }
 
 const ImageWrapper = styled.div`
-  width: 260px;
-  height: 260px;
-  margin: 0 auto;
+  width: 296px;
+  height: 296px;
+  margin: 40px auto 0;
 
   @media ${({ theme }) => theme.device.tablet} {
-    width: 200px;
-    height: 200px;
+    width: 256px;
+    height: 256px;
   }
 
   @media ${({ theme }) => theme.device.mobile} {
@@ -37,7 +37,6 @@ const ImageWrapper = styled.div`
       cursor: pointer;
 
       border-radius: 50%;
-      border: 1px solid ${({ theme }) => theme.palette.borderColor};
     }
   }
 `

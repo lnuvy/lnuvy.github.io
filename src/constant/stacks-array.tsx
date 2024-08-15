@@ -6,10 +6,14 @@ export const stacksArray = [
     id: 0,
     name: 'JavaScript',
     isPublic: 1,
-    desc: '스코프, 실행 컨텍스트, 콜스택, 이벤트 루프 등의 개념에 대해 알고, 클로저와 this 등을 활용할 수 있습니다.',
+    desc: '스코프, 실행 컨텍스트, 콜스택, 이벤트 루프의 개념에 대해 알고, 클로저와 this 등을 활용할 수 있습니다.',
     svg: '/images/JavaScript_logo_2.png',
     svgName: 'JavaScript',
     updated: 'Updated 29 seconds ago',
+    // forked: {
+    //   label: '코어 자바스크립트',
+    //   link: 'https://product.kyobobook.co.kr/detail/S000001766397',
+    // },
     starred: 1,
   },
   {
@@ -20,6 +24,10 @@ export const stacksArray = [
     svg: '/images/Typescript_logo_2020.png',
     svgName: 'TypeScript',
     updated: 'Updated now',
+    // forked: {
+    //   label: 'effective typescript',
+    //   link: 'https://product.kyobobook.co.kr/detail/S000001033114',
+    // },
     starred: 1,
     link: 'https://www.typescriptlang.org/',
   },

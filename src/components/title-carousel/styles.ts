@@ -1,4 +1,3 @@
-import Slider from 'react-slick'
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 
@@ -6,16 +5,6 @@ export const Wrap = styled.div`
   width: 100%;
   min-height: 100vh;
 `
-
-export const StyledSlider = styled(Slider)`
-  height: 80vh;
-
-  .slick-slide div {
-    outline: none; // 슬라이드 클릭시 파란선을 제거하기 위해서 작성
-    //width: 100%;
-  }
-`
-
 const CommonBackground = css`
   background-size: cover;
   background-position: right 50% bottom 45%;
@@ -55,12 +44,11 @@ export const SecondSlider = styled.div`
 `
 
 export const FirstSlider = styled.div`
-  /* background: linear-gradient(to left, #2d333b, #0b0719); */
   background-image: url('/images/main.jpg');
   ${CommonBackground}
   background-color: rgba(0, 0, 0, 0.7);
 
-  height: 80vh;
+  height: 60vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -76,11 +64,10 @@ export const TitleWrapper = styled.div`
 export const H1 = styled.h1`
   width: 100%;
   text-align: center;
+  font-weight: 600;
   margin-top: 0;
   margin-bottom: 1rem;
   color: ${({ theme }) => theme.palette.text2};
-
-  /* font-family: 'Cinzel', serif; */
 
   animation: moveUp 1.5s;
   @keyframes moveUp {
@@ -98,7 +85,7 @@ export const H1 = styled.h1`
 export const TextWrapper = styled.div`
   padding: 1rem;
   & > p {
-    margin: 0 auto 5rem;
+    margin: 0 auto 20px;
     color: grey;
     font-size: 0.9rem;
     animation: moveDown 3s;
@@ -120,5 +107,13 @@ export const TextWrapper = styled.div`
         transform: translateZ(0);
       }
     }
+  }
+`
+
+export const LinkStyle = styled.span`
+  font-weight: 600;
+  color: ${({ theme }) => theme.palette.link} !important;
+  :hover {
+    text-decoration: underline;
   }
 `

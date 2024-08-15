@@ -48,7 +48,7 @@ export const BurgerIcon = styled.label<SidebarProps>`
 export const Wrap = styled.div<SidebarProps>`
   height: 100vh;
   padding: 1rem;
-  width: 30vw;
+  width: 296px;
   position: fixed;
   top: 0;
   /* transition: left 0.5s; */

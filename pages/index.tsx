@@ -23,19 +23,24 @@ const Home: NextPage = (props: IndexProps | any) => {
     <MDContext.Provider value={contextValue}>
       <Frame>
         <ScrollProgress />
-        <Layout>
-          <Layout.Left />
-          <Layout.Right />
-        </Layout>
+        <LayoutWrapper>
+          <Layout>
+            <Layout.Left />
+            <Layout.Right />
+          </Layout>
+        </LayoutWrapper>
       </Frame>
     </MDContext.Provider>
   )
 }
 
 const Frame = styled.div`
-  max-width: 1216px;
   background: ${({ theme }) => theme.palette.backgroundColor};
   color: ${({ theme }) => theme.palette.text2};
+`
+
+const LayoutWrapper = styled.div`
+  width: 100%;
 `
 
 export const getStaticProps = async () => {

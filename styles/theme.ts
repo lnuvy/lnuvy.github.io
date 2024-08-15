@@ -17,8 +17,10 @@ export const theme = {
     backgroundColor: '#22272e',
     background1: '#373e48', // 버튼색상
     background2: '#454e58', // 버튼 border 색상
-    background3: '#454c56', // 버튼 hover
+    background3: '#3d444e', // 버튼 hover
     background4: '#758390', // 버튼 border hover
+    'text-default': '#c5d1de',
+    'text-muted': '#778491',
     text1: 'rgba(205, 217, 229, 0.5)',
     text2: 'rgba(205, 217, 229, .7)',
     text3: '#768390',
@@ -30,6 +32,7 @@ export const theme = {
     chapterHover: 'rgba(205, 217, 229, 0.5)',
     labelColor: '#768390',
     boxShadow: '#cdd9e526',
+    link: '#478be6',
   },
   lightTheme: {
     backgroundColor: '#fff',
@@ -37,6 +40,8 @@ export const theme = {
     background2: '#d6d8db',
     background3: '#f3f4f6',
     background4: '#d3d4d7',
+    'text-default': '#1f2328',
+    'text-muted': '#636c76',
     text1: '#57606a',
     text2: '#24292f',
     text3: '#adbac7',
@@ -48,5 +53,6 @@ export const theme = {
     chapterHover: 'rgba(205, 217, 229, 0.5)',
     labelColor: '#768390',
     boxShadow: '#1f232826',
+    link: '#478be6',
   },
 }

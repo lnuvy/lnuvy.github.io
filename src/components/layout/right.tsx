@@ -1,7 +1,6 @@
 import styled from '@emotion/styled'
 import About from '@components/pages/main/about'
 import Blog from '@components/pages/main/blog'
-import Education from '@components/pages/main/education'
 import Experience from '@components/pages/main/experience'
 import Stacks from '@components/pages/main/stacks'
 import TitleCarousel from '@components/title-carousel'
@@ -19,16 +18,22 @@ const RightContent = () => {
       <br />
       <Blog />
       <br />
-      <Education />
-      <br />
+      {/* <Education /> */}
+      {/* <br /> */}
       <p style={{ marginBottom: '5rem' }}>부족한 점이 많지만 최선을 다하겠습니다. 감사합니다!</p>
     </Wrap>
   )
 }
 
 const Wrap = styled.div`
-  max-width: calc(90vw - 30vw);
-  margin-left: 30vw;
+  width: 100%;
+  max-width: calc(100% - 296px);
+  margin-left: calc(296px + 24px);
+
+  @media ${({ theme }) => theme.device.tablet} {
+    margin-left: calc(256px + 16px);
+  }
+
   @media ${({ theme }) => theme.device.mobile} {
     max-width: 90vw;
     margin-left: 0;

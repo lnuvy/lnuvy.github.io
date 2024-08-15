@@ -12,6 +12,8 @@ declare module '@emotion/react' {
       background2: string
       background3: string
       background4: string
+      'text-default': string
+      'text-muted': string
       text1: string
       text2: string
       text3: string
@@ -23,6 +25,7 @@ declare module '@emotion/react' {
       chapterHover: string
       labelColor: string
       boxShadow: string
+      link: string
     }
   }
 }

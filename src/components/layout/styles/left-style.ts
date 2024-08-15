@@ -49,13 +49,16 @@ export const BurgerIcon = styled.label<SidebarProps>`
 `
 export const Wrap = styled.div<SidebarProps>`
   height: 100vh;
-  padding: 1rem;
-  width: 30vw;
+  width: 100%;
+  max-width: 296px;
   position: fixed;
   top: 0;
-  /* transition: all 0.2s ease-in-out; */
   transition: left 0.4s;
   background-color: ${({ theme }) => theme.palette.backgroundColor};
+
+  @media ${({ theme }) => theme.device.tablet} {
+    max-width: 256px;
+  }
 
   @media ${({ theme }) => theme.device.mobile} {
     width: 40vw;
@@ -69,7 +72,7 @@ export const Wrap = styled.div<SidebarProps>`
 `
 
 export const NameInfo = styled.div`
-  padding: 0.5rem 1rem;
+  padding: 1rem 0;
   gap: 0.5rem;
   font-weight: 300;
   font-size: 1rem;
@@ -81,13 +84,24 @@ export const NameInfo = styled.div`
     margin: 0;
     font-size: 24px;
     line-height: 1.25;
-    padding: 0 1rem;
+    color: ${({ theme }) => theme.palette['text-default']};
   }
   & span {
+    color: ${({ theme }) => theme.palette['text-muted']};
     font-size: 20px;
     font-style: normal;
     font-weight: 300;
     line-height: 24px;
+  }
+`
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  flex: 1;
+  gap: 8px;
+  @media ${({ theme }) => theme.device.tablet} {
+    flex-direction: column;
+    gap: 1rem;
   }
 `
 
