@@ -16,6 +16,8 @@ export const SidebarBtn = styled.div`
 `
 
 export const BurgerIcon = styled.label<SidebarProps>`
+  cursor: pointer;
+  
   @media ${({ theme }) => theme.device.mobile} {
     width: 30px;
     height: 20px;
@@ -42,7 +44,7 @@ export const BurgerIcon = styled.label<SidebarProps>`
       }
       &:nth-of-type(3) {
         ${({ mobileToggle }) =>
-          mobileToggle ? 'top: 50%;transform: rotate(-45deg);' : 'top: 100%;'};
+          mobileToggle ? 'top: 50%; transform: rotate(-45deg);' : 'top: 100%;'};
       }
     }
   }

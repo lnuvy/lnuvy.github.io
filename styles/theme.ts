@@ -29,6 +29,7 @@ export const theme = {
     linkColor: '#539bf5',
     chapterHover: 'rgba(205, 217, 229, 0.5)',
     labelColor: '#768390',
+    boxShadow: '#cdd9e526'
   },
   lightTheme: {
     backgroundColor: '#fff',
@@ -46,5 +47,6 @@ export const theme = {
     linkColor: '#0969da',
     chapterHover: 'rgba(205, 217, 229, 0.5)',
     labelColor: '#768390',
+    boxShadow: '#1f232826'
   },
 }

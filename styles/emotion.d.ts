@@ -1,4 +1,4 @@
-import Theme from '@emotion/react'
+import '@emotion/react'
 
 declare module '@emotion/react' {
   export interface Theme {
@@ -22,6 +22,7 @@ declare module '@emotion/react' {
       linkColor: string
       chapterHover: string
       labelColor: string
+      boxShadow: string
     }
   }
 }

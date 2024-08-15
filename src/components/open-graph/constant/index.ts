@@ -33,7 +33,7 @@ export const HEAD_COMMON_INFO = {
   TYPE: 'website',
   NAME: 'lnuvy',
   CATCHPHRASE: '프론트엔드 개발자 이한울입니다.',
-  DESCRIPTION: '변화를 좋아하고 시대의 흐름에 서핑하는',
+  DESCRIPTION: '함께 일하고 싶은 동료가 되기위해 노력하며, 새로운 기술과 환경을 즐깁니다.',
   URL: 'https://lnuvy.github.io',
   EMAIL: 'lnuvy.code@gmail.com',
   IMAGE: '', // TODO: 이미지 채우기

@@ -31,7 +31,7 @@ export const stacksArray = [
     svg: '/images/React-icon.png',
     svgName: 'React',
     updated: 'Updated 1 minute ago',
-    starred: 0,
+    starred: 1,
     link: 'https://legacy.reactjs.org/',
   },
   {
@@ -53,7 +53,7 @@ export const stacksArray = [
     svg: '/images/solid.ico',
     svgName: 'Solid.js',
     updated: 'Updated 2 hours ago',
-    starred: 1,
+    starred: 0,
     link: 'https://www.solidjs.com/',
   },
   {

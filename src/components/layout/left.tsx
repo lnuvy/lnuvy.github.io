@@ -6,6 +6,7 @@ import { BurgerIcon, Footer, ModeChangeWrap, NameInfo, SidebarBtn, Span, Wrap } 
 
 const LeftBar = () => {
   const [sidebarToggle, onChangeToggle, setSidebarToggle] = useCheck(false);
+  const year = new Date().getFullYear()
 
   return (
     <>
@@ -29,15 +30,16 @@ const LeftBar = () => {
       <Wrap mobileToggle={sidebarToggle}>
         <br />
 
+
         <AutoSizeImage
-          src="images/profile.jpg"
+          src="images/runners-jayden.png"
           onClick={() => window.open('https://github.com/lnuvy')}
           alt="profile"
           layout="fill"
         />
 
         <NameInfo className="flex-c-start">
-          <h4>이한울</h4>
+          <h4>이한울 </h4>
 
           <div className="flex-sb" style={{ padding: '0 1rem ' }}>
             <span>lnuvy</span>
@@ -49,7 +51,7 @@ const LeftBar = () => {
 
         <div style={{ marginTop: '2rem' }}>
           <Footer>
-            <Span>© 2022. lnuvy All rights reserved.</Span>
+            <Span>© {year}. lnuvy All rights reserved.</Span>
           </Footer>
         </div>
         <ModeChangeWrap className="flex-center">

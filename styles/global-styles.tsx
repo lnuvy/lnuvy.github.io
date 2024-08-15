@@ -8,7 +8,6 @@ const common = css`
     margin: 0;
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
     scroll-behavior: smooth;
-    user-select: none;
   }
   /* 
   html {

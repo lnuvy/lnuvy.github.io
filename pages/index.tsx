@@ -15,7 +15,6 @@ interface IndexProps extends GetStaticProps {
   posts: MDFile[];
 }
 
-// getStaticProps 사용했을때의 타입 잘 모르겠음
 const Home: NextPage = (props: IndexProps | any) => {
   const { posts } = props;
   const contextValue = { posts };
@@ -34,7 +33,7 @@ const Home: NextPage = (props: IndexProps | any) => {
 };
 
 const Frame = styled.div`
-  /* transition: all 0.2s ease-in-out; */
+  max-width: 1216px;
   background: ${({ theme }) => theme.palette.backgroundColor};
   color: ${({ theme }) => theme.palette.text2};
 `;
