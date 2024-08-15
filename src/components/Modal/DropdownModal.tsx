@@ -12,9 +12,7 @@ const DropdownModal = () => {
             // onClose();
           }}
         >
-          <Content
-            onClick={(e: Event | React.MouseEvent) => e.stopPropagation()}
-          >
+          <Content onClick={(e: Event | React.MouseEvent) => e.stopPropagation()}>
             <div style={{ height: '104px' }}>안녕</div>
           </Content>
         </Background>

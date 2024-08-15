@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from '@emotion/styled'
 
 const Education = () => {
   return (
@@ -14,15 +14,15 @@ const Education = () => {
       <Para>빅데이터분석과 UI구현을 위한 자바(JAVA), 파이썬(Python)개발자 과정 수료</Para>
       <br />
     </Wrap>
-  );
-};
+  )
+}
 
-const Wrap = styled.div``;
+const Wrap = styled.div``
 
 const Title = styled.h4`
   margin-bottom: 0.3rem;
   font-weight: 500;
-`;
+`
 
 const Para = styled.li`
   margin-top: 0.2rem;
@@ -32,6 +32,6 @@ const Para = styled.li`
   &::marker {
     /* color: ; */
   }
-`;
+`
 
-export default Education;
+export default Education

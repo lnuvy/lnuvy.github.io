@@ -1,25 +1,24 @@
-import { Company } from '@typing/front';
-import { marked } from 'marked';
-import Octicon from 'public/svg/Octicon';
-import React, { useCallback, useContext, useState } from 'react';
-import { MDContext } from '../../../pages';
-import { BorderBox, ContentWrap, DetailList, Wrap } from './styles';
+import React, { useCallback, useContext, useState } from 'react'
+import { marked } from 'marked'
+import { Company } from '@typing/front'
+import Octicon from 'public/svg/Octicon'
+import { BorderBox, ContentWrap, DetailList, Wrap } from './styles'
+import { MDContext } from '../../../pages'
 
-//11
 const ExpBox = ({ company }: { company: Company }) => {
-  const { posts }: any = useContext(MDContext);
+  const { posts }: any = useContext(MDContext)
 
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   const onClickOpen = useCallback(
     (i: number) => {
-      if (openIndex === i) setOpenIndex(null);
-      else setOpenIndex(i);
+      if (openIndex === i) setOpenIndex(null)
+      else setOpenIndex(i)
     },
     [openIndex],
-  );
+  )
 
-  if (!company) return <></>;
+  if (!company) return <></>
 
   if (company.id === 'last-career')
     return (
@@ -32,7 +31,7 @@ const ExpBox = ({ company }: { company: Company }) => {
           <span>{company.name}</span>
         </ContentWrap>
       </Wrap>
-    );
+    )
 
   return (
     <Wrap>
@@ -50,14 +49,14 @@ const ExpBox = ({ company }: { company: Company }) => {
         <BorderBox>
           {posts?.map((v: any) => {
             return Object.entries(v).map(([companyName, array]: any) => {
-              if (companyName !== company.folderName) return null;
+              if (companyName !== company.folderName) return null
 
               return array.map(({ title, content }: { title: string; content: string }, i: number) => (
                 <React.Fragment key={`${i}_${title}`}>
                   <li
                     className={`title-li ${openIndex === i ? 'active-color' : 'inactive'}`}
                     onClick={() => {
-                      onClickOpen(i);
+                      onClickOpen(i)
                     }}
                   >
                     <div className="desc-div">{title}</div>
@@ -76,13 +75,13 @@ const ExpBox = ({ company }: { company: Company }) => {
                     </DetailList>
                   )}
                 </React.Fragment>
-              ));
-            });
+              ))
+            })
           })}
         </BorderBox>
       </ContentWrap>
     </Wrap>
-  );
-};
+  )
+}
 
-export default ExpBox;
+export default ExpBox

@@ -1,4 +1,4 @@
-import Theme from '@emotion/react'
+import '@emotion/react'
 
 declare module '@emotion/react' {
   export interface Theme {
@@ -12,6 +12,8 @@ declare module '@emotion/react' {
       background2: string
       background3: string
       background4: string
+      'text-default': string
+      'text-muted': string
       text1: string
       text2: string
       text3: string
@@ -22,6 +24,8 @@ declare module '@emotion/react' {
       linkColor: string
       chapterHover: string
       labelColor: string
+      boxShadow: string
+      link: string
     }
   }
 }

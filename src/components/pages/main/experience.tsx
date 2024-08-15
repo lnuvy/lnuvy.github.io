@@ -1,6 +1,6 @@
-import ExpBox from '@components/exp-box';
-import { CompanyArray } from '@constant/company-array';
-import styled from '@emotion/styled';
+import styled from '@emotion/styled'
+import ExpBox from '@components/exp-box'
+import { CompanyArray } from '@constant/company-array'
 
 const Experience = () => {
   return (
@@ -13,12 +13,13 @@ const Experience = () => {
         <ExpBox key={company.id} company={company} />
       ))}
     </Wrap>
-  );
-};
+  )
+}
 
 const Wrap = styled.div`
   //min-height: 100vh;
+  width: 100%;
   padding: 1rem 0;
-`;
+`
 
-export default Experience;
+export default Experience

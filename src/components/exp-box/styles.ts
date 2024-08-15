@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from '@emotion/styled'
 
 export const Wrap = styled.div`
   width: 100%;
@@ -36,7 +36,7 @@ export const Wrap = styled.div`
       background-color: ${({ theme }) => theme.palette.backgroundColor};
     }
   }
-`;
+`
 
 export const ContentWrap = styled.div`
   gap: 0.5rem;
@@ -51,7 +51,7 @@ export const ContentWrap = styled.div`
       font-size: 0.8rem;
     }
   }
-`;
+`
 
 export const BorderBox = styled.ol`
   list-style: none;
@@ -108,11 +108,11 @@ export const BorderBox = styled.ol`
   .inactive {
     background-color: ${({ theme }) => theme.palette.backgroundColor};
   }
-`;
+`
 
 type ListProps = {
-  index: number | null;
-};
+  index: number | null
+}
 
 export const DetailList = styled.li<ListProps>`
   padding: 0.5rem 1rem;
@@ -157,4 +157,4 @@ export const DetailList = styled.li<ListProps>`
   //& .md-div {
   //  width: 100%;
   //}
-`;
+`

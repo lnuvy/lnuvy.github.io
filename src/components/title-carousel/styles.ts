@@ -1,29 +1,20 @@
-import { css } from '@emotion/react';
-import styled from '@emotion/styled';
-import Slider from 'react-slick';
+import { css } from '@emotion/react'
+import styled from '@emotion/styled'
 
 export const Wrap = styled.div`
+  position: sticky;
+  top: 0;
   width: 100%;
   min-height: 100vh;
-`;
-
-export const StyledSlider = styled(Slider)`
-  height: 80vh;
-
-  .slick-slide div {
-    outline: none; // 슬라이드 클릭시 파란선을 제거하기 위해서 작성
-    //width: 100%;
-  }
-`;
-
+`
 const CommonBackground = css`
   background-size: cover;
   background-position: right 50% bottom 45%;
-`;
+`
 
 export const SecondSlider = styled.div`
   width: 100%;
-  height: 80vh;
+  height: 220vh;
   display: flex !important;
   flex-direction: column;
   justify-content: center;
@@ -52,37 +43,35 @@ export const SecondSlider = styled.div`
       font-size: 0.8rem;
     }
   }
-`;
+`
 
 export const FirstSlider = styled.div`
-  /* background: linear-gradient(to left, #2d333b, #0b0719); */
   background-image: url('/images/main.jpg');
   ${CommonBackground}
   background-color: rgba(0, 0, 0, 0.7);
 
-  height: 80vh;
+  height: 60vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   /* justify-content: center; */
   /* align-items: center; */
-`;
+`
 
 export const TitleWrapper = styled.div`
   position: absolute;
   bottom: 0;
-`;
+`
 
 export const H1 = styled.h1`
   width: 100%;
   text-align: center;
+  font-weight: 600;
   margin-top: 0;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   color: ${({ theme }) => theme.palette.text2};
 
-  /* font-family: 'Cinzel', serif; */
-
-  animation: moveUp 1.5s;
+  animation: moveUp 0.7s;
   @keyframes moveUp {
     from {
       opacity: 0;
@@ -93,15 +82,15 @@ export const H1 = styled.h1`
       transform: translateZ(0);
     }
   }
-`;
+`
 
 export const TextWrapper = styled.div`
   padding: 1rem;
   & > p {
-    margin: 0 auto 5rem;
+    margin: 0 auto 20px;
     color: grey;
     font-size: 0.9rem;
-    animation: moveDown 3s;
+    animation: moveDown 2s;
 
     @media ${({ theme }) => theme.device.mobile} {
       font-size: 0.7rem;
@@ -121,4 +110,15 @@ export const TextWrapper = styled.div`
       }
     }
   }
-`;
+  & > .dot {
+    margin-left: 12px;
+  }
+`
+
+export const LinkStyle = styled.span`
+  font-weight: 600;
+  color: ${({ theme }) => theme.palette.link} !important;
+  :hover {
+    text-decoration: underline;
+  }
+`

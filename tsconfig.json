@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -16,19 +20,53 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@pages/*": ["pages/*"],
-      "@constant/*": ["src/constant/*"],
-      "@helpers/*": ["src/helpers/*"],
-      "@hooks/*": ["src/hooks/*"],
-      "@components/*": ["src/components/*"],
-      "@context/*": ["src/context/*"],
-      "@layout/*": ["src/layout/*"],
-      "@typing/*": ["src/typing/*"],
-      "@elements/*": ["src/elements/*"],
-      "@markdown/*": ["src/markdown/*"],
-      "@styles/*": ["styles/*"]
-    }
+      "@pages/*": [
+        "pages/*"
+      ],
+      "@constant/*": [
+        "src/constant/*"
+      ],
+      "@helpers/*": [
+        "src/helpers/*"
+      ],
+      "@hooks/*": [
+        "src/hooks/*"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@context/*": [
+        "src/context/*"
+      ],
+      "@layout/*": [
+        "src/layout/*"
+      ],
+      "@typing/*": [
+        "src/typing/*"
+      ],
+      "@elements/*": [
+        "src/elements/*"
+      ],
+      "@markdown/*": [
+        "src/markdown/*"
+      ],
+      "@styles/*": [
+        "styles/*"
+      ]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

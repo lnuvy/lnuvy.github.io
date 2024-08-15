@@ -1,21 +1,70 @@
 {
-  "emotion rafce": {
-    "prefix": "erafce",
+  "create dynamic context": {
+    "prefix": "cdc",
     "body": [
-      "import React from 'react';",
-      "import styled from '@emotion/styled';",
+      "\"use client\"",
+      
+      "import { createDynamicContext } from \"@/app/_context/create-dynamic-context\"",
       "",
-      "interface Props {}",
+      "interface ${1:Name}Props {}",
       "",
-      "const ${1:name} = ({}: Props) => {",
-      "  return <Frame></Frame>;",
-      "};",
+      "const { ContextProvider, useContext } = createDynamicContext<${1:Name}Props>()",
       "",
-      "export default ${1:name};",
-      "",
-      "const Frame = styled.div``;",
+      "export const use${1:Name} = useContext",
+      "export const ${1:Name}Provider = ContextProvider",
       ""
     ],
-    "description": "emotion rafce"
-  }
+    "description": "create dynamic context "
+  },
+  "rafce kebab case component template": {
+    "prefix": "rrr",
+    "body": [
+      "interface ${1:${TM_FILENAME_BASE/^([a-z])|-(\\w)/${1:/upcase}${2:/upcase}/g}}Props {",
+      "  ${2:props}",
+      "}",
+      "",
+      "const ${1:first} = (props: ${1:first}Props) => {",
+      "  const {} = props",
+      "  return <div>${1:first}</div>",
+      "}",
+      "",
+      "export default ${1:first}",
+      ""
+    ],
+    "description": "rafce sense template"
+  },
+  "ttt": {
+    "prefix": "ttt",
+    "body": [
+      "const ${1:${TM_FILENAME_BASE/^([a-z])|-(\\w)/${1:/upcase}${2:/upcase}/g}} = () => {",
+      "  return <div>${1:first}</div>",
+      "}",
+      "",
+      "export default ${1:first}"
+    ],
+    "description": "ttt"
+  },
+  "clo": {
+    "prefix": "clo",
+    "body": [
+      "console.log(`${1:data}`, ${1:data})"
+    ],
+    "description": "clo"
+  },
+  "주석": {
+    "prefix": "wntjr",
+    "body": ["/**", " * ${1:description}", " */"],
+    "description": "description"
+  },
+  "긴 주석": {
+    "prefix": "rlswntjr",
+    "body": [
+      "/** ------------------------------------------------------------------------------",
+      " * ",
+      " * ${1:description}",
+      " * ",
+      " ------------------------------------------------------------------------------ */"
+    ],
+    "description": "description"
+  },
 }

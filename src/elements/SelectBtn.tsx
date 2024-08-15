@@ -5,6 +5,7 @@ interface BtnProps {
   padding: string
   pointer?: boolean
   mini?: boolean
+  wide?: boolean
 }
 
 interface BtnType extends BtnProps {
@@ -12,9 +13,9 @@ interface BtnType extends BtnProps {
   onClick?: () => void
 }
 
-const SelectBtn = ({ children, padding, pointer, mini, onClick }: BtnType) => {
+const SelectBtn = ({ children, padding, pointer, mini, wide, onClick }: BtnType) => {
   return (
-    <Button padding={padding} pointer={pointer} mini={mini} onClick={onClick}>
+    <Button padding={padding} pointer={pointer} mini={mini} wide={wide} onClick={onClick}>
       {children}
     </Button>
   )
@@ -31,15 +32,17 @@ const Button = styled.button<BtnProps>`
   border: 1px solid ${({ theme }) => theme.palette.background2};
   border-radius: 6px;
   background-color: ${({ theme }) => theme.palette.background1};
-  color: ${({ theme }) => theme.palette.text4};
+  color: ${({ theme }) => theme.palette.text2};
 
   display: flex;
   justify-content: center;
   align-items: center;
+  ${({ wide }) => wide && 'flex: 1;'}
+  cursor: pointer;
 
   &:hover {
     background-color: ${({ theme }) => theme.palette.background3};
-    border-color: ${({ theme }) => theme.palette.background4};
+    /* border-color: ${({ theme }) => theme.palette.background4}; */
   }
 `
 
