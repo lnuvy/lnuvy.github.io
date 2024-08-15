@@ -37,5 +37,6 @@ const Frame = styled.div`
   @media ${({ theme }) => theme.device.mobile} {
     width: 90vw;
     gap: 0;
+    padding: 0;
   }
 `

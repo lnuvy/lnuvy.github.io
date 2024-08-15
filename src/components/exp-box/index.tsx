@@ -5,7 +5,6 @@ import Octicon from 'public/svg/Octicon'
 import { BorderBox, ContentWrap, DetailList, Wrap } from './styles'
 import { MDContext } from '../../../pages'
 
-//11
 const ExpBox = ({ company }: { company: Company }) => {
   const { posts }: any = useContext(MDContext)
 

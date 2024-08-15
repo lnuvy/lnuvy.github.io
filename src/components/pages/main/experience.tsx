@@ -18,6 +18,7 @@ const Experience = () => {
 
 const Wrap = styled.div`
   //min-height: 100vh;
+  width: 100%;
   padding: 1rem 0;
 `
 

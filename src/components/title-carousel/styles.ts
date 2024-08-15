@@ -2,6 +2,8 @@ import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 
 export const Wrap = styled.div`
+  position: sticky;
+  top: 0;
   width: 100%;
   min-height: 100vh;
 `
@@ -12,7 +14,7 @@ const CommonBackground = css`
 
 export const SecondSlider = styled.div`
   width: 100%;
-  height: 80vh;
+  height: 220vh;
   display: flex !important;
   flex-direction: column;
   justify-content: center;
@@ -66,10 +68,10 @@ export const H1 = styled.h1`
   text-align: center;
   font-weight: 600;
   margin-top: 0;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   color: ${({ theme }) => theme.palette.text2};
 
-  animation: moveUp 1.5s;
+  animation: moveUp 0.7s;
   @keyframes moveUp {
     from {
       opacity: 0;
@@ -88,7 +90,7 @@ export const TextWrapper = styled.div`
     margin: 0 auto 20px;
     color: grey;
     font-size: 0.9rem;
-    animation: moveDown 3s;
+    animation: moveDown 2s;
 
     @media ${({ theme }) => theme.device.mobile} {
       font-size: 0.7rem;
@@ -107,6 +109,9 @@ export const TextWrapper = styled.div`
         transform: translateZ(0);
       }
     }
+  }
+  & > .dot {
+    margin-left: 12px;
   }
 `
 

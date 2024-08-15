@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import About from '@components/pages/main/about'
+import TransitionWrapper from '@components/common/transition-wrapper'
 import Blog from '@components/pages/main/blog'
 import Experience from '@components/pages/main/experience'
 import Stacks from '@components/pages/main/stacks'
@@ -8,19 +8,24 @@ import TitleCarousel from '@components/title-carousel'
 const RightContent = () => {
   return (
     <Wrap>
-      <TitleCarousel />
+      <div style={{ height: '220vh' }}>
+        <TitleCarousel />
+        <br />
+        {/* <TransitionWrapper>
+          <About />
+        </TransitionWrapper> */}
+      </div>
       <br />
-      <About />
+      <TransitionWrapper>
+        <Stacks />
+      </TransitionWrapper>
       <br />
-      <Stacks />
-      <br />
-      <Experience />
+      <TransitionWrapper>
+        <Experience />
+      </TransitionWrapper>
       <br />
       <Blog />
       <br />
-      {/* <Education /> */}
-      {/* <br /> */}
-      <p style={{ marginBottom: '5rem' }}>부족한 점이 많지만 최선을 다하겠습니다. 감사합니다!</p>
     </Wrap>
   )
 }
