@@ -1,4 +1,4 @@
-import { GS_TYPE } from './google-snippet';
+import { GS_TYPE } from './google-snippet'
 
 /** ------------------------------------------------------------------------------
  * 
@@ -22,7 +22,7 @@ export const OG = {
   'og:site_name': 'og:site_name',
   'og:description': 'og:description',
   'og:image': 'og:image',
-};
+}
 
 /** ------------------------------------------------------------------------------
  * 
@@ -37,7 +37,7 @@ export const HEAD_COMMON_INFO = {
   URL: 'https://lnuvy.github.io',
   EMAIL: 'lnuvy.code@gmail.com',
   IMAGE: '', // TODO: 이미지 채우기
-};
+}
 
 /** ------------------------------------------------------------------------------
  * 
@@ -50,7 +50,7 @@ export const JSONLD_ADDRESS = {
   addressLocality: 'Seoul, Korea',
   postalCode: '06131',
   streetAddress: '서울특별시 강남구 테헤란로25길 15-10, 203호',
-};
+}
 
 /** ------------------------------------------------------------------------------
  * 
@@ -64,7 +64,7 @@ export const JSONLD_CONTACTS = [
     contactType: 'customer service',
     areaServed: 'KR',
   },
-];
+]
 
 /** ------------------------------------------------------------------------------
  * 
@@ -77,7 +77,7 @@ export const JSONLD_ORGANIZATION_LOGO = {
   url: '', // TODO: 이미지
   width: '112',
   height: '112',
-};
+}
 
 /** ------------------------------------------------------------------------------
  * 
@@ -93,4 +93,4 @@ export const JSONLD_ORGANIZATION = {
   logo: JSONLD_ORGANIZATION_LOGO,
   address: JSONLD_ADDRESS,
   contactPoint: JSONLD_CONTACTS,
-};
+}

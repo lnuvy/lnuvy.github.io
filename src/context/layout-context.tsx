@@ -1,6 +1,6 @@
-"use client"
+'use client'
 
-import { createDynamicContext } from "./create-dynamic-context"
+import { createDynamicContext } from './create-dynamic-context'
 
 interface LayoutContextProps {}
 

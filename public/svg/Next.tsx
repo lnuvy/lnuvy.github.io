@@ -9,21 +9,12 @@ export const Svg = styled.svg`
 const Next = () => {
   return (
     // xmlns:xlink="http://www.w3.org/1999/xlink"
-    <Svg
-      width="207px"
-      viewBox="0 0 207 124"
-      version="1.1"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <Svg width="207px" viewBox="0 0 207 124" version="1.1" xmlns="http://www.w3.org/2000/svg">
       <title>next-black</title>
       {/*<desc>Created with Sketch.</desc>*/}
       <defs />
       <g id="Page-1" strokeWidth="2" fillRule="evenodd">
-        <g
-          id="Black-Next.js"
-          transform="translate(-247.000000, -138.000000)"
-          fillRule="nonzero"
-        >
+        <g id="Black-Next.js" transform="translate(-247.000000, -138.000000)" fillRule="nonzero">
           <g id="next-black" transform="translate(247.000000, 138.000000)">
             <g id="EXT-+-Type-something">
               <path

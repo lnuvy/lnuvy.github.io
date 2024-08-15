@@ -1,17 +1,8 @@
 import React from 'react'
-import {
-  Wrap,
-  NameInfo,
-  Span,
-  Footer,
-  SidebarBtn,
-  BurgerIcon,
-  ModeChangeWrap,
-} from './LeftBarStyles'
 import Chapter from '@components/LeftBar/Chapter'
 import ToggleBox from '@elements/ToggleBox'
 import { useCheck } from '@hooks/use-input'
-import AutoSizeImage from '@components/LeftBar/AutoSizeImage'
+import { Wrap, NameInfo, Span, Footer, SidebarBtn, BurgerIcon, ModeChangeWrap } from './LeftBarStyles'
 
 const LeftBar = () => {
   const [sidebarToggle, onChangeToggle, setSidebarToggle] = useCheck(false)
@@ -27,11 +18,7 @@ const LeftBar = () => {
           checked={sidebarToggle}
           onChange={onChangeToggle}
         />
-        <BurgerIcon
-          mobileToggle={sidebarToggle}
-          htmlFor="sidebar"
-          onClick={(e) => e.stopPropagation()}
-        >
+        <BurgerIcon mobileToggle={sidebarToggle} htmlFor="sidebar" onClick={(e) => e.stopPropagation()}>
           <span />
           <span />
           <span />

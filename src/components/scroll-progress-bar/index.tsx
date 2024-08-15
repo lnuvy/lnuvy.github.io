@@ -1,13 +1,6 @@
-import React, {
-  useState,
-  useCallback,
-  useEffect,
-  useRef,
-  MouseEvent,
-  useMemo,
-} from 'react'
-import styles from './styles.module.css'
+import React, { useState, useCallback, useEffect, useRef, useMemo } from 'react'
 import { getProgressColor } from '@helpers/function'
+import styles from './styles.module.css'
 
 const ScrollProgress = () => {
   const [width, setWidth] = useState<number>(0)

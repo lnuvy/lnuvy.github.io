@@ -33,16 +33,14 @@ export const BurgerIcon = styled.label<SidebarProps>`
       /* transition: 0.3s; */
 
       &:nth-of-type(1) {
-        ${({ mobileToggle }) =>
-          mobileToggle ? 'top: 50%; transform: rotate(45deg);' : 'top: 0;'};
+        ${({ mobileToggle }) => (mobileToggle ? 'top: 50%; transform: rotate(45deg);' : 'top: 0;')};
       }
       &:nth-of-type(2) {
         top: 50%;
         ${({ mobileToggle }) => (mobileToggle ? 'opacity: 0;' : 'top: 50%;')};
       }
       &:nth-of-type(3) {
-        ${({ mobileToggle }) =>
-          mobileToggle ? 'top: 50%;transform: rotate(-45deg);' : 'top: 100%;'};
+        ${({ mobileToggle }) => (mobileToggle ? 'top: 50%;transform: rotate(-45deg);' : 'top: 100%;')};
       }
     }
   }

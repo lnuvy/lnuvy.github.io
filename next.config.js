@@ -7,8 +7,7 @@ const nextConfig = {
     loader: 'akamai',
     path: '',
   },
-  assetPrefix:
-    process.env.NODE_ENV === 'production' ? 'https://lnuvy.github.io' : '',
+  assetPrefix: process.env.NODE_ENV === 'production' ? 'https://lnuvy.github.io' : '',
 }
 
 module.exports = nextConfig

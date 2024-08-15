@@ -1,12 +1,12 @@
-import OptionalLink from '@components/common/optional-link';
-import { stacksArray } from '@constant/stacks-array';
-import { Stack } from '@typing/front';
-import Image from 'next/image';
-import FillStar from 'public/svg/FillStar';
-import Star from 'public/svg/Star';
-import React, { useEffect, useState } from 'react';
-import SelectBtn from '../../elements/SelectBtn';
-import { Description, Label, ListWrap, StackInfo } from './styles';
+import React, { useEffect, useState } from 'react'
+import Image from 'next/image'
+import OptionalLink from '@components/common/optional-link'
+import { stacksArray } from '@constant/stacks-array'
+import { Stack } from '@typing/front'
+import FillStar from 'public/svg/FillStar'
+import Star from 'public/svg/Star'
+import { Description, Label, ListWrap, StackInfo } from './styles'
+import SelectBtn from '../../elements/SelectBtn'
 
 const StackList = () => {
   return (
@@ -17,17 +17,17 @@ const StackList = () => {
         ))}
       </ul>
     </ListWrap>
-  );
-};
+  )
+}
 
 const EachStack = ({ stack }: { stack: Stack }) => {
-  const [isPublic, setIsPublic] = useState(false);
-  const [isStar, setIsStar] = useState(false);
+  const [isPublic, setIsPublic] = useState(false)
+  const [isStar, setIsStar] = useState(false)
 
   useEffect(() => {
-    setIsPublic(stack.isPublic === 1);
-    setIsStar(stack.starred === 1);
-  }, [stack]);
+    setIsPublic(stack.isPublic === 1)
+    setIsStar(stack.starred === 1)
+  }, [stack])
 
   return (
     <li>
@@ -76,7 +76,7 @@ const EachStack = ({ stack }: { stack: Stack }) => {
         </StackInfo>
       </div>
     </li>
-  );
-};
+  )
+}
 
-export default React.memo(StackList);
+export default React.memo(StackList)

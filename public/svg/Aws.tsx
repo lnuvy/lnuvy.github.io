@@ -14,13 +14,7 @@ const Aws = () => {
   // xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
   // xml:space="preserve"
   return (
-    <Svg
-      version="1.1"
-      id="Layer_1"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 304 182"
-      width={16}
-    >
+    <Svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 304 182" width={16}>
       <g>
         <path
           className="st0"

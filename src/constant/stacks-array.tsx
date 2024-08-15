@@ -1,5 +1,5 @@
-import Aws from 'public/svg/Aws';
-import Next from 'public/svg/Next';
+import Aws from 'public/svg/Aws'
+import Next from 'public/svg/Next'
 
 export const stacksArray = [
   {
@@ -76,4 +76,4 @@ export const stacksArray = [
     updated: 'Updated on 11 Jan',
     starred: 0,
   },
-];
+]

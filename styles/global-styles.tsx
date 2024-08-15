@@ -1,12 +1,13 @@
-import { useThemeContext } from '@context/theme-context';
-import { css, Global } from '@emotion/react';
+import { css, Global } from '@emotion/react'
+import { useThemeContext } from '@context/theme-context'
 
 const common = css`
   html,
   body {
     padding: 0;
     margin: 0;
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif,
+      'Apple Color Emoji', 'Segoe UI Emoji';
     scroll-behavior: smooth;
   }
   /* 
@@ -68,7 +69,7 @@ const common = css`
     justify-content: center;
     align-items: end;
   }
-`;
+`
 
 const light = css`
   ${common}
@@ -76,7 +77,7 @@ const light = css`
   body {
     background-color: #fff;
   }
-`;
+`
 
 const dark = css`
   ${common}
@@ -84,13 +85,13 @@ const dark = css`
   body {
     background-color: #22272e;
   }
-`;
+`
 
 const GlobalStyles = () => {
-  const { isDark } = useThemeContext();
+  const { isDark } = useThemeContext()
 
-  if (isDark) return <Global styles={dark} />;
-  else return <Global styles={light} />;
-};
+  if (isDark) return <Global styles={dark} />
+  else return <Global styles={light} />
+}
 
-export default GlobalStyles;
+export default GlobalStyles

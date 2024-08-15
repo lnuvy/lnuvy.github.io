@@ -1,11 +1,11 @@
-import { css } from '@emotion/react';
-import styled from '@emotion/styled';
-import Slider from 'react-slick';
+import Slider from 'react-slick'
+import { css } from '@emotion/react'
+import styled from '@emotion/styled'
 
 export const Wrap = styled.div`
   width: 100%;
   min-height: 100vh;
-`;
+`
 
 export const StyledSlider = styled(Slider)`
   height: 80vh;
@@ -14,12 +14,12 @@ export const StyledSlider = styled(Slider)`
     outline: none; // 슬라이드 클릭시 파란선을 제거하기 위해서 작성
     //width: 100%;
   }
-`;
+`
 
 const CommonBackground = css`
   background-size: cover;
   background-position: right 50% bottom 45%;
-`;
+`
 
 export const SecondSlider = styled.div`
   width: 100%;
@@ -52,7 +52,7 @@ export const SecondSlider = styled.div`
       font-size: 0.8rem;
     }
   }
-`;
+`
 
 export const FirstSlider = styled.div`
   /* background: linear-gradient(to left, #2d333b, #0b0719); */
@@ -66,12 +66,12 @@ export const FirstSlider = styled.div`
   justify-content: space-between;
   /* justify-content: center; */
   /* align-items: center; */
-`;
+`
 
 export const TitleWrapper = styled.div`
   position: absolute;
   bottom: 0;
-`;
+`
 
 export const H1 = styled.h1`
   width: 100%;
@@ -93,7 +93,7 @@ export const H1 = styled.h1`
       transform: translateZ(0);
     }
   }
-`;
+`
 
 export const TextWrapper = styled.div`
   padding: 1rem;
@@ -121,4 +121,4 @@ export const TextWrapper = styled.div`
       }
     }
   }
-`;
+`

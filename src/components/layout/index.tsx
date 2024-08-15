@@ -1,25 +1,21 @@
-import { LayoutContextProvider } from '@context/layout-context';
-import styled from '@emotion/styled';
-import { ChildrenProps } from 'types/components';
-import LeftBar from './left';
-import RightContent from './right';
+import styled from '@emotion/styled'
+import { LayoutContextProvider } from '@context/layout-context'
+import { ChildrenProps } from 'types/components'
+import LeftBar from './left'
+import RightContent from './right'
 
 const Layout = ({ children }: ChildrenProps) => {
-
-  
-
   return (
     <LayoutContextProvider>
-  <Frame>{children}</Frame>
-  </LayoutContextProvider>
+      <Frame>{children}</Frame>
+    </LayoutContextProvider>
   )
+}
 
-};
+Layout.Left = LeftBar
+Layout.Right = RightContent
 
-Layout.Left = LeftBar;
-Layout.Right = RightContent;
-
-export default Layout;
+export default Layout
 
 const Frame = styled.div`
   width: 100%;
@@ -33,4 +29,4 @@ const Frame = styled.div`
   @media ${({ theme }) => theme.device.mobile} {
     gap: 0;
   }
-`;
+`

@@ -1,5 +1,5 @@
-import StackList from '@components/stack-list';
-import styled from '@emotion/styled';
+import styled from '@emotion/styled'
+import StackList from '@components/stack-list'
 
 const Stacks = () => {
   return (
@@ -9,11 +9,11 @@ const Stacks = () => {
 
       <StackList />
     </Wrap>
-  );
-};
+  )
+}
 
 const Wrap = styled.div`
   padding: 1rem 0;
-`;
+`
 
-export default Stacks;
+export default Stacks

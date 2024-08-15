@@ -1,3 +1,68 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": ["next/core-web-vitals", "plugin:prettier/recommended", "plugin:import/recommended"],
+  "plugins": ["unused-imports"],
+
+  "globals": {
+    "React": true,
+    "JSX": true
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        "project": ["tsconfig.json"]
+      },
+      "node": {
+        "extensions": [".mjs", ".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  },
+  /** ------------------------------------------------------------------------------
+   * 
+   * rules start
+   * 
+   ------------------------------------------------------------------------------ */
+   "rules": {
+    // "import/no-default-export": "off", 왜있는지 모르겠음 (turbo 초기 규칙)
+
+    // import order: next -> react -> external -> internal -> css import
+    "import/order": [
+      "error",
+      {
+        "groups": ["builtin", "external", "internal"],
+        "pathGroups": [
+          {
+            "pattern": "next*",
+            "group": "builtin",
+            "position": "before"
+          },
+          {
+            "pattern": "react*",
+            "group": "builtin",
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["react"],
+        "alphabetize": {
+          "order": "asc"
+        },
+        /**
+         * css import를 최하단으로 내리지 않으면 에러
+         * @see https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/order.md#warnonunassignedimports-truefalse
+         */
+        "warnOnUnassignedImports": true
+      }
+    ],
+
+    "no-unused-vars": "off",
+    "unused-imports/no-unused-imports": "warn",
+    "unused-imports/no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "varsIgnorePattern": "^_",
+        "args": "after-used",
+        "argsIgnorePattern": "^_"
+      }
+    ]
+  }
 }

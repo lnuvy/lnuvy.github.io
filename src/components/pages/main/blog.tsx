@@ -1,5 +1,5 @@
-import styled from '@emotion/styled';
-import Link from 'next/link';
+import styled from '@emotion/styled'
+import Link from 'next/link'
 
 interface Props {}
 
@@ -25,12 +25,12 @@ const Blog = ({}: Props) => {
         </Link>
       </LinkSpan>
     </Wrap>
-  );
-};
+  )
+}
 
-export default Blog;
+export default Blog
 
-const Wrap = styled.div``;
+const Wrap = styled.div``
 
 const Para = styled.p`
   margin-top: 0.2rem;
@@ -40,7 +40,7 @@ const Para = styled.p`
   &::marker {
     /* color: ; */
   }
-`;
+`
 
 const LinkSpan = styled.span`
   text-decoration: underline;
@@ -48,4 +48,4 @@ const LinkSpan = styled.span`
   &:hover {
     color: ${({ theme }) => theme.palette.text1};
   }
-`;
+`

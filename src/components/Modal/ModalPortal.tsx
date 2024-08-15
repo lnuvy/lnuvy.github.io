@@ -1,5 +1,5 @@
-import ReactDOM from 'react-dom'
 import { ReactNode } from 'react'
+import ReactDOM from 'react-dom'
 
 const ModalPortal = ({ children }: { children: ReactNode }) => {
   const el = document.getElementById('portal')

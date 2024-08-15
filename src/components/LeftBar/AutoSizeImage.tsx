@@ -1,16 +1,11 @@
+import React from 'react'
 import styled from '@emotion/styled'
 import Image, { ImageProps } from 'next/image'
-import React from 'react'
 
 const AutoSizeImage = ({ ...props }: ImageProps): React.ReactElement => {
   return (
     <ImageWrapper>
-      <Image
-        layout="fill"
-        className="autoImage"
-        {...props}
-        alt="lnuvy profile 사진입니다!"
-      />
+      <Image layout="fill" className="autoImage" {...props} alt="lnuvy profile 사진입니다!" />
     </ImageWrapper>
   )
 }
@@ -19,7 +14,7 @@ const ImageWrapper = styled.div`
   width: 260px;
   height: 260px;
   margin: 0 auto;
-  
+
   @media ${({ theme }) => theme.device.tablet} {
     width: 200px;
     height: 200px;

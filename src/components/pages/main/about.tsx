@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from '@emotion/styled'
 
 const About = () => {
   return (
@@ -23,10 +23,10 @@ const About = () => {
         노력하겠습니다.
       </p>
     </Wrap>
-  );
-};
+  )
+}
 
-export default About;
+export default About
 
 const Wrap = styled.div`
   line-height: 1.8;
@@ -44,4 +44,4 @@ const Wrap = styled.div`
       width: 95%;
     }
   }
-`;
+`
