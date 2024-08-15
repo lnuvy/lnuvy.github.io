@@ -31,6 +31,19 @@ export const CompanyArray = [
     ],
   },
   {
+    id: "840-81-03234",
+    name: "(주)러너스",
+    subName: "Runners",
+    folderName: "runners",
+    startDate: "2023-10-04",
+    lastDay: "재직중",
+    position: "프론트엔드",
+    desc: "센스 | 라이프스타일 혁신을 선두하는 AI 취향 분석 플랫폼",
+    summary: [
+      '여자친구를 위한 센스있는 선물 준비하기',
+    ]
+  },
+  {
     id: 'last-career',
     name: '더 많은 커리어가 추가 될 예정입니다 :)',
     subName: '',
