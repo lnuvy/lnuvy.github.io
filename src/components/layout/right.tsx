@@ -8,7 +8,7 @@ import TitleCarousel from '@components/title-carousel'
 const RightContent = () => {
   return (
     <Wrap>
-      <div style={{ height: '220vh' }}>
+      <div style={{ height: '240vh', minHeight: '1200px' }}>
         <TitleCarousel />
         <br />
         {/* <TransitionWrapper>

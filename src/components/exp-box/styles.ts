@@ -81,7 +81,6 @@ export const BorderBox = styled.ol`
 
   & > .title-li {
     display: flex;
-    //justify-content: space-between;
     align-items: center;
     cursor: pointer;
     padding: 0.5rem 1rem;
@@ -89,18 +88,11 @@ export const BorderBox = styled.ol`
     @media (hover: hover) {
       &:hover {
         background-color: ${({ theme }) => theme.palette.background1};
-        //border-radius: 8px;
-        //}
         &:first-of-type {
           border-radius: 8px 8px 0 0;
         }
       }
     }
-
-    //&:focus,
-    //&:active {
-    //  background-color: #fff;
-    //}
   }
   .active-color {
     background-color: ${({ theme }) => theme.palette.background1};

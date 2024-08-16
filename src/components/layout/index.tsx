@@ -1,13 +1,19 @@
 import styled from '@emotion/styled'
 import { LayoutContextProvider } from '@context/layout-context'
+import { useCheck } from '@hooks/use-input'
 import { ChildrenProps } from 'types/components'
 import LeftBar from './left'
 import RightContent from './right'
 
 const Layout = ({ children }: ChildrenProps) => {
+  const [isOpen, onChangeToggle, setIsOpen] = useCheck(false)
+
   return (
-    <LayoutContextProvider>
-      <Frame>{children}</Frame>
+    <LayoutContextProvider isOpen={isOpen} onChange={onChangeToggle} setIsOpen={setIsOpen}>
+      <Frame>
+        <InsetFrame isOpen={isOpen} />
+        {children}
+      </Frame>
     </LayoutContextProvider>
   )
 }
@@ -39,4 +45,12 @@ const Frame = styled.div`
     gap: 0;
     padding: 0;
   }
+`
+
+const InsetFrame = styled.div<{ isOpen: boolean }>`
+  position: fixed;
+  z-index: ${({ isOpen }) => (isOpen ? 2 : -1)};
+  inset: 0;
+  transition: all 0.3s ease-in-out;
+  background-color: ${({ isOpen }) => (isOpen ? `rgba(0, 0, 0, 0.5);` : `transparent;`)};
 `

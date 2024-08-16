@@ -36,7 +36,7 @@ export const HEAD_COMMON_INFO = {
   DESCRIPTION: '함께 일하고 싶은 동료가 되기위해 노력하며, 새로운 기술과 환경을 즐깁니다.',
   URL: 'https://lnuvy.github.io',
   EMAIL: 'lnuvy.code@gmail.com',
-  IMAGE: '', // TODO: 이미지 채우기
+  IMAGE: 'images/profile.jpg',
 }
 
 /** ------------------------------------------------------------------------------
@@ -73,8 +73,8 @@ export const JSONLD_CONTACTS = [
  ------------------------------------------------------------------------------ */
 export const JSONLD_ORGANIZATION_LOGO = {
   '@type': 'ImageObject',
-  '@id': '', // TODO: 이미지
-  url: '', // TODO: 이미지
+  '@id': 'images/profile.jpg', // TODO: 이미지
+  url: 'images/profile.jpg', // TODO: 이미지
   width: '112',
   height: '112',
 }

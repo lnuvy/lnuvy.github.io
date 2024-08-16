@@ -1,5 +1,6 @@
 import React, { useCallback, useContext, useState } from 'react'
 import { marked } from 'marked'
+import { clickInteraction } from '@helpers/tracking'
 import { Company } from '@typing/front'
 import Octicon from 'public/svg/Octicon'
 import { BorderBox, ContentWrap, DetailList, Wrap } from './styles'
@@ -57,6 +58,7 @@ const ExpBox = ({ company }: { company: Company }) => {
                     className={`title-li ${openIndex === i ? 'active-color' : 'inactive'}`}
                     onClick={() => {
                       onClickOpen(i)
+                      clickInteraction(`${companyName}-${title}`)
                     }}
                   >
                     <div className="desc-div">{title}</div>
