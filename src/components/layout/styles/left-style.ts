@@ -65,7 +65,7 @@ export const Wrap = styled.div<SidebarProps>`
     min-width: 280px;
     position: fixed;
     left: ${({ mobileToggle }) => (mobileToggle ? '0;' : '-500px;')};
-    z-index: 2;
+    z-index: 4;
     background-color: ${({ theme }) => theme.palette.background1};
     border-right: 1px solid ${({ theme }) => theme.palette.background2};
   }
@@ -73,7 +73,6 @@ export const Wrap = styled.div<SidebarProps>`
 
 export const NameInfo = styled.div`
   padding: 1rem 0;
-  gap: 0.5rem;
   font-weight: 300;
   font-size: 1rem;
 
@@ -93,15 +92,29 @@ export const NameInfo = styled.div`
     font-weight: 300;
     line-height: 24px;
   }
+
+  @media ${({ theme }) => theme.device.mobile} {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 `
 
 export const ButtonWrapper = styled.div`
   display: flex;
-  flex: 1;
+  width: 100%;
   gap: 8px;
   @media ${({ theme }) => theme.device.tablet} {
     flex-direction: column;
     gap: 1rem;
+  }
+
+  @media ${({ theme }) => theme.device.mobile} {
+    padding: 0 1rem;
+  }
+
+  & > a {
+    display: flex;
+    flex: 1;
   }
 `
 

@@ -3,6 +3,7 @@ import { Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import TransitionWrapper from '@components/common/transition-wrapper'
 import About from '@components/pages/main/about'
+import { clickOutLink } from '@helpers/tracking'
 import useIsFirstScroll from '@hooks/use-is-first-scroll'
 import ScrollDownArrow from './scroll-down-arrow'
 import { FirstSlider, H1, LinkStyle, TextWrapper, Wrap } from './styles'
@@ -12,7 +13,6 @@ const TitleCarousel = () => {
     'https://sense.im?utm_source=notion&utm_medium=display&utm_campaign=백링크&utm_content=노션_제이든_블로그&utm_trk=8'
 
   const { isScrolledDown, isAlreadyScrolled } = useIsFirstScroll()
-
   const isShowScroll = !isScrolledDown && !isAlreadyScrolled
 
   return (
@@ -42,7 +42,7 @@ const TitleCarousel = () => {
           <p>JavaScript(TS)를 기반으로 다양한 프론트엔드 기술을 공부하고 있습니다.</p>
           <p>
             현재 재직중인 러너스에서&nbsp;
-            <Link href={senseLink}>
+            <Link href={senseLink} onClick={() => clickOutLink('sense_web')}>
               <a target={'_blank'}>
                 <LinkStyle>라이프스타일 플랫폼 센스</LinkStyle>
               </a>
@@ -52,7 +52,7 @@ const TitleCarousel = () => {
 
           <p className="dot">
             •&nbsp;
-            <Link href="https://store.sense.im">
+            <Link href="https://store.sense.im" onClick={() => clickOutLink('sense_store')}>
               <a target="_blank">
                 <LinkStyle>센스 스토어</LinkStyle> 둘러보기
               </a>
@@ -60,7 +60,7 @@ const TitleCarousel = () => {
           </p>
           <p className="dot">
             •&nbsp;
-            <Link href="https://lab.sense.im">
+            <Link href="https://lab.sense.im" onClick={() => clickOutLink('sense_lab')}>
               <a target="_blank">
                 <LinkStyle>센스 랩</LinkStyle> 둘러보기
               </a>

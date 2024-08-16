@@ -1,11 +1,21 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { useThemeContext } from '@context/theme-context'
+import { clickInteraction } from '@helpers/tracking'
 
 const ToggleBox = () => {
   const { isDark, onChangeTheme } = useThemeContext()
 
-  return <CheckBox type="checkbox" onChange={onChangeTheme} checked={isDark} />
+  return (
+    <CheckBox
+      type="checkbox"
+      onChange={() => {
+        onChangeTheme()
+        clickInteraction('theme-toggle')
+      }}
+      checked={isDark}
+    />
+  )
 }
 
 const CheckBox = styled.input`

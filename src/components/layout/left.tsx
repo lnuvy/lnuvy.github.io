@@ -1,9 +1,12 @@
+import { useRef } from 'react'
 import Link from 'next/link'
 import AutoSizeImage from '@components/LeftBar/AutoSizeImage'
 import Chapter from '@components/LeftBar/Chapter'
+import { useLayoutContext } from '@context/layout-context'
 import SelectBtn from '@elements/SelectBtn'
 import ToggleBox from '@elements/ToggleBox'
-import { useCheck } from '@hooks/use-input'
+import { clickInteraction, clickOutLink } from '@helpers/tracking'
+import { useClickOutside } from '@hooks/use-click-outside'
 import Github from 'public/svg/github'
 import Runners from 'public/svg/runners'
 import {
@@ -18,32 +21,45 @@ import {
 } from './styles/left-style'
 
 const LeftBar = () => {
-  const [sidebarToggle, onChangeToggle, setSidebarToggle] = useCheck(false)
+  const { isOpen, onChange, setIsOpen } = useLayoutContext()
   const year = new Date().getFullYear()
+
+  const ref = useRef<HTMLDivElement>(null)
+  const closeRef = useRef<HTMLDivElement>(null)
+  useClickOutside({
+    inRef: ref,
+    exceptRef: closeRef,
+    handler: () => setIsOpen(false),
+  })
 
   return (
     <>
       <br />
-      <SidebarBtn>
+      <SidebarBtn ref={closeRef}>
         <input
           type="checkbox"
           id="sidebar"
           style={{ display: 'none' }}
-          checked={sidebarToggle}
-          onChange={onChangeToggle}
+          checked={isOpen}
+          onChange={(e) => {
+            onChange(e)
+            clickInteraction('mobile_sidebar')
+          }}
         />
-        <BurgerIcon mobileToggle={sidebarToggle} htmlFor="sidebar" onClick={(e) => e.stopPropagation()}>
+        <BurgerIcon mobileToggle={isOpen} htmlFor="sidebar" onClick={(e) => e.stopPropagation()}>
           <span />
           <span />
           <span />
         </BurgerIcon>
       </SidebarBtn>
       <br />
-
-      <Wrap mobileToggle={sidebarToggle}>
+      <Wrap ref={ref} mobileToggle={isOpen}>
         <AutoSizeImage
           src="images/runners-jayden.png"
-          onClick={() => window.open('https://github.com/lnuvy')}
+          onClick={() => {
+            clickInteraction('profile_image')
+            window.open('https://github.com/lnuvy')
+          }}
           alt="profile"
           layout="fill"
         />
@@ -56,8 +72,8 @@ const LeftBar = () => {
         </NameInfo>
 
         <ButtonWrapper>
-          <Link href="https://github.com/lnuvy">
-            <a target={'_blank'} style={{ display: 'flex' }}>
+          <Link href="https://github.com/lnuvy" onClick={() => clickOutLink('github')}>
+            <a target={'_blank'}>
               <SelectBtn wide padding="5px 16px">
                 {/* <Image src="images/github-logo.png" alt="github logo" width={16} height={16} /> */}
                 <Github />
@@ -66,8 +82,8 @@ const LeftBar = () => {
             </a>
           </Link>
 
-          <Link href="https://runners.im/members/41">
-            <a target={'_blank'} style={{ display: 'flex' }}>
+          <Link href="https://runners.im/members/41" onClick={() => clickOutLink('runners')}>
+            <a target={'_blank'}>
               <SelectBtn wide padding="5px 16px">
                 <div className="flex-center" style={{ marginRight: '0.5rem' }}>
                   <Runners />
@@ -78,7 +94,7 @@ const LeftBar = () => {
           </Link>
         </ButtonWrapper>
 
-        <Chapter setSidebarToggle={setSidebarToggle} />
+        <Chapter setSidebarToggle={setIsOpen} />
 
         <div style={{ marginTop: '2rem' }}>
           <Footer>
