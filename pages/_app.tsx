@@ -8,7 +8,6 @@ import GlobalStyles from '../styles/global-styles'
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
-    console.log('env', process.env.NEXT_PUBLIC_MX_TOKEN)
     if (isProduction()) {
       // eslint-disable-next-line import/no-named-as-default-member
       mixpanel.init(process.env.NEXT_PUBLIC_MX_TOKEN || '', {
