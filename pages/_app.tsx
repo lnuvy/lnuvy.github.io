@@ -10,7 +10,6 @@ function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     console.log('env', process.env.NEXT_PUBLIC_MX_TOKEN)
     if (isProduction()) {
-      console.log(1)
       // eslint-disable-next-line import/no-named-as-default-member
       mixpanel.init(process.env.NEXT_PUBLIC_MX_TOKEN || '', {
         debug: true,
