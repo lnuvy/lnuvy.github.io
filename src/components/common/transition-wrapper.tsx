@@ -5,10 +5,11 @@ import styled from '@emotion/styled'
 
 interface TransitionWrapperProps extends PropsWithChildren {
   timeout?: number
+  mxAuto?: boolean
 }
 
 const TransitionWrapper = (props: TransitionWrapperProps) => {
-  const { children, timeout = 30 } = props
+  const { children, timeout = 30, mxAuto } = props
 
   const [ref, inView] = useInView({
     threshold: 0.1,
@@ -18,7 +19,7 @@ const TransitionWrapper = (props: TransitionWrapperProps) => {
   return (
     <Transition in={inView} timeout={timeout}>
       {(state) => (
-        <TransitionDiv ref={ref} className={state}>
+        <TransitionDiv ref={ref} className={state} mxAuto={mxAuto}>
           {children}
         </TransitionDiv>
       )}
@@ -28,11 +29,15 @@ const TransitionWrapper = (props: TransitionWrapperProps) => {
 
 export default TransitionWrapper
 
-const TransitionDiv = styled.div`
+const TransitionDiv = styled.div<{ mxAuto?: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    ${({ mxAuto }) => mxAuto && 'margin: 0 auto; width: 90vw;'};
+  }
 
   &.entered {
     transition-duration: 700ms;
