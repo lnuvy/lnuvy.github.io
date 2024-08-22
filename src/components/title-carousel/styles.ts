@@ -1,5 +1,5 @@
-import { css } from '@emotion/react'
 import styled from '@emotion/styled'
+import Image from 'next/image'
 
 export const Wrap = styled.div`
   position: sticky;
@@ -7,55 +7,26 @@ export const Wrap = styled.div`
   width: 100%;
   min-height: 100vh;
 `
-const CommonBackground = css`
-  background-size: cover;
-  background-position: right 50% bottom 45%;
-`
 
-export const SecondSlider = styled.div`
-  width: 100%;
-  height: 220vh;
-  display: flex !important;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  ${CommonBackground}
-  background-position: right;
-  background-image: url('/images/main2.jpg');
-
-  color: ${({ theme }) => theme.palette.text4};
-  font-size: 0.9rem;
-
-  & > h3 {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-
-    @media ${({ theme }) => theme.device.mobile} {
-      font-size: 1rem;
-    }
-  }
-
-  & > p {
-    margin: 0.2rem;
-    padding: 0 3rem;
-    @media ${({ theme }) => theme.device.mobile} {
-      padding: 0 1rem;
-      font-size: 0.8rem;
-    }
-  }
-`
-
-export const FirstSlider = styled.div`
-  background-image: url('/images/main.jpg');
-  ${CommonBackground}
-  background-color: rgba(0, 0, 0, 0.7);
-
-  height: 60vh;
+export const FirstSlider = styled.div<{ isScroll: boolean }>`
+  position: relative;
+  height: ${({ isScroll }) => (isScroll ? '60vh' : '100vh')};
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /* justify-content: center; */
-  /* align-items: center; */
+
+  transition: all 0.7s cubic-bezier(0.2, 0, 0.2, 1);
+  /* transition: all 0.7s ease-in-out; */
+`
+
+export const StyledImage = styled(Image)`
+  object-fit: cover;
+  object-position: right 50% bottom 45%;
+  z-index: 1;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    object-position: right 90% bottom 45%;
+  }
 `
 
 export const TitleWrapper = styled.div`
@@ -71,11 +42,17 @@ export const H1 = styled.h1`
   margin-bottom: 2rem;
   color: ${({ theme }) => theme.palette.text2};
 
-  animation: moveUp 0.7s;
+  position: relative;
+  z-index: -1;
+  opacity: 0;
+  animation: moveUp 0.9s;
+  animation-delay: 700ms;
+  animation-fill-mode: forwards; /* 애니메이션 이후 상태를 유지 */
+
   @keyframes moveUp {
     from {
       opacity: 0;
-      transform: translate3d(-20%, 0, 0);
+      transform: translate3d(-10%, 0, 0);
     }
     to {
       opacity: 1;

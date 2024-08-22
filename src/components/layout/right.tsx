@@ -16,15 +16,17 @@ const RightContent = () => {
         </TransitionWrapper> */}
       </div>
       <br />
-      <TransitionWrapper>
+      <TransitionWrapper mxAuto>
         <Stacks />
       </TransitionWrapper>
       <br />
-      <TransitionWrapper>
+      <TransitionWrapper mxAuto>
         <Experience />
       </TransitionWrapper>
       <br />
-      <Blog />
+      <TransitionWrapper mxAuto>
+        <Blog />
+      </TransitionWrapper>
       <br />
     </Wrap>
   )
@@ -40,7 +42,7 @@ const Wrap = styled.div`
   }
 
   @media ${({ theme }) => theme.device.mobile} {
-    max-width: 90vw;
+    max-width: 100vw;
     margin-left: 0;
   }
   background-color: ${({ theme }) => theme.palette.backgroundColor};

@@ -32,16 +32,8 @@ const Frame = styled.div`
   flex: 1;
   margin: 0 auto;
 
-  /* gap: 24px;
-
-  @media ${({ theme }) => theme.device.tablet} {
-    gap: 16px;
-  } */
-
-  /* transition: all 2s ease-in-out; */
-
   @media ${({ theme }) => theme.device.mobile} {
-    width: 90vw;
+    width: 100vw;
     gap: 0;
     padding: 0;
   }
