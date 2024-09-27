@@ -18,6 +18,7 @@ const nextConfig = {
       {
         source: '/algorithm/:path*',
         destination: 'https://lnuvy.github.io/algorithm/:path*',
+        permanent: true,
       },
     ]
   },
