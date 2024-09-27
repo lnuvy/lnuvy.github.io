@@ -12,6 +12,15 @@ const nextConfig = {
   env: {
     NEXT_PUBLIC_MX_TOKEN: process.env.NEXT_PUBLIC_MX_TOKEN,
   },
+
+  async redirects() {
+    return [
+      {
+        source: '/algorithm/:path*',
+        destination: 'https://lnuvy.github.io/algorithm/:path*',
+      },
+    ]
+  },
 }
 
 module.exports = nextConfig
