@@ -30,7 +30,6 @@ const OGCommon = (props: OGCommonProps) => {
         content={ellipsisDescription() ?? HEAD_COMMON_INFO.DESCRIPTION}
         key={OG['description']}
       />
-      {/* 아티클/ffeed에서는 작성자, 그 외에는 ffeed 입니다 */}
       {/* https://developers.google.com/search/blog/2013/08/relauthor-frequently-asked-advanced */}
       <link rel={OG['author']} href={author ?? HEAD_COMMON_INFO.NAME} key={OG['author']} />
       {/* openGraph */}
@@ -47,7 +46,6 @@ const OGCommon = (props: OGCommonProps) => {
         content={ellipsisDescription() ?? HEAD_COMMON_INFO.DESCRIPTION}
         key={OG['og:description']}
       />
-      {/* <meta property={OG['og:image']} content={image ? `https://www.ffeed.me${image}` : HEAD_COMMON_INFO.IMAGE} key={OG['og:image']} /> */}
       <meta
         property={OG['og:image']}
         content={image ? `https://www.ffeed.me/_next/image?url=${image}&w=450&q=100` : HEAD_COMMON_INFO.IMAGE}
