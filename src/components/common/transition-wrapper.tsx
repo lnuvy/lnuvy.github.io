@@ -1,7 +1,7 @@
 import { PropsWithChildren } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { Transition } from 'react-transition-group'
-import styled from '@emotion/styled'
+import clsx from 'clsx'
 
 interface TransitionWrapperProps extends PropsWithChildren {
   timeout?: number
@@ -19,42 +19,23 @@ const TransitionWrapper = (props: TransitionWrapperProps) => {
   return (
     <Transition in={inView} timeout={timeout}>
       {(state) => (
-        <TransitionDiv ref={ref} className={state} mxAuto={mxAuto}>
+        <div
+          ref={ref}
+          className={clsx(
+            'flex flex-col justify-center items-center',
+            mxAuto && 'max-md:mx-auto max-md:w-[90vw]',
+            state === 'entered' && 'duration-700',
+            state === 'exited' && 'translate-y-[10%] opacity-0 duration-500', // Reduced duration for exit to match old styling check if needed
+            state === 'entering' && 'translate-y-[10%] opacity-0 duration-500',
+            // Default state or transitioned state
+            (state === 'entered' || state === 'exiting') && 'translate-y-0 opacity-100',
+          )}
+        >
           {children}
-        </TransitionDiv>
+        </div>
       )}
     </Transition>
   )
 }
 
 export default TransitionWrapper
-
-const TransitionDiv = styled.div<{ mxAuto?: boolean }>`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  @media ${({ theme }) => theme.device.mobile} {
-    ${({ mxAuto }) => mxAuto && 'margin: 0 auto; width: 90vw;'};
-  }
-
-  &.entered {
-    transition-duration: 700ms;
-  }
-
-  &.exiting {
-  }
-
-  &.exited {
-    transform: translateY(10%);
-    opacity: 0;
-    transition-duration: 600ms;
-  }
-
-  &.entering {
-    transform: translateY(10%);
-    opacity: 0.3;
-    transition-duration: 600ms;
-  }
-`

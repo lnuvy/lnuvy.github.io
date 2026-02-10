@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react'
-import styled from '@emotion/styled'
+import clsx from 'clsx'
 import Link from 'next/link'
 
 const chapterArray = ['Top', 'About', 'Stacks', 'Experience', 'Blog']
@@ -10,51 +10,32 @@ type SetToggleProps<T = any> = {
 
 const Chapter = ({ setSidebarToggle }: SetToggleProps) => {
   return (
-    <Wrap className="flex-c-center">
+    <div className="flex flex-col justify-center items-center py-8 gap-2">
       {chapterArray.map((t, i) => {
         return (
-          <div key={i}>
+          <div
+            key={i}
+            className={clsx(
+              'w-fit inline-block relative',
+              // Underline animation (Emotion: &:after, &:hover:after)
+              'after:block after:content-[""] after:px-[0.2rem] after:border-b-2 after:border-border-color',
+              'after:scale-x-0 after:origin-center after:transition-transform after:duration-300',
+              'hover:after:scale-x-100',
+            )}
+          >
             <Link href={`#${t}`}>
-              <span onClick={() => setSidebarToggle(false)}>{t}</span>
+              <span
+                onClick={() => setSidebarToggle(false)}
+                className="cursor-pointer px-[0.3rem] hover:text-text-1 transition-colors duration-300"
+              >
+                {t}
+              </span>
             </Link>
           </div>
         )
       })}
-    </Wrap>
+    </div>
   )
 }
-
-const Wrap = styled.div`
-  padding: 2rem 0;
-  gap: 0.5rem;
-
-  & > div {
-    width: fit-content;
-    display: inline-block;
-
-    &:after {
-      display: block;
-      padding: 0 0.2rem;
-      content: '';
-      border-bottom: solid 2px ${({ theme }) => theme.palette.borderColor};
-      transform: scaleX(0);
-      /* transition: transform 0.3s; */
-    }
-
-    &:hover:after {
-      transform: scaleX(1);
-    }
-
-    & > span {
-      cursor: pointer;
-      padding: 0 0.3rem;
-
-      &:hover {
-        color: ${({ theme }) => theme.palette.text1};
-        /* transition: all 0.3s; */
-      }
-    }
-  }
-`
 
 export default Chapter

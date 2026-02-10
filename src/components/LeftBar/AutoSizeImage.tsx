@@ -1,44 +1,23 @@
 import React from 'react'
-import styled from '@emotion/styled'
+import clsx from 'clsx'
 import Image, { ImageProps } from 'next/image'
 
 const AutoSizeImage = ({ ...props }: ImageProps): React.ReactElement => {
   return (
-    <ImageWrapper>
+    <div
+      className={clsx(
+        'w-[296px] h-[296px] mt-10 mx-auto',
+        'md:w-[256px] md:h-[256px]',
+        'max-md:w-[120px] max-md:h-[120px]',
+        // Image wrapper styles override next/image specific behaviors if needed
+        '[&>span]:static!',
+        '[&_.autoImage]:object-contain! [&_.autoImage]:relative! [&_.autoImage]:h-auto!',
+        '[&_.autoImage]:shadow-[0_0_0_1px_var(--box-shadow)] [&_.autoImage]:cursor-pointer [&_.autoImage]:rounded-full',
+      )}
+    >
       <Image layout="fill" className="autoImage" {...props} alt="lnuvy profile 사진입니다!" />
-    </ImageWrapper>
+    </div>
   )
 }
-
-const ImageWrapper = styled.div`
-  width: 296px;
-  height: 296px;
-  margin: 40px auto 0;
-
-  @media ${({ theme }) => theme.device.tablet} {
-    width: 256px;
-    height: 256px;
-  }
-
-  @media ${({ theme }) => theme.device.mobile} {
-    width: 120px;
-    height: 120px;
-  }
-
-  & > span {
-    position: unset !important;
-
-    & > .autoImage {
-      object-fit: contain !important;
-      position: relative !important;
-      height: auto !important;
-
-      box-shadow: 0 0 0 1px ${({ theme }) => theme.palette.boxShadow};
-      cursor: pointer;
-
-      border-radius: 50%;
-    }
-  }
-`
 
 export default AutoSizeImage

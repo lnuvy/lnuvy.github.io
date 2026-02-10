@@ -1,0 +1,116 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-background-default: var(--background-default);
+  --color-background-1: var(--background-1);
+  --color-background-2: var(--background-2);
+  --color-background-3: var(--background-3);
+  --color-background-4: var(--background-4);
+
+  --color-text-default: var(--text-default);
+  --color-text-muted: var(--text-muted);
+  --color-text-1: var(--text-1);
+  --color-text-2: var(--text-2);
+  --color-text-3: var(--text-3);
+  --color-text-4: var(--text-4);
+
+  --color-aws: var(--aws-color);
+  --color-border: var(--border-color);
+  --color-stack-border: var(--stack-border);
+  --color-link: var(--link-color);
+  --color-chapter-hover: var(--chapter-hover);
+  --color-label: var(--label-color);
+  --color-box-shadow: var(--box-shadow);
+}
+
+:root {
+  --background-default: #fff;
+  --background-1: #f6f8fb;
+  --background-2: #d6d8db;
+  --background-3: #f3f4f6;
+  --background-4: #d3d4d7;
+
+  --text-default: #1f2328;
+  --text-muted: #636c76;
+  --text-1: #57606a;
+  --text-2: #24292f;
+  --text-3: #adbac7;
+  --text-4: #adbac7;
+
+  --aws-color: #252f3e;
+  --border-color: #d0d7de;
+  --stack-border: #d0d7de;
+  --link-color: #0969da;
+  --chapter-hover: rgba(205, 217, 229, 0.5);
+  --label-color: #768390;
+  --box-shadow: #1f232826;
+}
+
+.dark {
+  --background-default: #22272e;
+  --background-1: #373e48;
+  --background-2: #454e58;
+  --background-3: #3d444e;
+  --background-4: #758390;
+
+  --text-default: #c5d1de;
+  --text-muted: #778491;
+  --text-1: rgba(205, 217, 229, 0.5);
+  --text-2: rgba(205, 217, 229, 0.7);
+  --text-3: #768390;
+  --text-4: #adbac7;
+
+  --aws-color: #fff;
+  --border-color: #444c56;
+  --stack-border: #373e47;
+  --link-color: #539bf5;
+  --chapter-hover: rgba(205, 217, 229, 0.5);
+  --label-color: #768390;
+  --box-shadow: #cdd9e526;
+}
+
+@layer base {
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif,
+      'Apple Color Emoji', 'Segoe UI Emoji';
+    scroll-behavior: smooth;
+  }
+
+  body {
+    padding: 0;
+    margin: 0;
+    @apply bg-background-default text-text-default;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  * {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@utility flex-start {
+  @apply flex items-center justify-start;
+}
+@utility flex-center {
+  @apply flex items-center justify-center;
+}
+@utility flex-sb {
+  @apply flex items-center justify-between;
+}
+@utility flex-end {
+  @apply flex items-center justify-end;
+}
+@utility flex-c-start {
+  @apply flex flex-col justify-center items-start;
+}
+@utility flex-c-center {
+  @apply flex flex-col justify-center items-center;
+}
+@utility flex-c-end {
+  @apply flex flex-col justify-center items-end;
+}

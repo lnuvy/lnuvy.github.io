@@ -4,7 +4,7 @@ import type { AppProps } from 'next/app'
 import OGCommon from '@components/open-graph/og-common'
 import { isProduction } from '@helpers/env'
 import ThemeContextProvider from 'src/context/theme-context'
-import GlobalStyles from '../styles/global-styles'
+import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -21,7 +21,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <OGCommon />
       <ThemeContextProvider>
-        <GlobalStyles />
+        {/* <GlobalStyles /> removed in favor of tailwind globals.css */}
         <Component {...pageProps} />
       </ThemeContextProvider>
     </>

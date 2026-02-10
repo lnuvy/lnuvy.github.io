@@ -31,6 +31,15 @@ const ThemeContextProvider = ({ children }: Props) => {
     }
   }, [])
 
+  useEffect(() => {
+    // Tailwind Dark Mode
+    if (isDark) {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  }, [isDark])
+
   const onChangeTheme = useCallback(() => {
     isDark ? localStorage.setItem(THEME_KEY, 'light') : localStorage.setItem(THEME_KEY, 'dark')
     setIsDark((prev) => !prev)

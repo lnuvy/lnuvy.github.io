@@ -1,11 +1,12 @@
 import React from 'react'
-import styled from '@emotion/styled'
+import clsx from 'clsx'
 
 interface BtnProps {
   padding: string
   pointer?: boolean
   mini?: boolean
   wide?: boolean
+  className?: string
 }
 
 interface BtnType extends BtnProps {
@@ -13,37 +14,23 @@ interface BtnType extends BtnProps {
   onClick?: () => void
 }
 
-const SelectBtn = ({ children, padding, pointer, mini, wide, onClick }: BtnType) => {
+const SelectBtn = ({ children, padding, pointer, mini, wide, onClick, className }: BtnType) => {
   return (
-    <Button padding={padding} pointer={pointer} mini={mini} wide={wide} onClick={onClick}>
+    <button
+      onClick={onClick}
+      style={{ padding }}
+      className={clsx(
+        'flex justify-center items-center rounded-md border border-background-2 bg-background-1 text-text-2 font-medium leading-5 whitespace-nowrap align-middle transition-colors',
+        'hover:bg-background-3',
+        pointer && 'cursor-pointer',
+        mini ? 'text-xs' : 'text-sm',
+        wide && 'flex-1',
+        className,
+      )}
+    >
       {children}
-    </Button>
+    </button>
   )
 }
-
-const Button = styled.button<BtnProps>`
-  ${({ pointer }) => pointer && 'cursor: pointer;'}
-  padding: ${({ padding }) => padding};
-  font-size: ${({ mini }) => (mini ? '12px;' : '14px')};
-  font-weight: 500;
-  line-height: 20px;
-  white-space: nowrap;
-  vertical-align: middle;
-  border: 1px solid ${({ theme }) => theme.palette.background2};
-  border-radius: 6px;
-  background-color: ${({ theme }) => theme.palette.background1};
-  color: ${({ theme }) => theme.palette.text2};
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  ${({ wide }) => wide && 'flex: 1;'}
-  cursor: pointer;
-
-  &:hover {
-    background-color: ${({ theme }) => theme.palette.background3};
-    /* border-color: ${({ theme }) => theme.palette.background4}; */
-  }
-`
 
 export default SelectBtn

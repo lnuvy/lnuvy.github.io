@@ -1,4 +1,4 @@
-import styled from '@emotion/styled'
+import clsx from 'clsx'
 import TransitionWrapper from '@components/common/transition-wrapper'
 import Blog from '@components/pages/main/blog'
 import Experience from '@components/pages/main/experience'
@@ -7,7 +7,14 @@ import TitleCarousel from '@components/title-carousel'
 
 const RightContent = () => {
   return (
-    <Wrap>
+    <div
+      className={clsx(
+        'w-full bg-background-default transition-colors duration-200 ease-in-out',
+        'max-w-[calc(100%-296px)] ml-[calc(296px+24px)]',
+        'md:ml-[calc(256px+16px)]',
+        'max-md:max-w-[100vw] max-md:ml-0',
+      )}
+    >
       <div style={{ height: '240vh', minHeight: '1200px' }}>
         <TitleCarousel />
         <br />
@@ -28,31 +35,14 @@ const RightContent = () => {
         <Blog />
       </TransitionWrapper>
       <br />
-    </Wrap>
+    </div>
   )
 }
 
-const Wrap = styled.div`
-  width: 100%;
-  max-width: calc(100% - 296px);
-  margin-left: calc(296px + 24px);
-
-  @media ${({ theme }) => theme.device.tablet} {
-    margin-left: calc(256px + 16px);
-  }
-
-  @media ${({ theme }) => theme.device.mobile} {
-    max-width: 100vw;
-    margin-left: 0;
-  }
-  background-color: ${({ theme }) => theme.palette.backgroundColor};
-  /* transition: background-color 0.2s ease-in-out; */
-`
+export default RightContent
 
 // const Title = styled.div`
 //   background: linear-gradient(to bottom, #0b0719, #2d333b);
 //   height: 100vh;
 //   width: 100%;
 // `
-
-export default RightContent
