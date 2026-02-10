@@ -1,36 +1,36 @@
-import styled from '@emotion/styled'
 import Link from 'next/link'
-import { LinkStyle, TextWrapper } from '@components/title-carousel/styles'
 import { clickOutLink } from '@helpers/tracking'
 
 interface Props {}
 
 const Blog = ({}: Props) => {
   return (
-    <Wrap id="Blog">
+    <div id="Blog">
       <br />
       <h2>🖥️ Blog.</h2>
       <br />
-      <Para>
+      <p className="mt-1 font-normal">
         노션페이지를 빌드시켜주는{' '}
-        <LinkSpan>
+        <span className="underline hover:text-text-1 cursor-pointer">
           <Link href="https://super.so/">
             <a target="_blank">super.so</a>
           </Link>
-        </LinkSpan>
+        </span>
         를 통해 개인블로그를 작성중입니다.
-      </Para>
-      <LinkSpan>
+      </p>
+      <span className="underline hover:text-text-1 cursor-pointer">
         {'➤ '}
         <Link onClick={() => clickOutLink('notion_blog')} href="https://lnuvyresume.super.site/blog/">
           <a target="_blank">블로그 구경하기</a>
         </Link>
-      </LinkSpan>
+      </span>
 
       <br />
       <br />
-      <Para>그중 좋은 소스는 비정기적으로 러너스 사내 미디엄 블로그에도 작성하고 있습니다 {':)'}</Para>
-      <TextWrapper>
+      <p className="mt-1 font-normal">
+        그중 좋은 소스는 비정기적으로 러너스 사내 미디엄 블로그에도 작성하고 있습니다 {':)'}
+      </p>
+      <div className="p-4 [&>p]:m-auto [&>p]:mb-5 [&>p]:text-gray-500 [&>p]:text-[0.9rem] max-md:[&>p]:text-[0.7rem] [&>.dot]:ml-3">
         <p className="dot">
           •&nbsp;
           <Link
@@ -38,7 +38,9 @@ const Blog = ({}: Props) => {
             onClick={() => clickOutLink('medium_i18n')}
           >
             <a target="_blank">
-              <LinkStyle>SW국제화(i18n)를 위한 i18next 라이브러리와 react-i18next</LinkStyle>
+              <span className="font-semibold text-link hover:underline">
+                SW국제화(i18n)를 위한 i18next 라이브러리와 react-i18next
+              </span>
             </a>
           </Link>
         </p>
@@ -50,7 +52,9 @@ const Blog = ({}: Props) => {
             onClick={() => clickOutLink('medium_ga')}
           >
             <a target="_blank">
-              <LinkStyle>프로덕트 데이터 분석 툴 프로젝트에 이식하기 (Google Analytics, Mixpanel)</LinkStyle>
+              <span className="font-semibold text-link hover:underline">
+                프로덕트 데이터 분석 툴 프로젝트에 이식하기 (Google Analytics, Mixpanel)
+              </span>
             </a>
           </Link>
         </p>
@@ -62,7 +66,9 @@ const Blog = ({}: Props) => {
             onClick={() => clickOutLink('medium_search_params')}
           >
             <a target="_blank">
-              <LinkStyle>Next.js 14v 마이그레이션 도전기 | useSearchParams</LinkStyle>
+              <span className="font-semibold text-link hover:underline">
+                Next.js 14v 마이그레이션 도전기 | useSearchParams
+              </span>
             </a>
           </Link>
         </p>
@@ -74,33 +80,15 @@ const Blog = ({}: Props) => {
             onClick={() => clickOutLink('medium_image')}
           >
             <a target="_blank">
-              <LinkStyle>Next.js 이미지 최적화와 Lighthouse 성능 개선 확인하기</LinkStyle>
+              <span className="font-semibold text-link hover:underline">
+                Next.js 이미지 최적화와 Lighthouse 성능 개선 확인하기
+              </span>
             </a>
           </Link>
         </p>
-      </TextWrapper>
-    </Wrap>
+      </div>
+    </div>
   )
 }
 
 export default Blog
-
-const Wrap = styled.div``
-
-const Para = styled.p`
-  margin-top: 0.2rem;
-  /* margin-left: 0.5rem; */
-  font-weight: 400;
-
-  &::marker {
-    /* color: ; */
-  }
-`
-
-const LinkSpan = styled.span`
-  text-decoration: underline;
-
-  &:hover {
-    color: ${({ theme }) => theme.palette.text1};
-  }
-`

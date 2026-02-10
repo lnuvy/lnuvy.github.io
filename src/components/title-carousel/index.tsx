@@ -1,3 +1,5 @@
+import clsx from 'clsx'
+import Image from 'next/image'
 import Link from 'next/link'
 import { Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -7,7 +9,6 @@ import { clickOutLink } from '@helpers/tracking'
 import useIsFirstScroll from '@hooks/use-is-first-scroll'
 import titleImage from 'public/images/main.jpg'
 import ScrollDownArrow from './scroll-down-arrow'
-import { FirstSlider, H1, LinkStyle, StyledImage, TextWrapper, Wrap } from './styles'
 
 const TitleCarousel = () => {
   const senseLink =
@@ -17,7 +18,7 @@ const TitleCarousel = () => {
   const isShowScroll = !isScrolledDown && !isAlreadyScrolled
 
   return (
-    <Wrap id="Top">
+    <div id="Top" className="sticky top-0 w-full min-h-screen">
       <section
         style={{
           transition: 'all',
@@ -30,16 +31,25 @@ const TitleCarousel = () => {
           {[...new Array(1)].map((_, i) => {
             return (
               <SwiperSlide key={i}>
-                <FirstSlider isScroll={isScrolledDown}>
-                  <StyledImage
+                <div
+                  className={clsx(
+                    'relative flex flex-col justify-between transition-all duration-700 ease-[cubic-bezier(0.2,0,0.2,1)]',
+                    isScrolledDown ? 'h-[60vh]' : 'h-[100vh]',
+                  )}
+                >
+                  <Image
                     layout="fill"
                     src={titleImage}
                     placeholder="blur"
                     sizes="2000px"
                     alt="이한울 코드리뷰 사진"
                     quality={100}
+                    className={clsx(
+                      'object-cover z-10',
+                      'object-[right_50%_bottom_45%] max-md:object-[right_90%_bottom_45%]',
+                    )}
                   />
-                </FirstSlider>
+                </div>
               </SwiperSlide>
             )
           })}
@@ -48,14 +58,16 @@ const TitleCarousel = () => {
 
       <TransitionWrapper>
         {(isAlreadyScrolled || isScrolledDown) && (
-          <TextWrapper>
-            <H1>FrontEnd Developer</H1>
+          <div className="p-4 [&>p]:m-auto [&>p]:mb-5 [&>p]:text-gray-500 [&>p]:text-[0.9rem] [&>p]:animate-[moveDown_2s] max-md:[&>p]:text-[0.7rem] [&>.dot]:ml-3">
+            <h1 className="w-full text-center font-semibold mt-0 mb-8 text-text-2 relative -z-10 opacity-0 animate-[moveUp_0.9s_forwards] delay-700">
+              FrontEnd Developer
+            </h1>
             <p>JavaScript(TS)를 기반으로 다양한 프론트엔드 기술을 공부하고 있습니다.</p>
             <p>
               현재 재직중인 러너스에서&nbsp;
               <Link href={senseLink} onClick={() => clickOutLink('sense_web')}>
                 <a target={'_blank'}>
-                  <LinkStyle>라이프스타일 플랫폼 센스</LinkStyle>
+                  <span className="font-semibold text-link hover:underline">라이프스타일 플랫폼 센스</span>
                 </a>
               </Link>
               &nbsp;개발을 담당하고 있습니다.
@@ -65,7 +77,7 @@ const TitleCarousel = () => {
               •&nbsp;
               <Link href="https://store.sense.im" onClick={() => clickOutLink('sense_store')}>
                 <a target="_blank">
-                  <LinkStyle>센스 스토어</LinkStyle> 둘러보기
+                  <span className="font-semibold text-link hover:underline">센스 스토어</span> 둘러보기
                 </a>
               </Link>
             </p>
@@ -73,26 +85,18 @@ const TitleCarousel = () => {
               •&nbsp;
               <Link href="https://lab.sense.im" onClick={() => clickOutLink('sense_lab')}>
                 <a target="_blank">
-                  <LinkStyle>센스 랩</LinkStyle> 둘러보기
+                  <span className="font-semibold text-link hover:underline">센스 랩</span> 둘러보기
                 </a>
               </Link>
             </p>
-            {/* <p className="dot">
-            •&nbsp;
-            <Link href="https://pudding.im">
-              <a target="_blank">
-                <LinkStyle>푸딩</LinkStyle> 둘러보기
-              </a>
-            </Link>
-          </p> */}
-          </TextWrapper>
+          </div>
         )}
       </TransitionWrapper>
 
       <TransitionWrapper>
         <About />
       </TransitionWrapper>
-    </Wrap>
+    </div>
   )
 }
 export default TitleCarousel

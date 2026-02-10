@@ -1,10 +1,9 @@
-import styled from '@emotion/styled'
 import ExpBox from '@components/exp-box'
 import { CompanyArray } from '@constant/company-array'
 
 const Experience = () => {
   return (
-    <Wrap id="Experience">
+    <div id="Experience" className="w-full py-4">
       <br />
       <h2>🧑‍💻 Experience.</h2>
       <br />
@@ -12,14 +11,8 @@ const Experience = () => {
       {CompanyArray.map((company) => (
         <ExpBox key={company.id} company={company} />
       ))}
-    </Wrap>
+    </div>
   )
 }
-
-const Wrap = styled.div`
-  //min-height: 100vh;
-  width: 100%;
-  padding: 1rem 0;
-`
 
 export default Experience

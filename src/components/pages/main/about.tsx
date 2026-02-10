@@ -1,14 +1,13 @@
-import styled from '@emotion/styled'
 import TransitionWrapper from '@components/common/transition-wrapper'
 
 const About = () => {
   return (
-    <Wrap id="About">
+    <div id="About" className="leading-[1.8] max-md:pt-16">
       <br />
       <h2>👋 About Me.</h2>
 
       <TransitionWrapper>
-        <p>
+        <p className="mx-auto border border-[#444c56] rounded-lg p-8 w-[90%] font-mono max-md:text-[0.8rem] max-md:p-4 max-md:w-[95%]">
           2022년 5월, ERP 프로그램 개발 업체인 (주)에이림 에 입사하여 개발자로서의 첫 커리어를 시작했습니다.
           <br />
           에이림에서의 짧은 경험을 통해 개발자는 &nbsp;
@@ -20,37 +19,16 @@ const About = () => {
           접근해야하는지, 개발 우선순위를 능동적으로 바꿔가며 개선하는 유연한 사고를 기를 수 있었습니다.
           <br />
           <br />
-          현재 재직중인 러너스에서는 비록 실력은 부족하지만 커뮤니케이션 능력을 나름대로 인정받아 프론트엔드 팀장으로
-          일하고 있으며, 정신없이 바쁜 와중에도 팀원들과 소통하며 여러 프로젝트를 관리하고 있습니다.
+          현재 재직중인 위버케어에서는 헬스케어 SaaS 서비스인 닥터팔레트의 프론트엔드 개발을 담당하고 있습니다.
+          <br />
+          React 19, Module Federation 기반의 대규모 모노레포 환경에서 50개 이상의 패키지를 관리하며, Jotai와 Tailwind
+          CSS 4를 도입해 디자인 시스템을 고도화하는 등 기술적인 도전과 성장을 지속하고 있습니다.
           <br />
           함께 일하고 싶은 팀원이 되기 위해 노력하며 긍정적으로 맡은 업무에 최선을 다합니다.
         </p>
       </TransitionWrapper>
-    </Wrap>
+    </div>
   )
 }
 
 export default About
-
-const Wrap = styled.div`
-  line-height: 1.8;
-
-  @media ${({ theme }) => theme.device.mobile} {
-    padding-top: 4rem;
-  }
-
-  & p {
-    margin: 0 auto;
-    border: 1px solid #444c56;
-    border-radius: 8px;
-    padding: 2rem;
-    width: 90%;
-    font-family: ui-monospace, SFMono-Regular, SFMono, Menlo, Consolas, LiberationMono, monospace;
-
-    @media ${({ theme }) => theme.device.mobile} {
-      font-size: 0.8rem;
-      padding: 1rem;
-      width: 95%;
-    }
-  }
-`

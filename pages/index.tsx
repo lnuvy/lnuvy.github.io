@@ -2,7 +2,6 @@ import type { GetStaticProps, NextPage } from 'next'
 import fs from 'fs'
 import path from 'path'
 import { createContext } from 'react'
-import styled from '@emotion/styled'
 import matter from 'gray-matter'
 import Layout from '@components/layout'
 import ScrollProgress from '@components/scroll-progress-bar'
@@ -21,27 +20,18 @@ const Home: NextPage = (props: IndexProps | any) => {
 
   return (
     <MDContext.Provider value={contextValue}>
-      <Frame>
+      <div className="min-h-screen bg-background-default text-text-2">
         <ScrollProgress />
-        <LayoutWrapper>
+        <div className="w-full">
           <Layout>
             <Layout.Left />
             <Layout.Right />
           </Layout>
-        </LayoutWrapper>
-      </Frame>
+        </div>
+      </div>
     </MDContext.Provider>
   )
 }
-
-const Frame = styled.div`
-  background: ${({ theme }) => theme.palette.backgroundColor};
-  color: ${({ theme }) => theme.palette.text2};
-`
-
-const LayoutWrapper = styled.div`
-  width: 100%;
-`
 
 export const getStaticProps = async () => {
   const roots = fs.readdirSync(path.join('posts'))
