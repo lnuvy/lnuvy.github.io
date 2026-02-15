@@ -1,15 +1,15 @@
 import React from 'react'
-import styled from '@emotion/styled'
-
-export const Svg = styled.svg`
-  fill: ${({ theme }) => theme.palette.awsColor};
-  stroke: ${({ theme }) => theme.palette.awsColor};
-`
 
 const Next = () => {
   return (
     // xmlns:xlink="http://www.w3.org/1999/xlink"
-    <Svg width="207px" viewBox="0 0 207 124" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      className="fill-[#252F3E] stroke-[#252F3E] dark:fill-white dark:stroke-white"
+      width="207px"
+      viewBox="0 0 207 124"
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <title>next-black</title>
       {/*<desc>Created with Sketch.</desc>*/}
       <defs />
@@ -33,7 +33,7 @@ const Next = () => {
           </g>
         </g>
       </g>
-    </Svg>
+    </svg>
   )
 }
 

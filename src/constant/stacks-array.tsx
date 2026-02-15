@@ -20,7 +20,7 @@ export const stacksArray = [
     id: 1,
     name: 'TypeScript',
     isPublic: 1,
-    desc: '협업의 기본이자, 프로덕트의 안정성을 끌어올리는 도구입니다. 최근 포켓로그 오픈소스를 확인해보고 Class와 TS의 매력에 빠졌습니다.',
+    desc: '협업의 기본이자, 프로덕트의 안정성을 끌어올리는 도구입니다. 이펙티브 타입스크립트를 읽고 많은 인사이트를 얻었습니다.',
     svg: '/images/Typescript_logo_2020.png',
     svgName: 'TypeScript',
     updated: 'Updated now',

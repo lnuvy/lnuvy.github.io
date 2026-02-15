@@ -3,7 +3,7 @@
     "prefix": "cdc",
     "body": [
       "\"use client\"",
-      
+
       "import { createDynamicContext } from \"@/app/_context/create-dynamic-context\"",
       "",
       "interface ${1:Name}Props {}",
@@ -12,9 +12,9 @@
       "",
       "export const use${1:Name} = useContext",
       "export const ${1:Name}Provider = ContextProvider",
-      ""
+      "",
     ],
-    "description": "create dynamic context "
+    "description": "create dynamic context ",
   },
   "rafce kebab case component template": {
     "prefix": "rrr",
@@ -29,9 +29,9 @@
       "}",
       "",
       "export default ${1:first}",
-      ""
+      "",
     ],
-    "description": "rafce sense template"
+    "description": "rafce sense template",
   },
   "ttt": {
     "prefix": "ttt",
@@ -40,21 +40,19 @@
       "  return <div>${1:first}</div>",
       "}",
       "",
-      "export default ${1:first}"
+      "export default ${1:first}",
     ],
-    "description": "ttt"
+    "description": "ttt",
   },
   "clo": {
     "prefix": "clo",
-    "body": [
-      "console.log(`${1:data}`, ${1:data})"
-    ],
-    "description": "clo"
+    "body": ["console.log(`${1:data}`, ${1:data})"],
+    "description": "clo",
   },
   "주석": {
     "prefix": "wntjr",
     "body": ["/**", " * ${1:description}", " */"],
-    "description": "description"
+    "description": "description",
   },
   "긴 주석": {
     "prefix": "rlswntjr",
@@ -63,8 +61,8 @@
       " * ",
       " * ${1:description}",
       " * ",
-      " ------------------------------------------------------------------------------ */"
+      " ------------------------------------------------------------------------------ */",
     ],
-    "description": "description"
+    "description": "description",
   },
 }

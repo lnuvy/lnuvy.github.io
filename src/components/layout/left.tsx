@@ -1,5 +1,5 @@
 import { ChangeEvent, useRef } from 'react'
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import Link from 'next/link'
 
 import AutoSizeImage from '@components/LeftBar/AutoSizeImage'

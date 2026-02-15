@@ -1,20 +1,17 @@
 import React from 'react'
-import styled from '@emotion/styled'
-
-export const Svg = styled.svg`
-  fill: ${({ theme }) => theme.palette.awsColor};
-
-  & > .st1 {
-    fill-rule: evenodd;
-    clip-rule: evenodd;
-  }
-`
 
 const Aws = () => {
   // xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
   // xml:space="preserve"
   return (
-    <Svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 304 182" width={16}>
+    <svg
+      className="fill-[#252F3E] dark:fill-white"
+      version="1.1"
+      id="Layer_1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 304 182"
+      width={16}
+    >
       <g>
         <path
           className="st0"
@@ -42,12 +39,16 @@ const Aws = () => {
         />
         <g>
           <path
+            fillRule="evenodd"
+            clipRule="evenodd"
             className="st1"
             fill="#ff9900"
             d="M273.5,143.7c-32.9,24.3-80.7,37.2-121.8,37.2c-57.6,0-109.5-21.3-148.7-56.7c-3.1-2.8-0.3-6.6,3.4-4.4
 			c42.4,24.6,94.7,39.5,148.8,39.5c36.5,0,76.6-7.6,113.5-23.2C274.2,133.6,278.9,139.7,273.5,143.7z"
           />
           <path
+            fillRule="evenodd"
+            clipRule="evenodd"
             className="st1"
             fill="#ff9900"
             d="M287.2,128.1c-4.2-5.4-27.8-2.6-38.5-1.3c-3.2,0.4-3.7-2.4-0.8-4.5c18.8-13.2,49.7-9.4,53.3-5
@@ -55,7 +56,7 @@ const Aws = () => {
           />
         </g>
       </g>
-    </Svg>
+    </svg>
   )
 }
 

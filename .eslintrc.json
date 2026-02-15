@@ -21,7 +21,7 @@
    * rules start
    * 
    ------------------------------------------------------------------------------ */
-   "rules": {
+  "rules": {
     // "import/no-default-export": "off", 왜있는지 모르겠음 (turbo 초기 규칙)
 
     // import order: next -> react -> external -> internal -> css import

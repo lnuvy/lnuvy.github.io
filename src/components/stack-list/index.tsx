@@ -5,18 +5,17 @@ import { stacksArray } from '@constant/stacks-array'
 import { Stack } from '@typing/front'
 import FillStar from 'public/svg/FillStar'
 import Star from 'public/svg/Star'
-import { Description, Label, ListWrap, StackInfo } from './styles'
 import SelectBtn from '../../elements/SelectBtn'
 
 const StackList = () => {
   return (
-    <ListWrap>
-      <ul>
+    <div className="px-2 mx-auto">
+      <ul className="p-0">
         {stacksArray.map((stack) => (
           <EachStack key={stack.id} stack={stack} />
         ))}
       </ul>
-    </ListWrap>
+    </div>
   )
 }
 
@@ -30,15 +29,22 @@ const EachStack = ({ stack }: { stack: Stack }) => {
   }, [stack])
 
   return (
-    <li>
-      <div className="each-stack-top">
-        <div className="stack-left">
-          <div>
-            <h3 onClick={() => setIsPublic(!isPublic)}>{stack.name}</h3>
-            <Label>{isPublic ? 'Public' : 'Private'}</Label>
+    <li className="w-full flex flex-col py-8 border-t border-border-color last:border-b last:border-solid">
+      <div className="flex flex-row justify-between">
+        <div className="w-[80%]">
+          <div className="mb-1 flex">
+            <h3
+              onClick={() => setIsPublic(!isPublic)}
+              className="select-none text-[20px] font-semibold mr-2 mb-[2px] w-fit break-all text-link-color border-b-2 border-transparent hover:cursor-pointer hover:border-link-color transition-colors duration-200"
+            >
+              {stack.name}
+            </h3>
+            <span className="text-text-muted border border-border-color rounded-2xl text-[12px] font-medium px-[7px] ml-1 mb-[6px] align-middle leading-[18px] h-fit">
+              {isPublic ? 'Public' : 'Private'}
+            </span>
           </div>
 
-          <Description>{stack.desc}</Description>
+          <p className="inline-block text-text-muted text-[0.9rem] w-[85%] mt-1 mb-2 leading-relaxed">{stack.desc}</p>
         </div>
 
         <div className="flex-center">
@@ -53,9 +59,9 @@ const EachStack = ({ stack }: { stack: Stack }) => {
         </div>
       </div>
       <div>
-        <StackInfo className="flex-start">
-          <div className="flex-start" style={{ marginRight: '16px' }}>
-            <div className="flex-center" style={{ width: 16, marginRight: '4px' }}>
+        <div className="mt-2 text-[12px] text-text-3 flex items-start">
+          <div className="flex items-start mr-4">
+            <div className="flex-center w-4 mr-1">
               {typeof stack.svg === 'string' ? (
                 <Image
                   src={stack.svg}
@@ -73,7 +79,7 @@ const EachStack = ({ stack }: { stack: Stack }) => {
             </OptionalLink>
           </div>
           {stack.updated}
-        </StackInfo>
+        </div>
       </div>
     </li>
   )

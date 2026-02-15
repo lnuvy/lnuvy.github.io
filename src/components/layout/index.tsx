@@ -1,4 +1,4 @@
-import styled from '@emotion/styled'
+import clsx from 'clsx'
 import { LayoutContextProvider } from '@context/layout-context'
 import { useCheck } from '@hooks/use-input'
 import { ChildrenProps } from 'types/components'
@@ -10,10 +10,17 @@ const Layout = ({ children }: ChildrenProps) => {
 
   return (
     <LayoutContextProvider isOpen={isOpen} onChange={onChangeToggle} setIsOpen={setIsOpen}>
-      <Frame>
-        <InsetFrame isOpen={isOpen} />
+      <div
+        className={clsx('w-full max-w-[1280px] px-8 flex flex-1 mx-auto', 'max-md:w-screen max-md:gap-0 max-md:p-0')}
+      >
+        <div
+          className={clsx(
+            'fixed inset-0 transition-all duration-300 ease-in-out',
+            isOpen ? 'z-20 bg-black/50' : 'z-[-1] bg-transparent',
+          )}
+        />
         {children}
-      </Frame>
+      </div>
     </LayoutContextProvider>
   )
 }
@@ -22,27 +29,3 @@ Layout.Left = LeftBar
 Layout.Right = RightContent
 
 export default Layout
-
-const Frame = styled.div`
-  width: 100%;
-  max-width: 1280px;
-  padding-left: 32px;
-  padding-right: 32px;
-  display: flex;
-  flex: 1;
-  margin: 0 auto;
-
-  @media ${({ theme }) => theme.device.mobile} {
-    width: 100vw;
-    gap: 0;
-    padding: 0;
-  }
-`
-
-const InsetFrame = styled.div<{ isOpen: boolean }>`
-  position: fixed;
-  z-index: ${({ isOpen }) => (isOpen ? 2 : -1)};
-  inset: 0;
-  transition: all 0.3s ease-in-out;
-  background-color: ${({ isOpen }) => (isOpen ? `rgba(0, 0, 0, 0.5);` : `transparent;`)};
-`

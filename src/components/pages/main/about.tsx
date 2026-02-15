@@ -44,45 +44,13 @@ const About = () => {
     >
       {/* Intro Section */}
       <TransitionWrapper>
-        <div className="flex flex-col md:flex-row gap-8 items-start mb-12">
+        <div className="w-full flex flex-col md:flex-row gap-8 items-start mb-12">
           <div className="flex-1 space-y-4">
             <span className="text-sm font-mono text-text-muted">lnuvy / README.md</span>
             <h1 className="text-4xl font-bold border-b pb-4 border-border-color">
               Hi there, I&apos;m Hanul Lee <span className="animate-pulse inline-block">👋</span>
             </h1>
-            <div className="text-lg leading-relaxed text-text-2 space-y-4">
-              <p>
-                🚀 <b>Senior Frontend Developer</b> focused on building scalable web applications and intuitive user
-                experiences.
-              </p>
-              <ul className="list-disc list-inside space-y-2 text-base text-text-muted">
-                <li>
-                  🔭 I’m currently working on <b>Doctor Palette</b> (Healthcare SaaS)
-                </li>
-                <li>
-                  🌱 I’m currently learning <b>NestJS</b> & <b>System Design</b>
-                </li>
-                <li>
-                  💬 Ask me about <b>React, Next.js, Jotai, Tailwind CSS</b>
-                </li>
-                <li>
-                  📫 How to reach me: <b>lnuvy@naver.com</b>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="hidden md:block w-[400px]">
-            {/* GitHub Stats Card - using public API */}
-            <img
-              src="https://github-readme-stats.vercel.app/api?username=lnuvy&show_icons=true&theme=dark&hide_border=true&bg_color=00000000"
-              alt="Hanul's GitHub Stats"
-              className="w-full"
-            />
-            <img
-              src="https://github-readme-stats.vercel.app/api/top-langs/?username=lnuvy&layout=compact&theme=dark&hide_border=true&bg_color=00000000"
-              alt="Top Languages"
-              className="w-full mt-2"
-            />
+            <div className="text-lg leading-relaxed text-text-2 space-y-4"></div>
           </div>
         </div>
       </TransitionWrapper>

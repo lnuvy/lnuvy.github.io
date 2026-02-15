@@ -1,6 +1,4 @@
 import { useCallback, useEffect, useState } from 'react'
-import { ThemeProvider } from '@emotion/react'
-import { theme } from '@styles/theme'
 import { createDynamicContext } from '../create-dynamic-context'
 
 const THEME_KEY = '_theme'
@@ -46,11 +44,9 @@ const ThemeContextProvider = ({ children }: Props) => {
   }, [isDark])
 
   return (
-    <ThemeProvider theme={{ ...theme, palette: isDark ? theme.darkTheme : theme.lightTheme }}>
-      <ContextProvider isDark={isDark} onChangeTheme={onChangeTheme}>
-        {children}
-      </ContextProvider>
-    </ThemeProvider>
+    <ContextProvider isDark={isDark} onChangeTheme={onChangeTheme}>
+      {children}
+    </ContextProvider>
   )
 }
 

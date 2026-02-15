@@ -13,10 +13,13 @@ const RightContent = () => {
   return (
     <div
       className={clsx(
-        'w-full bg-background-default transition-colors duration-200 ease-in-out',
-        'max-w-[calc(100%-296px)] ml-[calc(296px+24px)]',
-        'md:ml-[calc(256px+16px)]',
-        'max-md:max-w-[100vw] max-md:ml-0',
+        'w-full bg-background-default transition-all duration-200 ease-in-out',
+        // Mobile (default)
+        'ml-0 max-w-full',
+        // Tablet (md: >= 768px, LeftBar width: 256px)
+        'md:ml-[272px] md:max-w-[calc(100%-272px)]',
+        // Desktop (lg: >= 1024px, LeftBar width: 296px)
+        'lg:ml-[320px] lg:max-w-[calc(100%-320px)]',
       )}
     >
       {/* TitleCarousel Area with scroll space */}

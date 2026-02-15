@@ -2,8 +2,5 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },
-  "cSpell.words": [
-    "pageview",
-    "Swiper"
-  ]
+  "cSpell.words": ["pageview", "Swiper"]
 }
