@@ -1,31 +1,202 @@
 import TransitionWrapper from '@components/common/transition-wrapper'
 
+// Mock data for pinned repos
+const pinnedRepos = [
+  {
+    name: 'lnuvy.github.io',
+    description: 'Personal portfolio website built with Next.js and Tailwind CSS 4.',
+    language: 'TypeScript',
+    color: '#3178c6',
+    stars: '15+',
+    url: 'https://github.com/lnuvy/lnuvy.github.io',
+  },
+  {
+    name: 'doctor-palette',
+    description: 'Healthcare SaaS platform frontend development (Private).',
+    language: 'React',
+    color: '#61dafb',
+    stars: 'Private',
+    url: '#',
+  },
+  {
+    name: 'algorithm',
+    description: 'Algorithm problem solving archive (LeetCode, Baekjoon).',
+    language: 'JavaScript',
+    color: '#f1e05a',
+    stars: 8,
+    url: 'https://github.com/lnuvy/algorithm',
+  },
+  {
+    name: 'nestjs-practice',
+    description: 'Backend learning journey with NestJS and TypeORM.',
+    language: 'TypeScript',
+    color: '#3178c6',
+    stars: 5,
+    url: '#',
+  },
+]
+
 const About = () => {
   return (
-    <div id="About" className="leading-[1.8] max-md:pt-16">
-      <br />
-      <h2>👋 About Me.</h2>
-
+    <div
+      id="About"
+      className="relative z-20 w-full max-w-4xl mx-auto px-4 py-20 text-text-default font-sans bg-background-default border-t border-border-color shadow-[0_-10px_20px_-5px_rgba(0,0,0,0.1)] rounded-t-3xl mt-[-100px]"
+    >
+      {/* Intro Section */}
       <TransitionWrapper>
-        <p className="mx-auto border border-[#444c56] rounded-lg p-8 w-[90%] font-mono max-md:text-[0.8rem] max-md:p-4 max-md:w-[95%]">
-          2022년 5월, ERP 프로그램 개발 업체인 (주)에이림 에 입사하여 개발자로서의 첫 커리어를 시작했습니다.
-          <br />
-          에이림에서의 짧은 경험을 통해 개발자는 &nbsp;
-          <b>{'단순히 코딩을 하는 사람이 아니라, 기업의 비즈니스 모델에 맞춰 생각하고, 코드로 풀어내는 사람'}</b>
-          &nbsp;이라는 좋은 경험을 얻을 수 있었습니다.
-          <br />
-          <br />그 후, C2C 서비스인 중고 가구 거래 플랫폼 ffeed를 개발하는 (주)알파벳에이에 입사하여 DM과 유저 인터뷰
-          등을 통해 <b>유저피드백을 실시간으로 받으며 성장하고</b>, 유저의 니즈를 파악하기 위해 개발자와 팀원들이 어떻게
-          접근해야하는지, 개발 우선순위를 능동적으로 바꿔가며 개선하는 유연한 사고를 기를 수 있었습니다.
-          <br />
-          <br />
-          현재 재직중인 위버케어에서는 헬스케어 SaaS 서비스인 닥터팔레트의 프론트엔드 개발을 담당하고 있습니다.
-          <br />
-          React 19, Module Federation 기반의 대규모 모노레포 환경에서 50개 이상의 패키지를 관리하며, Jotai와 Tailwind
-          CSS 4를 도입해 디자인 시스템을 고도화하는 등 기술적인 도전과 성장을 지속하고 있습니다.
-          <br />
-          함께 일하고 싶은 팀원이 되기 위해 노력하며 긍정적으로 맡은 업무에 최선을 다합니다.
-        </p>
+        <div className="flex flex-col md:flex-row gap-8 items-start mb-12">
+          <div className="flex-1 space-y-4">
+            <span className="text-sm font-mono text-text-muted">lnuvy / README.md</span>
+            <h1 className="text-4xl font-bold border-b pb-4 border-border-color">
+              Hi there, I&apos;m Hanul Lee <span className="animate-pulse inline-block">👋</span>
+            </h1>
+            <div className="text-lg leading-relaxed text-text-2 space-y-4">
+              <p>
+                🚀 <b>Senior Frontend Developer</b> focused on building scalable web applications and intuitive user
+                experiences.
+              </p>
+              <ul className="list-disc list-inside space-y-2 text-base text-text-muted">
+                <li>
+                  🔭 I’m currently working on <b>Doctor Palette</b> (Healthcare SaaS)
+                </li>
+                <li>
+                  🌱 I’m currently learning <b>NestJS</b> & <b>System Design</b>
+                </li>
+                <li>
+                  💬 Ask me about <b>React, Next.js, Jotai, Tailwind CSS</b>
+                </li>
+                <li>
+                  📫 How to reach me: <b>lnuvy@naver.com</b>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="hidden md:block w-[400px]">
+            {/* GitHub Stats Card - using public API */}
+            <img
+              src="https://github-readme-stats.vercel.app/api?username=lnuvy&show_icons=true&theme=dark&hide_border=true&bg_color=00000000"
+              alt="Hanul's GitHub Stats"
+              className="w-full"
+            />
+            <img
+              src="https://github-readme-stats.vercel.app/api/top-langs/?username=lnuvy&layout=compact&theme=dark&hide_border=true&bg_color=00000000"
+              alt="Top Languages"
+              className="w-full mt-2"
+            />
+          </div>
+        </div>
+      </TransitionWrapper>
+
+      {/* Tech Stack - Badges */}
+      <TransitionWrapper>
+        <div className="mb-12">
+          <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <span className="text-xl">🛠</span> Tech Stack
+          </h3>
+          <div className="flex flex-wrap gap-2">
+            <img
+              src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white"
+              alt="Next.js"
+            />
+            <img
+              src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"
+              alt="React"
+            />
+            <img
+              src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white"
+              alt="TypeScript"
+            />
+            <img
+              src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white"
+              alt="Tailwind"
+            />
+            <img src="https://img.shields.io/badge/Jotai-000000?style=for-the-badge&logoColor=white" alt="Jotai" />
+            <img
+              src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white"
+              alt="Node.js"
+            />
+            <img
+              src="https://img.shields.io/badge/NestJS-E0234E?style=for-the-badge&logo=nestjs&logoColor=white"
+              alt="NestJS"
+            />
+          </div>
+        </div>
+      </TransitionWrapper>
+
+      {/* Pinned Repositories */}
+      <TransitionWrapper>
+        <div className="mb-12">
+          <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
+            <span className="text-xl">📌</span> Pinned Projects
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {pinnedRepos.map((repo) => (
+              <a
+                href={repo.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                key={repo.name}
+                className="block border border-border-color rounded-md p-4 bg-background-1 hover:border-text-muted transition-colors"
+                style={{ textDecoration: 'none' }}
+              >
+                <div className="flex items-center gap-2 mb-2">
+                  <svg
+                    aria-hidden="true"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    version="1.1"
+                    width="16"
+                    data-view-component="true"
+                    className="fill-text-muted"
+                  >
+                    <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.45a.25.25 0 0 1-.4-.2Z"></path>
+                  </svg>
+                  <span className="font-bold text-link-color">{repo.name}</span>
+                  <span className="text-xs border border-border-color rounded-full px-2 py-0.5 text-text-muted ml-auto">
+                    Public
+                  </span>
+                </div>
+                <p className="text-sm text-text-2 mb-4 h-10 line-clamp-2">{repo.description}</p>
+                <div className="flex items-center gap-4 text-xs text-text-muted mt-auto">
+                  <div className="flex items-center gap-1">
+                    <span className="w-3 h-3 rounded-full" style={{ backgroundColor: repo.color }}></span>
+                    <span>{repo.language}</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <svg
+                      aria-hidden="true"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      version="1.1"
+                      width="16"
+                      data-view-component="true"
+                      className="fill-text-muted scale-75"
+                    >
+                      <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path>
+                    </svg>
+                    {repo.stars}
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </TransitionWrapper>
+
+      {/* Contribution Calendar */}
+      <TransitionWrapper>
+        <div>
+          <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <span className="text-xl">📊</span> Contributions
+          </h3>
+          <div className="border border-border-color rounded-md p-4 bg-background-1 overflow-hidden">
+            <img
+              src="https://ghchart.rshah.org/238636/lnuvy"
+              alt="lnuvy's Github chart"
+              className="w-full min-w-[700px]"
+            />
+          </div>
+        </div>
       </TransitionWrapper>
     </div>
   )

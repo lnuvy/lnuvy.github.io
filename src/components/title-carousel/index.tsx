@@ -1,19 +1,12 @@
 import clsx from 'clsx'
 import Image from 'next/image'
-import Link from 'next/link'
 import { Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import TransitionWrapper from '@components/common/transition-wrapper'
-import About from '@components/pages/main/about'
-import { clickOutLink } from '@helpers/tracking'
 import useIsFirstScroll from '@hooks/use-is-first-scroll'
 import titleImage from 'public/images/main.jpg'
 import ScrollDownArrow from './scroll-down-arrow'
 
 const TitleCarousel = () => {
-  const senseLink =
-    'https://sense.im?utm_source=notion&utm_medium=display&utm_campaign=백링크&utm_content=노션_제이든_블로그&utm_trk=8'
-
   const { isScrolledDown, isAlreadyScrolled } = useIsFirstScroll()
   const isShowScroll = !isScrolledDown && !isAlreadyScrolled
 
@@ -34,7 +27,7 @@ const TitleCarousel = () => {
                 <div
                   className={clsx(
                     'relative flex flex-col justify-between transition-all duration-700 ease-[cubic-bezier(0.2,0,0.2,1)]',
-                    isScrolledDown ? 'h-[60vh]' : 'h-[100vh]',
+                    isScrolledDown ? 'h-[60vh]' : 'h-screen',
                   )}
                 >
                   <Image
@@ -56,6 +49,7 @@ const TitleCarousel = () => {
         </Swiper>
       </section>
 
+      {/* Outdated Content & About removal
       <TransitionWrapper>
         {(isAlreadyScrolled || isScrolledDown) && (
           <div className="p-4 [&>p]:m-auto [&>p]:mb-5 [&>p]:text-gray-500 [&>p]:text-[0.9rem] [&>p]:animate-[moveDown_2s] max-md:[&>p]:text-[0.7rem] [&>.dot]:ml-3">
@@ -96,6 +90,7 @@ const TitleCarousel = () => {
       <TransitionWrapper>
         <About />
       </TransitionWrapper>
+      */}
     </div>
   )
 }

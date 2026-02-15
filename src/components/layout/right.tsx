@@ -1,11 +1,15 @@
 import clsx from 'clsx'
 import TransitionWrapper from '@components/common/transition-wrapper'
+import About from '@components/pages/main/about'
 import Blog from '@components/pages/main/blog'
 import Experience from '@components/pages/main/experience'
 import Stacks from '@components/pages/main/stacks'
 import TitleCarousel from '@components/title-carousel'
+import useScrollSpy from '@hooks/use-scroll-spy'
 
 const RightContent = () => {
+  useScrollSpy(['Top', 'About', 'Stacks', 'Experience', 'Blog'])
+
   return (
     <div
       className={clsx(
@@ -15,13 +19,16 @@ const RightContent = () => {
         'max-md:max-w-[100vw] max-md:ml-0',
       )}
     >
-      <div style={{ height: '240vh', minHeight: '1200px' }}>
+      {/* TitleCarousel Area with scroll space */}
+      <div style={{ height: '150vh', minHeight: '1000px' }}>
         <TitleCarousel />
-        <br />
-        {/* <TransitionWrapper>
-          <About />
-        </TransitionWrapper> */}
       </div>
+
+      {/* About Section - Starts after scrolling past TitleCarousel */}
+      <TransitionWrapper>
+        <About />
+      </TransitionWrapper>
+
       <br />
       <TransitionWrapper mxAuto>
         <Stacks />
