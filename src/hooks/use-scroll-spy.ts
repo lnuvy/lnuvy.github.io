@@ -42,7 +42,7 @@ export const useScrollSpy = (ids: string[]) => {
         let maxId = ''
         let maxRatio = 0
 
-        for (const [id, ratio] of [...ratios.current.entries()]) {
+        for (const [id, ratio] of Array.from(ratios.current.entries())) {
           if (ratio > maxRatio) {
             maxRatio = ratio
             maxId = id

@@ -4,8 +4,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    loader: 'akamai',
-    path: '',
+    unoptimized: true,
   },
   assetPrefix: process.env.NODE_ENV === 'production' ? 'https://lnuvy.github.io' : '',
 
