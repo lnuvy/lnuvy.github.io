@@ -3,36 +3,34 @@ import TransitionWrapper from '@components/common/transition-wrapper'
 // Mock data for pinned repos
 const pinnedRepos = [
   {
-    name: 'lnuvy.github.io',
-    description: 'Personal portfolio website built with Next.js and Tailwind CSS 4.',
+    name: 'next.js',
+    forkedFrom: 'vercel/next.js',
+    description:
+      'Next.js 14.0.4 버전에서 OpenGraphMetadata 객체에 문제를 발견하고 이슈를 남겨 v14.2.0에서 수정되었습니다.',
     language: 'TypeScript',
     color: '#3178c6',
-    stars: '15+',
-    url: 'https://github.com/lnuvy/lnuvy.github.io',
+    stars: '138k+',
+    url: 'https://github.com/vercel/next.js/issues/63415',
   },
   {
-    name: 'doctor-palette',
-    description: 'Healthcare SaaS platform frontend development (Private).',
-    language: 'React',
-    color: '#61dafb',
-    stars: 'Private',
-    url: '#',
+    name: 'pokerogue',
+    forkedFrom: 'pagefaultgames/pokerogue',
+    description:
+      '미스터리 조우로 잡은 포켓몬의 도감을 열었을 때 좌/우 화살표로 에러가 나는 현상을 발견해 수정했습니다.',
+    language: 'TypeScript',
+    color: '#3178c6',
+    stars: '5.5k+',
+    url: 'https://github.com/pagefaultgames/pokerogue/pull/6000',
   },
   {
-    name: 'algorithm',
-    description: 'Algorithm problem solving archive (LeetCode, Baekjoon).',
+    name: 'eslint-plugin-import',
+    forkedFrom: 'import-js/eslint-plugin-import',
+    description:
+      'ESLint 9 Flat Config 초기, typescript-eslint와 함께 사용할 때 발생하는 설정 문제를 알리기 위해 Docs를 업데이트 했습니다.',
     language: 'JavaScript',
     color: '#f1e05a',
-    stars: 8,
-    url: 'https://github.com/lnuvy/algorithm',
-  },
-  {
-    name: 'nestjs-practice',
-    description: 'Backend learning journey with NestJS and TypeORM.',
-    language: 'TypeScript',
-    color: '#3178c6',
-    stars: 5,
-    url: '#',
+    stars: '5.9k+',
+    url: 'https://github.com/import-js/eslint-plugin-import/pull/3126',
   },
 ]
 
@@ -40,7 +38,7 @@ const About = () => {
   return (
     <div
       id="About"
-      className="relative z-20 w-full max-w-4xl mx-auto px-4 py-20 text-text-default font-sans bg-background-default border-t border-border-color shadow-[0_-10px_20px_-5px_rgba(0,0,0,0.1)] rounded-t-3xl mt-[-100px]"
+      className="relative z-20 w-full max-w-4xl mx-auto px-4 py-20 text-text-default font-sans bg-background-default border-t mt-[-100px]"
     >
       {/* Intro Section */}
       <TransitionWrapper>
@@ -50,52 +48,62 @@ const About = () => {
             <h1 className="text-4xl font-bold border-b pb-4 border-border-color">
               Hi there, I&apos;m Hanul Lee <span className="animate-pulse inline-block">👋</span>
             </h1>
-            <div className="text-lg leading-relaxed text-text-2 space-y-4"></div>
+            <div className="text-lg leading-relaxed text-text-2 space-y-4">
+              몰입하는 개발자, 이한울입니다.
+              <br />
+              <br />
+              개발자란 단순히 코딩하는 사람이 아닌, <br />
+              기업의 비즈니스 모델에 맞춰 생각하고 코드로 풀어내는 사람이라는 확신을 가지고 있습니다.
+              <br />
+              급변하는 AI 생태계에 빠르게 적응하고, 마주친 문제 해결을 효율적으로 하기 위한 고민을 즐깁니다.
+            </div>
           </div>
         </div>
       </TransitionWrapper>
 
       {/* Tech Stack - Badges */}
-      <TransitionWrapper>
+      {/* <TransitionWrapper>
         <div className="mb-12">
           <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
             <span className="text-xl">🛠</span> Tech Stack
           </h3>
           <div className="flex flex-wrap gap-2">
             <img
-              src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white"
-              alt="Next.js"
+              src="https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E"
+              alt="JavaScript"
             />
             <img
-              src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"
-              alt="React"
-            />
-            <img
-              src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white"
+              src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white"
               alt="TypeScript"
             />
             <img
-              src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white"
-              alt="Tailwind"
+              src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB"
+              alt="React"
             />
             <img src="https://img.shields.io/badge/Jotai-000000?style=for-the-badge&logoColor=white" alt="Jotai" />
+            <img src="https://img.shields.io/badge/Zustand-443E38?style=for-the-badge" alt="Zustand" />
             <img
-              src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white"
-              alt="Node.js"
+              src="https://img.shields.io/badge/Apollo%20Client-311C87?style=for-the-badge&logo=apollo-graphql&logoColor=white"
+              alt="Apollo Client"
+            />
+            <img src="https://img.shields.io/badge/Rspack-F6F6F6?style=for-the-badge&logoColor=black" alt="Rspack" />
+            <img
+              src="https://img.shields.io/badge/Module%20Federation-2B3A42?style=for-the-badge&logo=webpack&logoColor=white"
+              alt="Module Federation"
             />
             <img
-              src="https://img.shields.io/badge/NestJS-E0234E?style=for-the-badge&logo=nestjs&logoColor=white"
-              alt="NestJS"
+              src="https://img.shields.io/badge/Turborepo-EF5B25?style=for-the-badge&logo=turborepo&logoColor=white"
+              alt="Turborepo"
             />
           </div>
         </div>
-      </TransitionWrapper>
+      </TransitionWrapper> */}
 
       {/* Pinned Repositories */}
       <TransitionWrapper>
         <div className="mb-12">
           <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
-            <span className="text-xl">📌</span> Pinned Projects
+            <span className="text-xl">📌</span> Pinned Projects (오픈소스 기여)
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {pinnedRepos.map((repo) => (
@@ -124,6 +132,8 @@ const About = () => {
                     Public
                   </span>
                 </div>
+                {/* @ts-ignore */}
+                {repo.forkedFrom && <p className="text-xs text-text-muted mb-2">Forked from {repo.forkedFrom}</p>}
                 <p className="text-sm text-text-2 mb-4 h-10 line-clamp-2">{repo.description}</p>
                 <div className="flex items-center gap-4 text-xs text-text-muted mt-auto">
                   <div className="flex items-center gap-1">
@@ -152,7 +162,7 @@ const About = () => {
       </TransitionWrapper>
 
       {/* Contribution Calendar */}
-      <TransitionWrapper>
+      {/* <TransitionWrapper>
         <div>
           <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
             <span className="text-xl">📊</span> Contributions
@@ -165,7 +175,7 @@ const About = () => {
             />
           </div>
         </div>
-      </TransitionWrapper>
+      </TransitionWrapper> */}
     </div>
   )
 }

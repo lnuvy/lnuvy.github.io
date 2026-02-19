@@ -5,10 +5,10 @@ const Experience = () => {
   return (
     <div id="Experience" className="w-full py-4">
       <br />
-      <h2>🧑‍💻 Experience.</h2>
+      <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">🧑‍💻 Experience.</h2>
       <br />
 
-      {CompanyArray.map((company) => (
+      {[...CompanyArray].reverse().map((company) => (
         <ExpBox key={company.id} company={company} />
       ))}
     </div>

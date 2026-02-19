@@ -32,19 +32,21 @@ const EachStack = ({ stack }: { stack: Stack }) => {
     <li className="w-full flex flex-col py-8 border-t border-border-color last:border-b last:border-solid">
       <div className="flex flex-row justify-between">
         <div className="w-[80%]">
-          <div className="mb-1 flex">
+          <div className="flex items-center gap-2 mb-1">
             <h3
               onClick={() => setIsPublic(!isPublic)}
-              className="select-none text-[20px] font-semibold mr-2 mb-[2px] w-fit break-all text-link-color border-b-2 border-transparent hover:cursor-pointer hover:border-link-color transition-colors duration-200"
+              className="text-xl font-bold text-link-color cursor-pointer hover:underline select-none break-all transition-colors duration-200"
             >
               {stack.name}
             </h3>
-            <span className="text-text-muted border border-border-color rounded-2xl text-[12px] font-medium px-[7px] ml-1 mb-[6px] align-middle leading-[18px] h-fit">
+            <span className="text-xs border border-border-color rounded-full px-2 py-0.5 text-text-muted font-medium">
               {isPublic ? 'Public' : 'Private'}
             </span>
           </div>
 
-          <p className="inline-block text-text-muted text-[0.9rem] w-[85%] mt-1 mb-2 leading-relaxed">{stack.desc}</p>
+          <p className="inline-block text-text-muted text-[0.9rem] w-[85%] mt-1 mb-2 leading-relaxed whitespace-pre-wrap">
+            {stack.desc}
+          </p>
         </div>
 
         <div className="flex-center">
@@ -60,8 +62,8 @@ const EachStack = ({ stack }: { stack: Stack }) => {
       </div>
       <div>
         <div className="mt-2 text-[12px] text-text-3 flex items-start">
-          <div className="flex items-start mr-4">
-            <div className="flex-center w-4 mr-1">
+          <div className="flex items-center mr-4">
+            <div className="flex w-4 mr-1">
               {typeof stack.svg === 'string' ? (
                 <Image
                   src={stack.svg}
