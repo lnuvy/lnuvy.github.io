@@ -10,7 +10,6 @@ import ToggleBox from '@elements/ToggleBox'
 import { clickInteraction, clickOutLink } from '@helpers/tracking'
 import { useClickOutside } from '@hooks/use-click-outside'
 import Github from 'public/svg/github'
-import Runners from 'public/svg/runners'
 
 const SidebarBtn = ({ className, children, ...props }: any) => (
   <div className={clsx('fixed w-[60px] h-[50px] bg-transparent rounded-lg z-50 top-4 left-0', className)} {...props}>
@@ -158,13 +157,16 @@ const LeftBar = () => {
             </a>
           </Link>
 
-          <Link href="https://runners.im/members/41" onClick={() => clickOutLink('runners')}>
+          <Link
+            href="https://notion-blog-xi-one.vercel.app/?utm_source=resume_site&utm_medium=button&utm_campaign=profile_links"
+            onClick={() => clickOutLink('notion')}
+          >
             <a target={'_blank'}>
               <SelectBtn wide padding="5px 16px">
                 <div className="flex-center" style={{ marginRight: '0.5rem' }}>
-                  <Runners />
+                  📝
                 </div>
-                Runners
+                Notion Blog
               </SelectBtn>
             </a>
           </Link>

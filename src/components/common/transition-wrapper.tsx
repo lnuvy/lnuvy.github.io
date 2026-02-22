@@ -1,7 +1,7 @@
 import { PropsWithChildren } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { Transition } from 'react-transition-group'
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 
 interface TransitionWrapperProps extends PropsWithChildren {
   timeout?: number

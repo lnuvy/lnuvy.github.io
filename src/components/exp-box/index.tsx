@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useState } from 'react'
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { marked } from 'marked'
 import { clickInteraction } from '@helpers/tracking'
 import { Company } from '@typing/front'

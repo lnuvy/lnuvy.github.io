@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react'
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import Link from 'next/link'
 
 const chapterArray = ['Top', 'About', 'Stacks', 'Experience', 'Blog']

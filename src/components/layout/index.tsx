@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { LayoutContextProvider } from '@context/layout-context'
 import { useCheck } from '@hooks/use-input'
 import { ChildrenProps } from 'types/components'

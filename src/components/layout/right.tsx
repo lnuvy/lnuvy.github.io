@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import TransitionWrapper from '@components/common/transition-wrapper'
 import About from '@components/pages/main/about'
 import Blog from '@components/pages/main/blog'

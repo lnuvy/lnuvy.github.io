@@ -34,7 +34,7 @@ const Blog = ({}: Props) => {
       <div className="grid grid-cols-1 gap-6">
         {/* Main Blog Card */}
         <a
-          href="https://notion-blog-xi-one.vercel.app/"
+          href="https://notion-blog-xi-one.vercel.app/?utm_source=resume_site&utm_medium=card&utm_campaign=blog_section"
           target="_blank"
           rel="noopener noreferrer"
           className="block border border-border-color rounded-md p-6 bg-background-1 hover:border-text-muted transition-colors no-underline"
