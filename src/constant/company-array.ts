@@ -55,6 +55,7 @@ export const CompanyArray = [
       '70개 이상의 기능 패키지로 구성된 대규모 모노레포(Turborepo) 환경 개발 경험',
       'Jotai, Tailwind CSS 4 등 최신 기술 스택 활용 및 디자인 시스템(Palette Design System) 고도화',
       '병원 진료, 청구, 상담 등 복잡한 도메인 로직을 마이크로서비스(gRPC)와 연동하여 안정적으로 구현',
+      'AI 에이전트(Antigravity)를 도입하여 프로젝트 별 Skills, Rules, Workflows를 설계하고, 자동화된 PR/Code Review 시스템을 구축하여 개발 생산성 극대화',
     ],
   },
   // {

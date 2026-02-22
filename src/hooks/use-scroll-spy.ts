@@ -55,7 +55,7 @@ export const useScrollSpy = (ids: string[]) => {
           activeIdRef.current = maxId
           setActiveId(maxId)
 
-          const newUrl = `${window.location.pathname}#${maxId}`
+          const newUrl = `${window.location.pathname}${window.location.search}#${maxId}`
           window.history.replaceState(null, '', newUrl)
         }
       },
