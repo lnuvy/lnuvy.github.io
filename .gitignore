@@ -41,3 +41,4 @@ next-env.d.ts
 # json
 client-pr.json
 workspace-pr.json
+.omc
