@@ -247,7 +247,13 @@ var UI={
 };
 function svg(d,cls){return '<svg class="i'+(cls?' '+cls:'')+'" viewBox="0 0 24 24" aria-hidden="true"><path d="'+d+'"/></svg>';}
 function tile(cat,small){var c=CAT_BY[cat]||CAT_BY.etc;return '<span class="tile'+(small?' sm':'')+'" style="'+catStyle(c)+'">'+svg(ICON[c.ic]||ICON.box)+'</span>';}
-var UNITS=['개','봉','병','팩','박스','통','kg','L'];
+var DEFAULT_UNIT='팩'; // 누나가 정한 기본 세는 단위 (2026-10-31). 비어 있거나 공백뿐인 단위는 팩으로 본다
+var UNITS=['팩','개','봉','병','박스','통','kg','L'];
+function normUnit(u){var t=typeof u==='string'?u.trim():'';return t||DEFAULT_UNIT;}
+function normCatalog(cat){
+  if(!cat||!Array.isArray(cat.items))return cat||null;
+  return Object.assign({},cat,{items:cat.items.map(function(i){return i.unit===normUnit(i.unit)?i:Object.assign({},i,{unit:normUnit(i.unit)});})});
+}
 
 /* ---------- helpers ---------- */
 function $(s){return document.querySelector(s);}
@@ -281,7 +287,7 @@ function isOwner(){return S.role==='owner';}
 
 /* ---------- 서버 (AWS Lambda + DynamoDB) ---------- */
 function applyData(d){
-  S.role=d.role;S.catalog=d.catalog||null;S.counts=d.counts||[];
+  S.role=d.role;S.catalog=normCatalog(d.catalog);S.counts=d.counts||[];
   S.orders=(d.orders||[]).map(function(o){return Object.assign({},o,{qty:Number(o.qty)});});
   lsSet(LS_CACHE,{role:S.role,catalog:S.catalog,counts:S.counts,orders:S.orders});
 }
@@ -363,7 +369,7 @@ function anomaly(inf,q){
   if(Number.isNaN(q))return '숫자로 적어주세요';
   if(q===0)return '품절(0)로 기록돼요';
   var p=inf.last?inf.last.qty:null; if(p==null)return '';
-  var u=inf.item.unit||'';
+  var u=inf.item.unit;
   var ordered=S.orders.some(function(o){return o.itemId===inf.item.id&&o.status!=='cancelled'&&o.at>inf.last.at;});
   if(q>p&&!ordered&&q-p>=Math.max(2,Math.ceil(p*0.5)))return '지난번 '+fq(p,u)+'보다 많아요. 주문 기록이 없어요';
   if(q<p&&p-q>=Math.max(2,Math.ceil(p*0.5)))return '지난번 '+fq(p,u)+'의 절반 아래예요. 박스 아래층까지 셌나요?';
@@ -433,7 +439,7 @@ function lastCountLine(){
 function thLabel(it){return it.threshold!=null?'<span class="pen">'+fq(it.threshold,it.unit)+' 이하 주문</span>':'';}
 
 function homeItem(inf,kind){
-  var it=inf.item,u=it.unit||'',right='',meta;
+  var it=inf.item,u=it.unit,right='',meta;
   if(kind==='pending'||kind==='late'){
     meta='<span>주문 '+fq(inf.order.qty,u)+'</span><span>· '+fmtYmd(inf.order.eta)+(kind==='late'?' 도착 예정이었어요':' 도착 예정')+'</span>';
     right=isOwner()?'<div style="display:flex;flex-direction:column;gap:6px"><button class="btn sm soft" data-act="order-done" data-id="'+esc(inf.order.id)+'">도착했어요</button><button class="btn sm ghost" data-act="order-drop" data-id="'+esc(inf.order.id)+'">취소</button></div>':'<span class="badge '+(kind==='late'?'b-low':'b-pending')+'">'+(kind==='late'?'도착 확인':'입고 대기')+'</span>';
@@ -490,11 +496,11 @@ function countScreen(){
     var list=act.filter(function(i){return i.cat===c.id;}); if(!list.length)return;
     h+='<div class="grp"><div class="grphead" id="cat-'+c.id+'" style="'+catStyle(c)+'"><i class="sw"></i>'+esc(c.name)+' · '+list.length+'</div>';
     list.forEach(function(it){
-      var inf=info(it),d=S.draft[it.id]||{},u=it.unit||'',q=totalOf(it,S.draft[it.id]);
+      var inf=info(it),d=S.draft[it.id]||{},u=it.unit,q=totalOf(it,S.draft[it.id]);
       var meta=(inf.last?'<span>지난번 '+fq(inf.last.qty,u)+' · '+fmtMs(inf.last.at)+'</span>':'<span>처음 세요</span>')+thLabel(it);
       var inputs=it.perBox?
         '<input class="num narrow'+(d.box?' filled':'')+'" id="b-'+it.id+'" data-id="'+it.id+'" data-f="box" inputmode="decimal" placeholder="박스" aria-label="'+esc(it.name)+' 박스 수" value="'+esc(d.box||'')+'"><span>×'+fq(it.perBox)+'+</span>'+
-        '<input class="num narrow'+(d.loose?' filled':'')+'" id="l-'+it.id+'" data-id="'+it.id+'" data-f="loose" inputmode="decimal" placeholder="낱개" aria-label="'+esc(it.name)+' 낱개" value="'+esc(d.loose||'')+'"><span class="total" id="t-'+it.id+'">'+(q!=null&&!Number.isNaN(q)?'= '+fq(q,u):'')+'</span>'
+        '<input class="num narrow'+(d.loose?' filled':'')+'" id="l-'+it.id+'" data-id="'+it.id+'" data-f="loose" inputmode="decimal" placeholder="낱개" aria-label="'+esc(it.name)+' 낱개 '+esc(u)+'" value="'+esc(d.loose||'')+'"><span class="total" id="t-'+it.id+'">'+(q!=null&&!Number.isNaN(q)?'= '+fq(q,u):'')+'</span>'
         :'<input class="num'+(d.n?' filled':'')+'" id="n-'+it.id+'" data-id="'+it.id+'" data-f="n" inputmode="decimal" placeholder="수량" aria-label="'+esc(it.name)+' 수량" value="'+esc(d.n||'')+'"><span>'+esc(u)+'</span>';
       h+='<div class="item crow">'+tile(it.cat,true)+'<div class="main"><div class="name">'+esc(it.name)+'</div><div class="meta">'+meta+'</div><div class="warnline" id="w-'+it.id+'">'+esc(anomaly(inf,q))+'</div></div><div class="inputs">'+inputs+'</div></div>';
     });
@@ -545,7 +551,7 @@ function setupList(){
   var h='<div class="card list">',cur=null;
   list.forEach(function(it){
     if(it.cat!==cur){cur=it.cat;var c=CAT_BY[cur]||CAT_BY.etc;h+='<div class="grphead" style="'+catStyle(c)+'"><i class="sw"></i>'+esc(c.name)+'</div>';}
-    var sub=it.unit?'<span>'+esc(it.unit)+(it.perBox?' · 박스당 '+fq(it.perBox):'')+'</span>':'<span>단위 없음</span>';
+    var sub='<span>'+esc(it.unit)+(it.perBox?' · 박스당 '+fq(it.perBox,it.unit):'')+'</span>';
     var right=it.active===false?'<span class="badge b-mute">숨김</span>':it.threshold!=null?'<span class="pen">'+fq(it.threshold,it.unit)+' 이하</span>':'<span class="badge b-low">기준 없음</span>';
     h+='<div class="item"><button class="tap" data-act="item-open" data-id="'+esc(it.id)+'">'+tile(it.cat,true)+
       '<div class="main"><div class="name">'+esc(it.name)+(it.review?'<i class="dot" title="이름 확인 필요"></i>':'')+'</div><div class="meta">'+sub+'</div></div>'+
@@ -621,10 +627,11 @@ function itemSheet(it,isNew){
   if(it&&it.review)h+='<div class="note warn">사진의 작은 글씨에서 옮긴 이름이에요. 실제 상품명과 맞는지 확인해 주세요.</div>';
   h+='<label class="field" for="it-name">품목명<input id="it-name" value="'+esc(it?it.name:'')+'" maxlength="40" autocomplete="off"></label>';
   if(isNew)h+='<label class="field" for="it-cat">분류<select id="it-cat">'+CATS.map(function(x){return '<option value="'+x.id+'"'+(x.id===c.id?' selected':'')+'>'+esc(x.name)+'</option>';}).join('')+'</select></label>';
-  h+='<div class="grid2"><label class="field" for="it-unit">세는 단위<input id="it-unit" value="'+esc(it?it.unit:'')+'" maxlength="6" placeholder="개" autocomplete="off"></label>'+
+  h+='<div class="grid2"><label class="field" for="it-unit">세는 단위<input id="it-unit" value="'+esc(it?it.unit:DEFAULT_UNIT)+'" maxlength="6" placeholder="'+DEFAULT_UNIT+'" autocomplete="off"></label>'+
     '<label class="field" for="it-th">이 수량 이하면 주문<input id="it-th" inputmode="decimal" value="'+esc(it&&it.threshold!=null?it.threshold:'')+'" placeholder="예: 2" autocomplete="off"></label></div>';
   h+='<div class="chips" style="margin-top:-8px" aria-label="단위 고르기">'+UNITS.map(function(u){return '<button class="chip" data-act="unit-pick" data-v="'+u+'">'+u+'</button>';}).join('')+'</div>';
-  h+='<label class="field" for="it-pb">박스당 개수 <small>박스로 세는 품목만. 넣으면 재고 조사가 「박스 + 낱개」로 바뀌어요</small><input id="it-pb" inputmode="decimal" value="'+esc(it&&it.perBox?it.perBox:'')+'" placeholder="비워두기" autocomplete="off"></label>';
+  var pu=it?it.unit:DEFAULT_UNIT;
+  h+='<label class="field" for="it-pb">박스당 '+esc(pu)+' 수 <small>박스로 세는 품목만. 넣으면 재고 조사가 「박스 × 박스당 '+esc(pu)+' 수 + 낱개 '+esc(pu)+'」로 바뀌어요</small><input id="it-pb" inputmode="decimal" value="'+esc(it&&it.perBox?it.perBox:'')+'" placeholder="비워두기" autocomplete="off"></label>';
   if(S.sheetErr)h+='<p class="err">'+esc(S.sheetErr)+'</p>';
   if(isNew)h+='<button class="btn primary block" data-act="add-save">'+svg(UI.plus)+'품목 추가</button>';
   else{
@@ -635,7 +642,7 @@ function itemSheet(it,isNew){
 }
 function orderSheet(it){
   if(!it)return '';
-  var inf=info(it),u=it.unit||'개',d1=ymd(addDays(new Date(),1)),d2=ymd(addDays(new Date(),2)),d3=ymd(addDays(new Date(),3));
+  var inf=info(it),u=it.unit,d1=ymd(addDays(new Date(),1)),d2=ymd(addDays(new Date(),2)),d3=ymd(addDays(new Date(),3));
   var h='<div class="sheethead">'+tile(it.cat)+'<div><h2>'+esc(it.name)+' 주문 기록</h2><p>지금 '+fq(inf.qty,it.unit)+(it.threshold!=null?' · 기준 '+fq(it.threshold,it.unit)+' 이하':'')+'</p></div>'+closeBtn()+'</div>';
   h+='<label class="field" for="oq">주문한 수량<span class="withunit"><input id="oq" inputmode="decimal" autocomplete="off" placeholder="예: 4"><span>'+esc(u)+'</span></span></label>';
   h+='<label class="field" for="oe">도착 예정일<input type="date" id="oe" value="'+d2+'" min="'+ymd(new Date())+'"></label>';
@@ -747,10 +754,10 @@ function saveCount(){
   });
 }
 function readItemForm(){
-  var name=$('#it-name').value.trim().slice(0,40),unit=$('#it-unit').value.trim().slice(0,6),th=num($('#it-th').value),pb=num($('#it-pb').value);
+  var name=$('#it-name').value.trim().slice(0,40),unit=normUnit($('#it-unit').value).slice(0,6),th=num($('#it-th').value),pb=num($('#it-pb').value);
   if(!name)return {err:'품목명을 적어주세요'};
   if(Number.isNaN(th))return {err:'주문기준은 숫자로 적어주세요'};
-  if(Number.isNaN(pb))return {err:'박스당 개수는 숫자로 적어주세요'};
+  if(Number.isNaN(pb))return {err:'박스당 수량은 숫자로 적어주세요'};
   return {name:name,unit:unit,threshold:th,perBox:pb&&pb>0?pb:null};
 }
 function commitCatalog(mutate,okMsg){
