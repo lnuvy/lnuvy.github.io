@@ -184,7 +184,7 @@ input.filled{border-color:var(--primary);background:var(--soft)}
 .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(140px + env(safe-area-inset-bottom,0px));z-index:50;background:var(--ink);color:var(--bg);padding:11px 16px;border-radius:14px;font-size:14px;font-weight:600;max-width:calc(100% - 36px);box-shadow:0 8px 24px var(--scrim)}
 .diff{font-size:13px;color:var(--muted);padding:0 14px 14px 60px;display:flex;flex-wrap:wrap;gap:4px 12px}
 .diff b{color:var(--ink);font-variant-numeric:tabular-nums}
-@media (prefers-reduced-motion:no-preference){.sheet{animation:up .2s ease-out}@keyframes up{from{transform:translateY(30px);opacity:.6}to{transform:none;opacity:1}}}
+@media (prefers-reduced-motion:no-preference){.sheet{animation:up .2s ease-out}@keyframes up{from{transform:translateY(40px)}to{transform:none}}}
 </style>
 </head>
 <body>
@@ -403,8 +403,7 @@ function render(){
   document.body.classList.toggle('lock',!!S.sheet);
 }
 function appbar(){
-  var titles={home:'오늘의 매장',count:'재고 조사',log:'기록',setup:'품목 관리'};
-  return '<header class="appbar"><span class="logo">'+svg(UI.cup)+'</span><b>'+(titles[route]||'오늘의 매장')+'</b>'+
+  return '<header class="appbar"><span class="logo">'+svg(UI.cup)+'</span><b>매장 재고 체크</b>'+
     (S.role?'<span class="role"><i></i>'+(isOwner()?'사장님':'직원')+'</span>':'')+
     (S.role?'<button class="iconbtn" data-act="logout" aria-label="매장 코드 바꾸기" title="매장 코드 바꾸기">'+svg(UI.logout)+'</button>':'')+'</header>';
 }
@@ -472,7 +471,8 @@ function homeScreen(){
     '<div class="card list">'+low.map(function(i){return homeItem(i,'low');}).join('')+'</div></section>';
   if(pending.length)h+='<section class="sec" id="sec-pending"><div class="sechead"><h3>입고 대기</h3><span class="count info">'+pending.length+'</span></div><p class="secsub">도착 후 첫 재고 조사에 수량이 들어오면 자동으로 끝나요</p>'+
     '<div class="card list">'+pending.map(function(i){return homeItem(i,'pending');}).join('')+'</div></section>';
-  if(unset.length&&isOwner()&&unset.length<c.all){
+  var setupHero=S.counts.length&&!c.need&&!c.low&&c.unset===c.all;
+  if(unset.length&&isOwner()&&!setupHero){
     var done=c.all-unset.length;
     h+='<div class="note"><span class="grow">주문기준 <b style="color:var(--ink)">'+done+'/'+c.all+'</b> 적었어요. 기준이 없는 품목은 알림이 안 떠요.</span><button class="btn sm soft" data-act="setup-unset">이어서 적기</button></div>';
   }
