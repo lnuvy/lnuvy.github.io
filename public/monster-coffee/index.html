@@ -62,6 +62,13 @@ svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stro
 .iconbtn{width:36px;height:36px;border-radius:10px;border:0;background:transparent;color:var(--muted);display:grid;place-items:center;cursor:pointer}
 .iconbtn:hover{background:var(--soft)}
 .iconbtn:disabled{opacity:.3;cursor:default;background:transparent}
+.catrow{position:relative;background:var(--surface);transition:transform .16s ease}
+.catrow .iconbtn{width:32px;height:32px}
+.catrow.dragging{transition:none;z-index:3;box-shadow:0 10px 28px var(--scrim);border-radius:14px;border-top-color:transparent}
+.grip{width:30px;height:40px;flex:none;border:0;background:transparent;color:var(--muted);display:grid;place-items:center;cursor:grab;touch-action:none;-webkit-user-select:none;user-select:none;border-radius:8px}
+.grip svg{stroke-width:3.2}
+.catrow.dragging .grip{cursor:grabbing;color:var(--primary)}
+body.dragging-cat{-webkit-user-select:none;user-select:none}
 /* greeting + hero */
 .greet{display:flex;flex-direction:column;gap:6px;padding-top:4px}
 .eyebrow{font-size:12px;font-weight:600;letter-spacing:.06em;color:var(--muted)}
@@ -253,6 +260,7 @@ var UI={
   check:'M5 12.5l4.5 4.5L19 7.5',
   sort:'M7 4v16M4 7l3-3 3 3M17 20V4M14 17l3 3 3-3',
   up:'M6 15l6-6 6 6',
+  grip:'M9 6h.01M15 6h.01M9 12h.01M15 12h.01M9 18h.01M15 18h.01',
   down:'M6 9l6 6 6-6',
   trash:'M5 7h14M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3',
   cup:'M6 7.5h12l-1.4 12.6a1 1 0 0 1-1 .9H8.4a1 1 0 0 1-1-.9zM5 4.5h14v3H5z'
@@ -674,7 +682,7 @@ function catsSheet(){
   h+='<div class="card list">'+list.map(function(c,i){
     var meta=catById(c.id),k=cnt[c.id]||0;
     var look={h:meta.h!=null&&CAT_BY[c.id]?meta.h:(c.h!=null?c.h:EXTRA_HUES[i%EXTRA_HUES.length]),s:CAT_BY[c.id]?meta.s:'50%'};
-    return '<div class="item" style="gap:8px;padding:10px 10px 10px 12px"><span class="tile sm" style="'+catStyle(look)+'">'+svg(ICON[CAT_BY[c.id]?CAT_BY[c.id].ic:'box'])+'</span>'+
+    return '<div class="item catrow" style="gap:6px;padding:10px 8px 10px 4px"><button class="grip" data-i="'+i+'" aria-label="끌어서 순서 바꾸기" tabindex="-1">'+svg(UI.grip)+'</button><span class="tile sm" style="'+catStyle(look)+'">'+svg(ICON[CAT_BY[c.id]?CAT_BY[c.id].ic:'box'])+'</span>'+
       '<div class="main" style="gap:4px"><input class="catname" data-ci="'+i+'" value="'+esc(c.name)+'" maxlength="12" aria-label="분류 이름" style="padding:7px 10px;font-size:15px;font-weight:650"><span class="meta"><span>품목 '+k+'개</span></span></div>'+
       '<button class="iconbtn" data-act="cat-move" data-i="'+i+'" data-d="-1" aria-label="위로"'+(i===0?' disabled':'')+'>'+svg(UI.up)+'</button>'+
       '<button class="iconbtn" data-act="cat-move" data-i="'+i+'" data-d="1" aria-label="아래로"'+(i===n-1?' disabled':'')+'>'+svg(UI.down)+'</button>'+
@@ -832,6 +840,47 @@ function addItem(){
   var item={id:catId+'-'+uid(),cat:catId,name:f.name,unit:f.unit,perBox:f.perBox,threshold:f.threshold,active:true,review:false};
   commitCatalog(function(list){return list.concat([item]);},f.name+' 추가했어요').then(function(ok){if(ok){S.sheet=null;S.forceRender=true;render();}});
 }
+
+/* ---------- 분류 끌어서 순서 바꾸기 ---------- */
+var drag=null;
+document.addEventListener('pointerdown',function(ev){
+  var g=ev.target.closest&&ev.target.closest('.grip');
+  if(!g||!S.sheet||S.sheet.type!=='cats'||(ev.pointerType==='mouse'&&ev.button!==0))return;
+  ev.preventDefault();
+  var row=g.closest('.catrow'),rows=[].slice.call(row.parentElement.querySelectorAll('.catrow'));
+  var sc=document.querySelector('.sheet');
+  drag={row:row,rows:rows,from:rows.indexOf(row),to:rows.indexOf(row),y0:ev.clientY,s0:sc.scrollTop,sc:sc,
+    rects:rows.map(function(r){return r.getBoundingClientRect();})};
+  try{g.setPointerCapture(ev.pointerId);}catch(e){}
+  row.classList.add('dragging');document.body.classList.add('dragging-cat');
+  if(navigator.vibrate)try{navigator.vibrate(8);}catch(e){}
+});
+document.addEventListener('pointermove',function(ev){
+  if(!drag)return;
+  ev.preventDefault();
+  var d=drag,sr=d.sc.getBoundingClientRect();
+  if(ev.clientY<sr.top+56)d.sc.scrollTop-=10;else if(ev.clientY>sr.bottom-56)d.sc.scrollTop+=10;
+  var first=d.rects[0],last=d.rects[d.rects.length-1],me=d.rects[d.from];
+  var dy=ev.clientY-d.y0+(d.sc.scrollTop-d.s0);
+  dy=Math.max(first.top-me.top,Math.min(last.bottom-me.bottom,dy));
+  d.row.style.transform='translateY('+dy+'px)';
+  var top=me.top+dy,bot=me.bottom+dy,to=d.from;
+  for(var k=0;k<d.rects.length;k++){var c=d.rects[k].top+d.rects[k].height/2;if(k>d.from&&bot>c)to=k;if(k<d.from&&top<c&&to===d.from)to=k;}
+  d.to=to;
+  d.rows.forEach(function(r,k){
+    if(k===d.from)return;
+    var shift=(d.from<k&&k<=to)?-me.height:(to<=k&&k<d.from)?me.height:0;
+    r.style.transform=shift?'translateY('+shift+'px)':'';
+  });
+});
+function endDrag(){
+  if(!drag)return;
+  var d=drag;drag=null;document.body.classList.remove('dragging-cat');
+  if(d.to!==d.from){var L=S.sheet.list,moved=L.splice(d.from,1)[0];L.splice(d.to,0,moved);}
+  S.forceRender=true;render();
+}
+document.addEventListener('pointerup',endDrag);
+document.addEventListener('pointercancel',endDrag);
 
 /* ---------- boot ---------- */
 function readRoute(){
