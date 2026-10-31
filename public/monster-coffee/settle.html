@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#1E4D3B">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" href="icons/icon-192.png">
+<title>카드 정산 노트</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: phone-first single column. One big "우리 매장 차감률" figure, a take-home calculator, the entry form, then months as receipt-like ledgers. */
+:root{
+  --bg:#F3F5F3; --surface:#FFFFFF; --ink:#16201B; --muted:#5B6862; --line:#DAE0DC;
+  --accent:#1E4D3B; --accent-ink:#FFFFFF; --accent-soft:#E1EDE6;
+  --red:#BF3328; --red-bg:#FBE7E4; --amber:#935600; --amber-bg:#FBEED4; --gray-bg:#E7ECE9; --scrim:rgba(10,20,15,.45);
+  --f-body:"IBM Plex Sans KR",-apple-system,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --f-num:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F1412; --surface:#18201C; --ink:#E4EAE6; --muted:#98A59E; --line:#2A3530;
+  --accent:#84CAA6; --accent-ink:#0C1712; --accent-soft:#1C2D25;
+  --red:#FF8C80; --red-bg:#3A1C18; --amber:#EFB45C; --amber-bg:#34270F; --gray-bg:#232B27; --scrim:rgba(0,0,0,.6); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F1412; --surface:#18201C; --ink:#E4EAE6; --muted:#98A59E; --line:#2A3530;
+  --accent:#84CAA6; --accent-ink:#0C1712; --accent-soft:#1C2D25;
+  --red:#FF8C80; --red-bg:#3A1C18; --amber:#EFB45C; --amber-bg:#34270F; --gray-bg:#232B27; --scrim:rgba(0,0,0,.6); color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;padding-top:env(safe-area-inset-top,0px);background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5;-webkit-text-size-adjust:100%}
+.wrap{max-width:560px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:16px 80px;display:flex;flex-direction:column;gap:20px}
+h1{font-size:22px;font-weight:700;margin:0;text-wrap:balance}
+h2{font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--muted);margin:0}
+p{margin:0}
+.sub{color:var(--muted);font-size:13px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.hero{background:var(--accent);color:var(--accent-ink);border-color:transparent}
+.hero .sub{color:inherit;opacity:.8}
+.big{font-family:var(--f-num);font-size:44px;font-weight:600;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.big small{font-size:22px;margin-left:2px}
+.kv{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.kv div{display:flex;flex-direction:column;gap:0;min-width:0}
+.kv span{font-size:12px;opacity:.8}
+.kv b{font-family:var(--f-num);font-size:14px;font-weight:600;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.n{font-family:var(--f-num);font-variant-numeric:tabular-nums}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+label.f{display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:600;color:var(--muted);flex:1 1 140px;min-width:0}
+input{font:inherit;font-size:16px;padding:9px 11px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);width:100%;min-width:0}
+input.money{font-family:var(--f-num);text-align:right}
+input:focus-visible,.btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.btn{font:inherit;font-weight:600;font-size:14px;border-radius:10px;padding:9px 14px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;white-space:nowrap}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:transparent}
+.btn.sm{font-size:13px;padding:5px 10px}
+.btn.ghost{background:transparent}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.result{display:flex;justify-content:space-between;align-items:baseline;gap:12px;background:var(--accent-soft);border-radius:10px;padding:12px}
+.result b{font-family:var(--f-num);font-size:22px;font-variant-numeric:tabular-nums}
+.note{font-size:13px;border-radius:12px;padding:10px 12px;background:var(--gray-bg);color:var(--muted);display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.note.warn{background:var(--amber-bg);color:var(--amber)}
+.ledger{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.ledger header{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:12px 14px;border-bottom:1px dashed var(--line)}
+.ledger header b{font-size:16px}
+.rate{font-family:var(--f-num);font-weight:600;font-variant-numeric:tabular-nums}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{font-weight:600;color:var(--muted);text-align:right;padding:8px 10px;font-size:12px}
+.tbl th:first-child,.tbl td:first-child{text-align:left;padding-left:14px}
+.tbl td{text-align:right;padding:8px 10px;border-top:1px solid var(--line);font-family:var(--f-num);font-variant-numeric:tabular-nums;white-space:nowrap}
+.tbl td.memo{font-family:var(--f-body);color:var(--muted);text-align:left;white-space:normal;padding-top:0;border-top:0}
+.tbl tr.flag td.r{color:var(--amber)}
+.tbl td:last-child{padding-right:14px}
+.scroll{overflow-x:auto}
+.foot{display:flex;justify-content:space-between;padding:10px 14px;border-top:1px dashed var(--line);font-size:13px;color:var(--muted)}
+.xbtn{background:none;border:0;color:var(--muted);font:inherit;font-size:12px;cursor:pointer;padding:2px 4px;text-decoration:underline}
+.err{color:var(--red);font-size:13px;font-weight:600}
+details{font-size:14px}
+details summary{cursor:pointer;font-weight:600}
+details ul{margin:8px 0 0;padding-left:18px;color:var(--muted);display:flex;flex-direction:column;gap:4px;font-size:13px}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(24px + env(safe-area-inset-bottom,0px));z-index:50;background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:12px;font-size:14px;max-width:calc(100% - 32px);box-shadow:0 6px 20px var(--scrim)}
+.back{font-size:14px;font-weight:600;color:var(--accent);text-decoration:none}
+</style>
+</head>
+<body>
+<main class="wrap" id="app">
+  <header style="display:flex;flex-direction:column;gap:4px">
+    <a class="back" href="./">← 재고 체크</a>
+    <h1>카드 정산 노트</h1>
+    <p class="sub">POS에 찍힌 카드 매출과 통장에 실제로 들어온 돈을 적어두면, 우리 매장에서 평균 몇 %가 빠지는지 보여줘요.</p>
+  </header>
+  <div id="banner"></div>
+  <section class="card hero" id="summary" aria-live="polite"></section>
+
+  <section class="card">
+    <h2>오늘 매출이면 얼마 들어올까</h2>
+    <div class="row">
+      <label class="f" for="calc-sales">카드 매출 (POS)<input class="money" id="calc-sales" inputmode="numeric" placeholder="0" autocomplete="off"></label>
+      <label class="f" for="calc-rate" id="calc-rate-wrap">차감률 %<input class="money" id="calc-rate" inputmode="decimal" placeholder="—" autocomplete="off"></label>
+    </div>
+    <div class="result"><span class="sub" id="calc-note">매출을 넣어 보세요</span><b id="calc-out">—</b></div>
+  </section>
+
+  <section class="card">
+    <h2>입금 기록 추가</h2>
+    <div class="row">
+      <label class="f" for="f-date">매출일<input type="date" id="f-date"></label>
+    </div>
+    <div class="row">
+      <label class="f" for="f-sales">카드 매출 (POS)<input class="money" id="f-sales" inputmode="numeric" placeholder="0" autocomplete="off"></label>
+      <label class="f" for="f-dep">실제 입금액<input class="money" id="f-dep" inputmode="numeric" placeholder="0" autocomplete="off"></label>
+    </div>
+    <label class="f" for="f-memo">메모 (선택)<input id="f-memo" maxlength="40" placeholder="예: 배민 제외, 취소 1건 있음" autocomplete="off"></label>
+    <div class="row" style="justify-content:space-between">
+      <span class="sub" id="f-preview">매출과 입금액을 넣으면 차감률이 보여요</span>
+      <button class="btn primary" id="f-save">기록</button>
+    </div>
+    <p class="err" id="f-err" hidden></p>
+  </section>
+
+  <section style="display:flex;flex-direction:column;gap:12px">
+    <h2>월별 기록</h2>
+    <div id="months"></div>
+  </section>
+
+  <section class="card">
+    <details>
+      <summary>숫자는 어디서 보나요</summary>
+      <ul>
+        <li>카드 매출: 포스 마감 정산서의 카드 합계예요.</li>
+        <li>입금액: 카드사 입금은 매출일 며칠 뒤에 카드사별로 나눠 들어와요. 여신금융협회 카드매출 통합조회(cardsales.or.kr)나 쓰는 VAN사 앱에서 매출일별 입금(예정)액을 볼 수 있어요.</li>
+        <li>며칠씩 어긋나는 건 한 달로 모아 보면 거의 상쇄돼요. 그래서 월별 차감률을 기준으로 보세요.</li>
+        <li>차이에는 카드 수수료 말고도 취소·환불, 입금 보류가 섞일 수 있어요. 정확한 회계가 아니라 감을 잡는 용도예요.</li>
+      </ul>
+    </details>
+  </section>
+</main>
+<div id="toast" class="toast" role="status" hidden></div>
+
+<script src="config.js"></script>
+<script src="app-api.js"></script>
+<script>
+(function(){
+'use strict';
+var LS_RATE='mc-settle-rate', LS_CACHE='mc-settle-cache-v1';
+var API=window.MC_API;
+var S={mode:'loading',entries:[],loaded:false,offline:false,errMsg:'',readOnly:false,confirmDel:null};
+
+function $(s){return document.querySelector(s);}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function pad(n){return String(n).padStart(2,'0');}
+function ymd(d){return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
+var DOW='일월화수목금토';
+function fmtDay(s){var p=s.split('-').map(Number),d=new Date(p[0],p[1]-1,p[2]);return p[1]+'/'+p[2]+'('+DOW[d.getDay()]+')';}
+function won(n){return Math.round(n).toLocaleString('ko-KR');}
+function money(v){var t=String(v||'').replace(/[^\d]/g,'');return t?Number(t):null;}
+function pct(r){return (r*100).toFixed(2);}
+function lsGet(k){try{var v=localStorage.getItem(k);return v?JSON.parse(v):null;}catch(e){return null;}}
+function lsSet(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,8);}
+var tt=null;function toast(m){var t=$('#toast');t.textContent=m;t.hidden=false;clearTimeout(tt);tt=setTimeout(function(){t.hidden=true;},2400);}
+function odd(r){return r<0||r>0.1;}
+
+function totals(list){
+  var s=0,d=0;list.forEach(function(e){s+=e.sales;d+=e.deposit;});
+  return {sales:s,deposit:d,gap:s-d,rate:s>0?(s-d)/s:null};
+}
+function avgRate(){var t=totals(S.entries.filter(function(e){return !odd(rateOf(e));}));return t.rate;}
+function rateOf(e){return e.sales>0?(e.sales-e.deposit)/e.sales:0;}
+
+/* 서버 (AWS Lambda + DynamoDB) — 사장님 코드만 */
+function sortEntries(){S.entries.sort(function(a,b){return a.date<b.date?1:a.date>b.date?-1:b.at-a.at;});}
+var loading=null;
+function refresh(){
+  if(loading)return loading.then(function(){return refresh();});
+  loading=API.call('settleLoad').then(function(rows){
+    S.entries=rows||[];sortEntries();S.loaded=true;S.mode='ready';S.offline=false;lsSet(LS_CACHE,S.entries);render();
+  },function(e){
+    if(e.code==='auth'||e.code==='forbidden'){denied(e.code==='auth'?'매장 코드를 먼저 넣어 주세요.':'정산은 사장님 코드로만 볼 수 있어요.');return;}
+    S.offline=true;S.errMsg=e.message;if(S.mode==='loading')S.mode='ready';render();
+  }).then(function(){loading=null;});
+  return loading;
+}
+function denied(msg){
+  lsSet(LS_CACHE,null);
+  document.getElementById('app').innerHTML='<header style="display:flex;flex-direction:column;gap:4px"><a class="back" href="./">← 재고 체크</a><h1>카드 정산 노트</h1></header><div class="note">'+esc(msg)+'</div>';
+  S.mode='denied';
+}
+function run(fn,ok){
+  return Promise.resolve().then(fn).then(function(){if(ok)toast(ok);return refresh().then(function(){return true;});},function(e){
+    toast((e&&e.message)||'저장하지 못했어요. 잠시 후 다시 해주세요.');return false;});
+}
+var store={
+  put:function(e){return API.call('settlePut',e).then(function(){S.entries=S.entries.filter(function(x){return x.id!==e.id;}).concat([e]);sortEntries();});},
+  del:function(id){var e=S.entries.find(function(x){return x.id===id;});if(!e)return Promise.resolve();
+    return API.call('settleDel',{id:id,date:e.date}).then(function(){S.entries=S.entries.filter(function(x){return x.id!==id;});});}
+};
+
+/* render */
+function render(){
+  if(S.mode==='denied')return;
+  var b='';
+  if(S.offline)b+='<div class="note warn">서버에 연결하지 못해서 마지막으로 받은 내용을 보여주고 있어요. ('+esc(S.errMsg)+')<button class="btn sm" data-act="retry">다시 시도</button></div>';
+  $('#banner').innerHTML=b;$('#banner').hidden=!b;
+  $('#f-save').disabled=S.readOnly;
+  renderSummary();renderMonths();renderCalc();
+}
+function renderSummary(){
+  var el=$('#summary');
+  if(S.mode==='loading'){el.innerHTML='<h2 style="color:inherit;opacity:.8">우리 매장 평균 차감률</h2><p>불러오는 중…</p>';return;}
+  var good=S.entries.filter(function(e){return !odd(rateOf(e));}), t=totals(good);
+  if(!good.length){
+    el.innerHTML='<h2 style="color:inherit;opacity:.8">우리 매장 평균 차감률</h2><div class="big">—<small>%</small></div><p class="sub">아래에 매출일 하루치라도 기록하면 여기에 우리 매장 숫자가 나와요. 한 달 정도 쌓이면 꽤 믿을 만해져요.</p>';
+    return;
+  }
+  var days=good.length, conf=days<7?'기록이 '+days+'일치라 아직 흔들릴 수 있어요':days+'일치 기록 기준';
+  el.innerHTML='<h2 style="color:inherit;opacity:.8">우리 매장 평균 차감률</h2>'+
+    '<div class="big">'+pct(t.rate)+'<small>%</small></div>'+
+    '<p class="sub">카드 매출 100만 원이면 약 '+won(t.rate*1e6)+'원이 빠지고 '+won((1-t.rate)*1e6)+'원이 들어와요 · '+conf+'</p>'+
+    '<div class="kv"><div><span>카드 매출</span><b>'+won(t.sales)+'</b></div><div><span>입금</span><b>'+won(t.deposit)+'</b></div><div><span>빠진 돈</span><b>'+won(t.gap)+'</b></div></div>';
+}
+function renderCalc(){
+  var r=avgRate(), rateIn=$('#calc-rate');
+  rateIn.placeholder=r!=null?pct(r):'예: 2.0';
+  var manual=rateIn.value.trim()!=='';
+  var rate=manual?Number(rateIn.value)/100:r;
+  var sales=money($('#calc-sales').value);
+  var out=$('#calc-out'),note=$('#calc-note');
+  if(sales==null){out.textContent='—';note.textContent=r!=null?'평균 '+pct(r)+'%로 계산해요':'기록이 없으면 차감률을 직접 넣어요';return;}
+  if(rate==null||!isFinite(rate)||rate<0||rate>0.5){out.textContent='—';note.textContent='차감률을 넣어 주세요';return;}
+  out.textContent=won(sales*(1-rate))+'원';
+  note.textContent=(manual?'입력한 ':'평균 ')+(rate*100).toFixed(2)+'% · 빠지는 돈 '+won(sales*rate)+'원';
+}
+function renderMonths(){
+  var el=$('#months');
+  if(!S.entries.length){el.innerHTML='<div class="note">아직 기록이 없어요. 위에서 첫 기록을 추가해 보세요.</div>';return;}
+  var groups={},order=[];
+  S.entries.forEach(function(e){var k=e.date.slice(0,7);if(!groups[k]){groups[k]=[];order.push(k);}groups[k].push(e);});
+  el.innerHTML=order.map(function(k){
+    var list=groups[k],good=list.filter(function(e){return !odd(rateOf(e));}),t=totals(good),p=k.split('-');
+    var rows=list.map(function(e){
+      var r=rateOf(e),f=odd(r);
+      var del=S.confirmDel===e.id?'<button class="xbtn" data-act="del-yes" data-id="'+e.id+'" style="color:var(--red)">삭제할게요</button> <button class="xbtn" data-act="del-no">취소</button>':'<button class="xbtn" data-act="del" data-id="'+e.id+'"'+(S.readOnly?' disabled':'')+'>삭제</button>';
+      return '<tr'+(f?' class="flag"':'')+'><td>'+fmtDay(e.date)+'</td><td>'+won(e.sales)+'</td><td>'+won(e.deposit)+'</td><td class="r">'+pct(r)+'%'+(f?' ⚠':'')+'</td><td>'+del+'</td></tr>'+
+        ((e.memo||f)?'<tr><td class="memo" colspan="5">'+esc(e.memo)+(f?(e.memo?' · ':'')+'차감률이 0% 미만이거나 10%를 넘어 평균에서 뺐어요. 매출일과 입금일이 어긋났을 수 있어요.':'')+'</td></tr>':'');
+    }).join('');
+    return '<article class="ledger"><header><b>'+Number(p[0])+'년 '+Number(p[1])+'월</b><span class="rate">'+(t.rate!=null?pct(t.rate)+'%':'—')+'</span></header>'+
+      '<div class="scroll"><table class="tbl"><thead><tr><th>매출일</th><th>카드 매출</th><th>입금</th><th>차감률</th><th></th></tr></thead><tbody>'+rows+'</tbody></table></div>'+
+      '<div class="foot"><span>'+list.length+'일 · 매출 <span class="n">'+won(t.sales)+'</span></span><span>빠진 돈 <span class="n">'+won(t.gap)+'</span></span></div></article>';
+  }).join('<div style="height:12px"></div>');
+}
+
+/* form */
+function preview(){
+  var s=money($('#f-sales').value),d=money($('#f-dep').value),el=$('#f-preview');
+  if(s==null||d==null||s===0){el.textContent='매출과 입금액을 넣으면 차감률이 보여요';el.style.color='';return;}
+  var r=(s-d)/s;el.textContent='차감 '+won(s-d)+'원 · '+pct(r)+'%'+(odd(r)?' · 날짜가 어긋났을 수 있어요':'');
+  el.style.color=odd(r)?'var(--amber)':'';
+}
+function fmtInput(el){var v=money(el.value);el.value=v==null?'':won(v);}
+function save(){
+  var date=$('#f-date').value,s=money($('#f-sales').value),d=money($('#f-dep').value),memo=$('#f-memo').value.trim().slice(0,40),err=$('#f-err');
+  var msg=!/^\d{4}-\d{2}-\d{2}$/.test(date)?'매출일을 골라주세요':(s==null||s===0)?'카드 매출을 넣어주세요':d==null?'입금액을 넣어주세요':'';
+  err.textContent=msg;err.hidden=!msg;if(msg)return;
+  var e={id:uid(),date:date,sales:s,deposit:d,memo:memo,at:Date.now()};
+  run(function(){return store.put(e);},fmtDay(date)+' 기록했어요').then(function(ok){
+    if(!ok)return;$('#f-sales').value='';$('#f-dep').value='';$('#f-memo').value='';preview();
+  });
+}
+
+document.addEventListener('input',function(ev){
+  var id=ev.target.id;
+  if(id==='f-sales'||id==='f-dep')preview();
+  if(id==='calc-sales'||id==='calc-rate'){if(id==='calc-rate')lsSet(LS_RATE,ev.target.value);renderCalc();}
+});
+document.addEventListener('focusout',function(ev){if(ev.target.classList&&ev.target.classList.contains('money')&&ev.target.id!=='calc-rate')fmtInput(ev.target);});
+document.addEventListener('click',function(ev){
+  var el=ev.target.closest('[data-act],#f-save');if(!el)return;
+  if(el.id==='f-save'){save();return;}
+  var act=el.getAttribute('data-act'),id=el.getAttribute('data-id');
+  if(act==='retry')refresh();
+  if(act==='del'){S.confirmDel=id;renderMonths();}
+  if(act==='del-no'){S.confirmDel=null;renderMonths();}
+  if(act==='del-yes'){S.confirmDel=null;run(function(){return store.del(id);},'삭제했어요');}
+});
+
+/* boot */
+var y=new Date();y.setDate(y.getDate()-1);$('#f-date').value=ymd(y);$('#f-date').max=ymd(new Date());
+var savedRate=lsGet(LS_RATE);if(savedRate)$('#calc-rate').value=savedRate;
+if(!API.getCode()){location.replace('./');return;}
+var cache=lsGet(LS_CACHE);if(Array.isArray(cache)){S.entries=cache;sortEntries();S.mode='ready';}
+render();
+refresh();
+document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible'&&S.mode==='ready')refresh();});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "name": "매장 재고 체크",
+  "short_name": "재고 체크",
+  "description": "재고 조사, 주문 알림, 카드 정산 노트",
+  "lang": "ko",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F3F5F3",
+  "theme_color": "#1E4D3B",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "재고 조사", "url": "./#count" },
+    { "name": "카드 정산", "url": "./settle.html" }
+  ]
+}
