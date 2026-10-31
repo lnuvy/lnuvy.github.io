@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
-<meta name="theme-color" content="#1E4D3B">
+<meta name="theme-color" content="#F4F7FC" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E1626" media="(prefers-color-scheme: dark)">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="재고 체크">
@@ -13,130 +14,187 @@
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="icon" href="icons/icon-192.png">
 <title>매장 재고 체크</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Nanum+Pen+Script&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap">
 <style>
-/* Layout: phone-first single column. Status header, screen body, fixed bottom tab bar.
-   Category stripe colors come from the coated A4 count sheet; thresholds are shown in blue "pen" like the owner's handwritten notes. */
+/* Layout: phone-first single column. App bar → greeting → hero card → stat cards → item cards; fixed bottom nav.
+   Blue base (Codex 시안 A). Category tint lives on the item icon tile; owner's thresholds stay as blue "pen" handwriting. */
 :root{
-  --bg:#F3F5F3; --surface:#FFFFFF; --ink:#16201B; --muted:#5B6862; --line:#DAE0DC;
-  --accent:#1E4D3B; --accent-ink:#FFFFFF; --accent-soft:#E1EDE6;
-  --red:#BF3328; --red-bg:#FBE7E4; --amber:#935600; --amber-bg:#FBEED4;
-  --gray:#535E58; --gray-bg:#E7ECE9; --ok:#2B7A4D; --scrim:rgba(10,20,15,.45);
-  --pen:#2846A6; --cat-l:78%; --cat-bg-l:95%;
-  --f-body:"IBM Plex Sans KR",-apple-system,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
-  --f-pen:"Nanum Pen Script","IBM Plex Sans KR",cursive;
+  --bg:#F4F7FC; --surface:#FFFFFF; --ink:#182E50; --muted:#6F7E94; --line:#DFE7F2;
+  --primary:#3478E5; --primary-strong:#2560BA; --primary-ink:#FFFFFF; --soft:#EAF2FF;
+  --danger:#B85F42; --danger-soft:#FFF0E9; --warn:#946300; --warn-soft:#FFF4D9;
+  --ok:#407566; --ok-soft:#E7F3EE; --pen:#2B57C4; --scrim:rgba(16,30,56,.42); --shadow:rgba(24,46,80,.06);
+  --tile-l:94%; --tile-ic-l:40%;
+  --f-body:"Pretendard Variable",Pretendard,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --f-pen:"Nanum Pen Script","Pretendard Variable",cursive;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#0F1412; --surface:#18201C; --ink:#E4EAE6; --muted:#98A59E; --line:#2A3530;
-  --accent:#84CAA6; --accent-ink:#0C1712; --accent-soft:#1C2D25;
-  --red:#FF8C80; --red-bg:#3A1C18; --amber:#EFB45C; --amber-bg:#34270F;
-  --gray:#AAB5AF; --gray-bg:#232B27; --ok:#84CAA6; --scrim:rgba(0,0,0,.6);
-  --pen:#A3B6FF; --cat-l:42%; --cat-bg-l:17%; color-scheme:dark}}
+  --bg:#0E1626; --surface:#162236; --ink:#E6EDF8; --muted:#93A3BC; --line:#26354F;
+  --primary:#5C9BFF; --primary-strong:#8AB6FF; --primary-ink:#0B1424; --soft:#1A2C4A;
+  --danger:#FF9C7C; --danger-soft:#3A2119; --warn:#F2C25B; --warn-soft:#33290F;
+  --ok:#7CC7AE; --ok-soft:#163028; --pen:#A4BEFF; --scrim:rgba(0,0,0,.6); --shadow:rgba(0,0,0,.25);
+  --tile-l:22%; --tile-ic-l:76%; color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#0F1412; --surface:#18201C; --ink:#E4EAE6; --muted:#98A59E; --line:#2A3530;
-  --accent:#84CAA6; --accent-ink:#0C1712; --accent-soft:#1C2D25;
-  --red:#FF8C80; --red-bg:#3A1C18; --amber:#EFB45C; --amber-bg:#34270F;
-  --gray:#AAB5AF; --gray-bg:#232B27; --ok:#84CAA6; --scrim:rgba(0,0,0,.6);
-  --pen:#A3B6FF; --cat-l:42%; --cat-bg-l:17%; color-scheme:dark}
+  --bg:#0E1626; --surface:#162236; --ink:#E6EDF8; --muted:#93A3BC; --line:#26354F;
+  --primary:#5C9BFF; --primary-strong:#8AB6FF; --primary-ink:#0B1424; --soft:#1A2C4A;
+  --danger:#FF9C7C; --danger-soft:#3A2119; --warn:#F2C25B; --warn-soft:#33290F;
+  --ok:#7CC7AE; --ok-soft:#163028; --pen:#A4BEFF; --scrim:rgba(0,0,0,.6); --shadow:rgba(0,0,0,.25);
+  --tile-l:22%; --tile-ic-l:76%; color-scheme:dark}
 *{box-sizing:border-box}
 html{-webkit-tap-highlight-color:transparent}
-body{margin:0;padding-top:env(safe-area-inset-top,0px);background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5;-webkit-text-size-adjust:100%}
+body{margin:0;padding-top:env(safe-area-inset-top,0px);background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5;-webkit-text-size-adjust:100%;letter-spacing:-.01em}
+body.lock{overflow:hidden}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
-.wrap{max-width:560px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:12px 150px}
-h1{font-size:22px;font-weight:700;letter-spacing:-.01em;margin:0;text-wrap:balance}
-h2{font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--muted);margin:0;display:flex;align-items:center;gap:8px}
-p{margin:0}
-.top{display:flex;flex-direction:column;gap:4px;padding-block:8px 14px}
-.sub{color:var(--muted);font-size:13px}
-.stack{display:flex;flex-direction:column;gap:20px}
-.block{display:flex;flex-direction:column;gap:8px;scroll-margin-top:12px}
-.note{font-size:13px;border-radius:12px;padding:10px 12px;background:var(--gray-bg);color:var(--gray);display:flex;flex-direction:column;gap:8px;align-items:flex-start}
-.note.warn{background:var(--amber-bg);color:var(--amber)}
-.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
-.stat{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px;text-align:left;display:flex;flex-direction:column;gap:0;font:inherit;color:inherit;cursor:pointer}
-.stat b{font-size:24px;line-height:1.2;font-variant-numeric:tabular-nums}
-.stat span{font-size:12px;color:var(--muted);white-space:nowrap}
-.stat.red b{color:var(--red)} .stat.amber b{color:var(--amber)} .stat.gray b{color:var(--gray)}
-.list{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
-.row{display:flex;align-items:center;gap:12px;padding:12px 14px 12px 12px;border-top:1px solid var(--line)}
-.list>.row:first-child,.list>.rowgroup:first-child>.row{border-top:0}
-.stripe{width:4px;align-self:stretch;border-radius:2px;flex:none;background:hsl(var(--h) var(--s) var(--cat-l))}
+h1,h2,h3,p{margin:0}
+h1{font-size:24px;font-weight:700;letter-spacing:-.025em;text-wrap:balance}
+.wrap{max-width:560px;margin:0 auto;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px));padding-block:0 150px;display:flex;flex-direction:column;gap:18px}
+svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+/* app bar */
+.appbar{display:flex;align-items:center;gap:10px;padding-block:14px 2px}
+.appbar .logo{width:34px;height:34px;border-radius:10px;background:var(--primary);color:var(--primary-ink);display:grid;place-items:center}
+.appbar .logo svg{width:20px;height:20px}
+.appbar b{font-size:15px;font-weight:700;flex:1}
+.role{font-size:12px;font-weight:600;color:var(--muted);display:flex;align-items:center;gap:6px}
+.role i{width:6px;height:6px;border-radius:50%;background:var(--ok)}
+.iconbtn{width:36px;height:36px;border-radius:10px;border:0;background:transparent;color:var(--muted);display:grid;place-items:center;cursor:pointer}
+.iconbtn:hover{background:var(--soft)}
+/* greeting + hero */
+.greet{display:flex;flex-direction:column;gap:6px;padding-top:4px}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.06em;color:var(--muted)}
+.sub{font-size:14px;color:var(--muted)}
+.hero{position:relative;overflow:hidden;background:var(--soft);border-radius:22px;padding:22px 20px;display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.hero h2{font-size:21px;font-weight:700;line-height:1.35;letter-spacing:-.025em;max-width:15em;text-wrap:balance;position:relative}
+.hero h2 em{font-style:normal;color:var(--primary)}
+.hero p{font-size:14px;color:var(--muted);max-width:19em;position:relative}
+.hero .art{position:absolute;right:-6px;bottom:-8px;width:104px;height:104px;opacity:.9}
+.hero .btn{position:relative;margin-top:4px}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:14px 12px;display:flex;flex-direction:column;gap:6px;text-align:left;font:inherit;color:var(--ink);cursor:pointer;box-shadow:0 1px 2px var(--shadow)}
+.stat .lab{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);font-weight:600;white-space:nowrap}
+.stat .lab svg{width:16px;height:16px}
+.stat b{font-size:26px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.stat b small{font-size:13px;font-weight:600;color:var(--muted);margin-left:3px}
+.stat.danger b{color:var(--danger)} .stat.warn b{color:var(--warn)} .stat.info b{color:var(--primary)}
+/* sections + cards */
+.sec{display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px}
+.sechead{display:flex;align-items:center;gap:8px}
+.sechead h3{font-size:17px;font-weight:700}
+.count{font-size:12px;font-weight:700;border-radius:999px;padding:1px 8px;background:var(--danger-soft);color:var(--danger)}
+.count.warn{background:var(--warn-soft);color:var(--warn)} .count.info{background:var(--soft);color:var(--primary)}
+.secsub{font-size:13px;color:var(--muted);margin-top:-6px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:0 1px 2px var(--shadow)}
+.list{display:flex;flex-direction:column;overflow:hidden}
+.item{display:flex;align-items:center;gap:12px;padding:14px 14px;border-top:1px solid var(--line);min-width:0}
+.list>.item:first-child,.list>.grp:first-child>.item,.list>.grphead:first-child+.item{border-top:0}
+.tile{width:40px;height:40px;border-radius:12px;flex:none;display:grid;place-items:center;background:hsl(var(--h) var(--s) var(--tile-l));color:hsl(var(--h) var(--s) var(--tile-ic-l))}
+.tile svg{width:21px;height:21px}
+.tile.sm{width:34px;height:34px;border-radius:10px}
+.tile.sm svg{width:18px;height:18px}
 .main{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:2px}
-.name{font-weight:600;overflow-wrap:anywhere}
-.meta{font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;column-gap:8px;align-items:baseline}
-.qty{font-variant-numeric:tabular-nums;font-weight:700;color:var(--ink)}
-.pen{font-family:var(--f-pen);color:var(--pen);font-size:20px;line-height:1}
-.st-order .qty{color:var(--red)} .st-low .qty{color:var(--amber)}
-.badge{font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;white-space:nowrap}
-.b-order{background:var(--red-bg);color:var(--red)} .b-low{background:var(--amber-bg);color:var(--amber)}
-.b-pending{background:var(--gray-bg);color:var(--gray)} .b-ok{background:var(--accent-soft);color:var(--ok)}
-.btn{font:inherit;font-weight:600;font-size:14px;border-radius:10px;padding:8px 12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;white-space:nowrap}
-.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:transparent}
-.btn.ghost{background:transparent}
-.btn.sm{font-size:13px;padding:6px 10px}
+.name{font-weight:650;font-size:15px;overflow-wrap:anywhere;display:flex;align-items:center;gap:6px}
+.meta{font-size:12.5px;color:var(--muted);display:flex;flex-wrap:wrap;column-gap:6px;align-items:baseline}
+.pen{font-family:var(--f-pen);color:var(--pen);font-size:19px;line-height:1;letter-spacing:0;white-space:nowrap}
+.qtyblk{text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:0;flex:none}
+.qtyblk b{font-size:20px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.1}
+.qtyblk b small{font-size:12px;font-weight:600;color:var(--muted);margin-left:2px}
+.qtyblk span{font-size:11.5px;color:var(--muted)}
+.st-order .qtyblk b{color:var(--danger)} .st-low .qtyblk b{color:var(--warn)}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--warn);flex:none}
+.badge{font-size:11.5px;font-weight:700;padding:3px 8px;border-radius:999px;white-space:nowrap}
+.b-order{background:var(--danger-soft);color:var(--danger)} .b-low{background:var(--warn-soft);color:var(--warn)}
+.b-pending{background:var(--soft);color:var(--primary)} .b-ok{background:var(--ok-soft);color:var(--ok)} .b-mute{background:var(--bg);color:var(--muted)}
+.chev{color:var(--muted);width:18px;height:18px}
+.tap{background:none;border:0;padding:0;margin:0;font:inherit;color:inherit;text-align:left;cursor:pointer;width:100%;display:flex;align-items:center;gap:12px;min-width:0}
+/* buttons + inputs */
+.btn{font:inherit;font-weight:650;font-size:14px;border-radius:12px;padding:10px 14px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:6px;text-decoration:none}
+.btn svg{width:17px;height:17px}
+.btn.primary{background:var(--primary);color:var(--primary-ink);border-color:transparent}
+.btn.soft{background:var(--soft);color:var(--primary);border-color:transparent}
+.btn.ghost{background:transparent;border-color:transparent;color:var(--muted)}
+.btn.sm{font-size:13px;padding:7px 11px;border-radius:10px}
+.btn.block{width:100%;padding:13px 16px;font-size:15px}
 .btn:disabled{opacity:.45;cursor:not-allowed}
-.btn:focus-visible,input:focus-visible,.stat:focus-visible,.chip:focus-visible,.tabs a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
-input.num,input.txt,input[type=date]{font:inherit;font-size:16px;padding:7px 10px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);min-width:0}
-input.num{width:68px;text-align:right;font-variant-numeric:tabular-nums}
-input.num.narrow{width:56px}
-input.txt{width:100%}
-.form{display:flex;flex-direction:column;gap:10px;padding:12px 14px;background:var(--accent-soft);border-top:1px solid var(--line)}
-.form .line{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:14px}
-.form label{display:flex;align-items:center;gap:8px}
-.empty{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:12px;align-items:flex-start}
-.empty h2{font-size:17px;color:var(--ink);letter-spacing:0}
+.textbtn{background:none;border:0;padding:6px 0;font:inherit;font-size:13.5px;font-weight:600;color:var(--muted);cursor:pointer;display:inline-flex;align-items:center;gap:6px;align-self:center}
+:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+input,select{font:inherit;font-size:16px;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:11px 13px;min-width:0;width:100%}
+input:focus,select:focus{border-color:var(--primary);outline:none;box-shadow:0 0 0 3px var(--soft)}
+input.num{width:72px;text-align:center;font-weight:650;font-variant-numeric:tabular-nums;padding:9px 6px;background:var(--bg)}
+input.num.narrow{width:58px}
+input.filled{border-color:var(--primary);background:var(--soft)}
+.field{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:var(--muted);min-width:0}
+.field small{font-weight:400;font-size:12px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.withunit{display:flex;align-items:center;gap:8px}
+.withunit span{font-size:14px;color:var(--muted);font-weight:600;white-space:nowrap}
+.search{position:relative;flex:1;min-width:0}
+.search svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted);width:18px;height:18px}
+.search input{padding-left:38px}
+.toolbar{display:flex;gap:8px;align-items:stretch}
+.chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin-inline:-18px;padding-inline:18px}
+.sheet .chips{margin-inline:-20px;padding-inline:20px}
+.chips::-webkit-scrollbar{display:none}
+.chip{font:inherit;font-size:13px;font-weight:650;border:1px solid var(--line);border-radius:999px;padding:7px 12px;white-space:nowrap;cursor:pointer;color:var(--ink);background:var(--surface)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:transparent}
+.chip .n{color:var(--muted);margin-left:4px;font-weight:600}
+.chip[aria-pressed="true"] .n{color:inherit;opacity:.7}
+.sticky{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:8px;margin-block:-8px}
+.note{font-size:13.5px;border-radius:14px;padding:12px 14px;background:var(--surface);border:1px solid var(--line);color:var(--muted);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.note.warn{background:var(--warn-soft);border-color:transparent;color:var(--warn)}
+.note .grow{flex:1;min-width:12em}
+.progress{height:8px;border-radius:999px;background:var(--line);overflow:hidden}
+.progress i{display:block;height:100%;background:var(--primary);border-radius:999px}
+.grphead{display:flex;align-items:center;gap:8px;padding:12px 14px 4px;font-size:12.5px;font-weight:700;color:var(--muted);letter-spacing:.02em;scroll-margin-top:64px}
+.grphead .sw{width:8px;height:8px;border-radius:3px;background:hsl(var(--h) var(--s) var(--tile-ic-l))}
+.grphead+.item{border-top:0}
+.empty{display:flex;flex-direction:column;gap:12px;align-items:flex-start;padding:22px 20px}
+.empty h2{font-size:18px}
 .steps{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:4px;font-size:14px;color:var(--muted)}
-.catnav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;gap:6px;overflow-x:auto;padding-block:8px;margin-inline:-4px;padding-inline:4px;scrollbar-width:none}
-.chip{font:inherit;font-size:13px;font-weight:600;border:1px solid var(--line);border-radius:999px;padding:5px 11px;white-space:nowrap;cursor:pointer;color:var(--ink);background:hsl(var(--h,150) var(--s,0%) var(--cat-bg-l))}
-.chip[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:transparent}
-.cathead{padding-top:6px;scroll-margin-top:56px}
-.cathead .dot{width:10px;height:10px;border-radius:3px;background:hsl(var(--h) var(--s) var(--cat-l))}
-.count-row{flex-wrap:wrap}
-.count-row .main{flex:1 1 150px}
+.err{color:var(--danger);font-size:13px;font-weight:600}
+/* count rows */
+.crow{flex-wrap:wrap}
+.crow .main{flex:1 1 140px}
 .inputs{display:flex;align-items:center;gap:6px;margin-left:auto;font-size:13px;color:var(--muted)}
-.total{min-width:44px;text-align:right;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums}
-.warnline{font-size:13px;color:var(--amber);font-weight:500}
+.total{min-width:46px;text-align:right;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums}
+.warnline{font-size:12.5px;color:var(--warn);font-weight:600}
 .warnline:empty{display:none}
-.field{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--muted);font-weight:600}
-.setrow .fields{display:flex;flex-wrap:wrap;gap:8px 12px;font-size:13px;color:var(--muted)}
-.setrow .fields label{display:flex;align-items:center;gap:6px}
-.setrow input.txt.name-in{font-weight:600;padding:5px 8px;background:transparent;border-color:transparent}
-.setrow input.txt.name-in:focus{border-color:var(--line);background:var(--bg)}
-input.unit-in{width:56px}
-.flag{font-size:12px;color:var(--amber)}
-.bar{position:fixed;left:0;right:0;bottom:calc(60px + env(safe-area-inset-bottom,0px));z-index:15;background:var(--surface);border-top:1px solid var(--line)}
-.bar .in{max-width:560px;margin:0 auto;display:flex;align-items:center;gap:12px;justify-content:space-between;padding-block:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));font-size:14px}
+/* bars */
+.bar{position:fixed;left:0;right:0;bottom:calc(64px + env(safe-area-inset-bottom,0px));z-index:15;background:var(--surface);border-top:1px solid var(--line)}
+.bar .in{max-width:560px;margin:0 auto;display:flex;align-items:center;gap:12px;justify-content:space-between;padding-block:10px;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px));font-size:14px;font-weight:600}
 .tabs{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--surface);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px);padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px)}
-.tabs .in{max-width:560px;margin:0 auto;display:grid;grid-auto-flow:column;grid-auto-columns:1fr;height:60px}
-.xbtn{background:none;border:0;padding:0;font:inherit;font-size:13px;color:var(--muted);text-decoration:underline;cursor:pointer}
-.err{color:var(--red);font-size:13px;font-weight:600}
-.tabs a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:12px;font-weight:600;color:var(--muted);text-decoration:none}
-.tabs a[aria-current="page"]{color:var(--accent)}
-.tabs svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.tabs .in{max-width:560px;margin:0 auto;display:grid;grid-auto-flow:column;grid-auto-columns:1fr;height:64px}
+.tabs a{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:11.5px;font-weight:600;color:var(--muted);text-decoration:none}
+.tabs a svg{width:23px;height:23px}
+.tabs a[aria-current="page"]{color:var(--ink)}
+.tabs a[aria-current="page"]::after{content:"";position:absolute;bottom:7px;width:18px;height:3px;border-radius:2px;background:var(--primary)}
+/* sheet */
 .sheetwrap{position:fixed;inset:0;z-index:40;background:var(--scrim);display:flex;align-items:flex-end;justify-content:center}
-.sheet{background:var(--surface);width:100%;max-width:560px;max-height:85%;overflow:auto;border-radius:18px 18px 0 0;padding-top:20px;padding-bottom:calc(20px + env(safe-area-inset-bottom,0px));padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:14px}
-.sheet h2{font-size:18px;color:var(--ink);letter-spacing:0}
+.sheet{background:var(--surface);width:100%;max-width:560px;max-height:88%;overflow:auto;border-radius:24px 24px 0 0;padding-top:8px;padding-bottom:calc(18px + env(safe-area-inset-bottom,0px));padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:16px}
+.sheet .grab{width:40px;height:4px;border-radius:2px;background:var(--line);margin:0 auto 4px;flex:none}
+.sheethead{display:flex;align-items:center;gap:12px}
+.sheethead h2{font-size:19px;font-weight:700}
+.sheethead p{font-size:13px;color:var(--muted)}
+.sheet .divider{height:1px;background:var(--line);flex:none}
 .sheet ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
-.sheet li{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--amber-bg);color:var(--amber);border-radius:10px;padding:8px 10px;font-size:14px}
-.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(130px + env(safe-area-inset-bottom,0px));z-index:50;background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:12px;font-size:14px;max-width:calc(100% - 32px);box-shadow:0 6px 20px var(--scrim)}
-.diff{font-size:13px;color:var(--muted);padding:0 14px 12px 28px;display:flex;flex-wrap:wrap;gap:4px 12px}
+.sheet li{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--warn-soft);color:var(--warn);border-radius:12px;padding:9px 12px;font-size:14px}
+.actions{display:flex;gap:8px}
+.actions .btn{flex:1}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(140px + env(safe-area-inset-bottom,0px));z-index:50;background:var(--ink);color:var(--bg);padding:11px 16px;border-radius:14px;font-size:14px;font-weight:600;max-width:calc(100% - 36px);box-shadow:0 8px 24px var(--scrim)}
+.diff{font-size:13px;color:var(--muted);padding:0 14px 14px 60px;display:flex;flex-wrap:wrap;gap:4px 12px}
 .diff b{color:var(--ink);font-variant-numeric:tabular-nums}
-.linkish{background:none;border:0;padding:0;font:inherit;color:inherit;text-align:left;cursor:pointer;width:100%;display:flex;align-items:center;gap:12px}
-@media (prefers-reduced-motion:no-preference){.sheet{animation:up .18s ease-out}@keyframes up{from{transform:translateY(24px);opacity:.6}to{transform:none;opacity:1}}}
+@media (prefers-reduced-motion:no-preference){.sheet{animation:up .2s ease-out}@keyframes up{from{transform:translateY(30px);opacity:.6}to{transform:none;opacity:1}}}
 </style>
 </head>
 <body>
 <div class="wrap" id="view" aria-live="polite"></div>
 <nav class="tabs" aria-label="화면">
   <div class="in">
-    <a href="#home" data-tab="home"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9a1 1 0 0 1-1 1h-5v-6h-4v6H5a1 1 0 0 1-1-1z"/></svg>오늘</a>
-    <a href="#count" data-tab="count"><svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4h6v3H9zM9 12l2 2 4-4M9 17h6"/></svg>재고 조사</a>
-    <a href="#log" data-tab="log"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>기록</a>
-    <a href="settle.html" data-tab="settle" data-owner hidden><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M4 10h16M8 15h3"/></svg>정산</a>
-    <a href="#setup" data-tab="setup" data-owner hidden><svg viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>설정</a>
+    <a href="#home" data-tab="home"><svg class="i" viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v8.5a1.5 1.5 0 0 1-1.5 1.5H15v-6H9v6H5.5A1.5 1.5 0 0 1 4 19.5z"/></svg>오늘의 매장</a>
+    <a href="#count" data-tab="count"><svg class="i" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2.5"/><path d="M9 3.5h6v3H9zM9 12l2 2 4-4M9 17h6"/></svg>재고 조사</a>
+    <a href="#log" data-tab="log"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>기록</a>
+    <a href="#setup" data-tab="setup" data-owner hidden><svg class="i" viewBox="0 0 24 24"><path d="M4 6h9M17 6h3M4 12h3M11 12h9M4 18h11M19 18h1"/><circle cx="15" cy="6" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="17" cy="18" r="2"/></svg>품목 관리</a>
   </div>
 </nav>
 <div id="toast" class="toast" role="status" hidden></div>
@@ -147,17 +205,49 @@ input.unit-in{width:56px}
 (function(){
 'use strict';
 
-/* ---------- 분류 (코팅 조사표의 칸 순서와 색). 품목 자체는 서버(Lambda)에만 있다 ---------- */
+/* ---------- 분류 (코팅 조사표의 칸 순서). 품목 자체는 서버(Lambda)에만 있다 ---------- */
 var CATS=[
-  {id:'powder',name:'파우더',h:46,s:'85%'},{id:'topping',name:'토핑',h:150,s:'45%'},
-  {id:'coffee',name:'커피',h:350,s:'70%'},{id:'tea',name:'티백',h:38,s:'80%'},
-  {id:'syrup',name:'시럽',h:215,s:'70%'},{id:'base',name:'원액·잼',h:285,s:'45%'},
-  {id:'soda',name:'탄산',h:25,s:'85%'},{id:'etc',name:'기타',h:200,s:'6%'},
-  {id:'fruit',name:'과일',h:265,s:'45%'},{id:'takeout',name:'테이크아웃',h:230,s:'40%'},
-  {id:'dairy',name:'유제품',h:55,s:'85%'},{id:'dessert',name:'디저트',h:125,s:'40%'},
-  {id:'season',name:'시즌',h:18,s:'80%'}
+  {id:'powder',name:'파우더',h:42,s:'80%',ic:'jar'},{id:'topping',name:'토핑',h:150,s:'45%',ic:'spark'},
+  {id:'coffee',name:'커피',h:350,s:'60%',ic:'coffee'},{id:'tea',name:'티백',h:95,s:'40%',ic:'leaf'},
+  {id:'syrup',name:'시럽',h:215,s:'70%',ic:'bottle'},{id:'base',name:'원액·잼',h:285,s:'45%',ic:'jar2'},
+  {id:'soda',name:'탄산',h:25,s:'80%',ic:'can'},{id:'etc',name:'기타',h:215,s:'12%',ic:'box'},
+  {id:'fruit',name:'과일',h:0,s:'60%',ic:'fruit'},{id:'takeout',name:'테이크아웃',h:230,s:'45%',ic:'cup'},
+  {id:'dairy',name:'유제품',h:200,s:'55%',ic:'milk'},{id:'dessert',name:'디저트',h:20,s:'60%',ic:'cake'},
+  {id:'season',name:'시즌',h:48,s:'85%',ic:'sun'}
 ];
 var CAT_BY={}; CATS.forEach(function(c){CAT_BY[c.id]=c;});
+var ICON={
+  jar:'M7 8h10v11a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2zM8 4h8v4H8zM10 13h4',
+  spark:'M12 3v4M12 17v4M3 12h4M17 12h4M6.3 6.3l2.5 2.5M15.2 15.2l2.5 2.5M17.7 6.3l-2.5 2.5M8.8 15.2l-2.5 2.5',
+  coffee:'M5 9h11v4.5A5.5 5.5 0 0 1 10.5 19h0A5.5 5.5 0 0 1 5 13.5zM16 10.5h1.5a2.5 2.5 0 0 1 0 5H16M8.5 3.5v2.5M12 3.5v2.5',
+  leaf:'M5 19C5 10.5 10.5 5 19 5c0 8.5-5.5 14-14 14zM5 19l7.5-7.5',
+  bottle:'M10 3h4v3.5l2 3V20a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V9.5l2-3zM8 13h8',
+  jar2:'M6 9h12v10a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2zM7 5h10v4H7zM9.5 14.5h5',
+  can:'M7 5.5h10V20a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1zM9 3h6M7 9.5h10M7 17h10',
+  box:'M4 8l8-4 8 4v8l-8 4-8-4zM4 8l8 4 8-4M12 12v8',
+  fruit:'M12 7.5c-4-2.2-8.2.8-7.2 5.8.8 4.2 4 7.4 7.2 6.4 3.2 1 6.4-2.2 7.2-6.4 1-5-3.2-8-7.2-5.8zM12 7.5c0-2 1.2-3.7 3.2-4',
+  cup:'M6 7.5h12l-1.4 12.6a1 1 0 0 1-1 .9H8.4a1 1 0 0 1-1-.9zM5 4.5h14v3H5zM7.4 12.5h9.2',
+  milk:'M8 8l1.5-4h5L16 8v12a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1zM8 8h8M10.5 13h3',
+  cake:'M4 20h16v-7.5H4zM4 15.5c2 1.4 4 1.4 6 0s4-1.4 6 0 3 1 4 0M8 12.5V10h8v2.5M12 10V7.5M12 4.5v.5',
+  sun:'M12 8.2a3.8 3.8 0 1 0 0 7.6 3.8 3.8 0 0 0 0-7.6zM12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4'
+};
+var UI={
+  alert:'M12 4.5l8.5 15h-17zM12 10v4M12 17h.01',
+  gauge:'M4.5 17a8 8 0 1 1 15 0M12 13l3.5-3.5',
+  truck:'M3 6.5h11v9.5H3zM14 10h3.5l3 3v3H14zM7 19a1.8 1.8 0 1 0 0-.1M17 19a1.8 1.8 0 1 0 0-.1',
+  plus:'M12 5v14M5 12h14',
+  search:'M10.5 4.5a6 6 0 1 0 0 12 6 6 0 0 0 0-12zM15 15l5 5',
+  chev:'M9 6l6 6-6 6',
+  arrow:'M5 12h14M13 6l6 6-6 6',
+  x:'M6 6l12 12M18 6L6 18',
+  logout:'M14 4h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-4M10 16l-4-4 4-4M6 12h10',
+  hide:'M3 3l18 18M10.6 6.1A9.8 9.8 0 0 1 12 6c5 0 8.5 4.5 9.5 6-.5.8-1.6 2.3-3.2 3.6M6.4 7.6C4.6 8.9 3.2 10.7 2.5 12c1 1.5 4.5 6 9.5 6 1.4 0 2.7-.3 3.8-.9M9.9 9.9a3 3 0 0 0 4.2 4.2',
+  check:'M5 12.5l4.5 4.5L19 7.5',
+  cup:'M6 7.5h12l-1.4 12.6a1 1 0 0 1-1 .9H8.4a1 1 0 0 1-1-.9zM5 4.5h14v3H5z'
+};
+function svg(d,cls){return '<svg class="i'+(cls?' '+cls:'')+'" viewBox="0 0 24 24" aria-hidden="true"><path d="'+d+'"/></svg>';}
+function tile(cat,small){var c=CAT_BY[cat]||CAT_BY.etc;return '<span class="tile'+(small?' sm':'')+'" style="'+catStyle(c)+'">'+svg(ICON[c.ic]||ICON.box)+'</span>';}
+var UNITS=['개','봉','병','팩','박스','통','kg','L'];
 
 /* ---------- helpers ---------- */
 function $(s){return document.querySelector(s);}
@@ -180,9 +270,8 @@ function catStyle(c){c=c||CAT_BY.etc;return '--h:'+c.h+';--s:'+c.s;}
 /* ---------- state ---------- */
 var LS_DRAFT='mc-inv-draft-v1', LS_BY='mc-inv-by', LS_CACHE='mc-inv-cache-v1';
 var API=window.MC_API;
-var S={mode:'loading',role:null,catalog:null,counts:[],orders:[],loaded:{catalog:false,counts:false,orders:false},
-  offline:false,errMsg:'',loginErr:'',readOnly:false,draft:lsGet(LS_DRAFT)||{},by:lsGet(LS_BY)||'',
-  edits:{},filter:'all',orderOpen:null,sheet:null,sheetErr:'',logOpen:null,deferred:false};
+var S={mode:'loading',role:null,catalog:null,counts:[],orders:[],offline:false,errMsg:'',loginErr:'',
+  draft:lsGet(LS_DRAFT)||{},by:lsGet(LS_BY)||'',filter:'all',cat:'all',q:'',sheet:null,sheetErr:'',logOpen:null,deferred:false};
 var route='home';
 
 function items(){return S.catalog&&Array.isArray(S.catalog.items)?S.catalog.items:[];}
@@ -194,7 +283,6 @@ function isOwner(){return S.role==='owner';}
 function applyData(d){
   S.role=d.role;S.catalog=d.catalog||null;S.counts=d.counts||[];
   S.orders=(d.orders||[]).map(function(o){return Object.assign({},o,{qty:Number(o.qty)});});
-  S.loaded={catalog:true,counts:true,orders:true};
   lsSet(LS_CACHE,{role:S.role,catalog:S.catalog,counts:S.counts,orders:S.orders});
 }
 var loading=null;
@@ -211,7 +299,7 @@ function refresh(){
 }
 function logout(msg){
   API.setCode('');lsSet(LS_CACHE,null);
-  S.role=null;S.catalog=null;S.counts=[];S.orders=[];S.mode='login';S.loginErr=msg||'';S.forceRender=true;render();
+  S.role=null;S.catalog=null;S.counts=[];S.orders=[];S.mode='login';S.loginErr=msg||'';S.sheet=null;S.forceRender=true;render();
 }
 function run(fn,ok){
   return Promise.resolve().then(fn).then(function(){
@@ -289,191 +377,191 @@ function draftEntries(){
 function saveDraft(){lsSet(LS_DRAFT,S.draft);}
 
 /* ---------- render ---------- */
-function editingField(){var a=document.activeElement;return !!(a&&a.closest&&a.closest('#view')&&a.matches('input'));}
+function editingField(){var a=document.activeElement;return !!(a&&a.closest&&a.closest('#view')&&a.matches('input,select'));}
 function render(){
-  if(editingField()&&(route==='count'||route==='setup')&&!S.forceRender){S.deferred=true;return;}
+  if(editingField()&&!S.forceRender){S.deferred=true;return;}
   S.deferred=false;S.forceRender=false;
   if(route==='setup'&&S.mode==='ready'&&!isOwner())route='home';
   $('.tabs').hidden=S.mode==='login';
   document.querySelectorAll('.tabs a').forEach(function(a){
     if(a.hasAttribute('data-owner'))a.hidden=!isOwner();
     if(a.getAttribute('data-tab')===route)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
-  var html=banners();
-  if(S.mode==='login'){html=loginScreen();}
-  else if(S.mode==='loading'){html+=top('매장 재고 체크','불러오는 중…');}
-  else if(S.mode==='error'){html+=top('매장 재고 체크','')+'<div class="empty"><h2>서버에 연결하지 못했어요</h2><p class="sub">'+esc(S.errMsg)+'</p><button class="btn primary" data-act="retry">다시 시도</button></div>';}
-  else if(!S.catalog){html+=emptyScreen();}
-  else if(route==='count')html+=countScreen();
-  else if(route==='log')html+=logScreen();
-  else if(route==='setup')html+=setupScreen();
-  else html+=homeScreen();
+  var html;
+  if(S.mode==='login')html=loginScreen();
+  else if(S.mode==='loading')html=appbar()+'<p class="sub">불러오는 중…</p>';
+  else if(S.mode==='error')html=appbar()+'<div class="card empty"><h2>서버에 연결하지 못했어요</h2><p class="sub">'+esc(S.errMsg)+'</p><button class="btn primary" data-act="retry">다시 시도</button></div>';
+  else if(!S.catalog)html=appbar()+emptyScreen();
+  else{
+    html=appbar()+offlineNote();
+    if(route==='count')html+=countScreen();
+    else if(route==='log')html+=logScreen();
+    else if(route==='setup')html+=setupScreen();
+    else html+=homeScreen();
+  }
+  html+=sheetHtml();
   $('#view').innerHTML=html;
+  document.body.classList.toggle('lock',!!S.sheet);
 }
-function top(t,sub){return '<header class="top"><h1>'+esc(t)+'</h1>'+(sub?'<p class="sub">'+sub+'</p>':'')+'</header>';}
-function banners(){
-  var b='';
-  if(S.mode==='ready'&&S.offline)b+='<div class="note warn">서버에 연결하지 못해서 마지막으로 받은 내용을 보여주고 있어요. ('+esc(S.errMsg)+')<button class="btn sm" data-act="retry">다시 시도</button></div>';
-  return b?'<div class="stack" style="gap:8px;margin-bottom:8px">'+b+'</div>':'';
+function appbar(){
+  var titles={home:'오늘의 매장',count:'재고 조사',log:'기록',setup:'품목 관리'};
+  return '<header class="appbar"><span class="logo">'+svg(UI.cup)+'</span><b>'+(titles[route]||'오늘의 매장')+'</b>'+
+    (S.role?'<span class="role"><i></i>'+(isOwner()?'사장님':'직원')+'</span>':'')+
+    (S.role?'<button class="iconbtn" data-act="logout" aria-label="매장 코드 바꾸기" title="매장 코드 바꾸기">'+svg(UI.logout)+'</button>':'')+'</header>';
+}
+function offlineNote(){
+  return S.offline?'<div class="note warn"><span class="grow">서버에 연결하지 못해서 마지막으로 받은 내용을 보여주고 있어요.</span><button class="btn sm" data-act="retry">다시 시도</button></div>':'';
 }
 function loginScreen(){
-  return '<header class="top"><h1>매장 재고 체크</h1><p class="sub">처음 한 번만 매장 코드를 넣으면 이 폰에 기억돼요.</p></header>'+
-  '<form class="empty" id="login-form"><label class="field" for="code" style="width:100%">매장 코드<input class="txt" id="code" type="password" autocomplete="current-password" autocapitalize="off" spellcheck="false"></label>'+
+  return '<header class="appbar"><span class="logo">'+svg(UI.cup)+'</span><b>매장 재고 체크</b></header>'+
+  '<div class="greet"><h1>반가워요.</h1><p class="sub">처음 한 번만 매장 코드를 넣으면 이 폰에 기억돼요.</p></div>'+
+  '<form class="card empty" id="login-form"><label class="field" for="code" style="width:100%">매장 코드<input id="code" type="password" autocomplete="current-password" autocapitalize="off" spellcheck="false"></label>'+
   (S.loginErr?'<p class="err">'+esc(S.loginErr)+'</p>':'')+
-  '<button class="btn primary" type="submit" id="login-btn">들어가기</button></form>';
+  '<button class="btn primary block" type="submit" id="login-btn">들어가기</button></form>';
 }
 function emptyScreen(){
-  if(!isOwner())return top('매장 재고 체크','')+'<div class="empty"><h2>품목표가 아직 없어요</h2><p class="sub">사장님 코드로 한 번 들어와서 품목표를 만들어야 재고 조사를 할 수 있어요.</p></div>';
-  return top('매장 재고 체크','')+
-  '<div class="empty"><h2>품목표가 아직 없어요</h2>'+
+  if(!isOwner())return '<div class="card empty"><h2>품목표가 아직 없어요</h2><p class="sub">사장님 코드로 한 번 들어와서 품목표를 만들어야 재고 조사를 할 수 있어요.</p></div>';
+  return '<div class="card empty"><h2>품목표가 아직 없어요</h2>'+
   '<p class="sub">코팅 조사표에 있던 120개 품목, '+CATS.length+'개 분류로 시작해요. 시즌 칸은 비워 두었어요.</p>'+
-  '<ol class="steps"><li>설정에서 품목마다 주문기준을 적어요</li><li>재고 조사 화면에서 수량을 입력해요</li><li>오늘 화면에 주문할 품목이 빨간색으로 떠요</li></ol>'+
+  '<ol class="steps"><li>품목 관리에서 품목마다 주문기준을 적어요</li><li>재고 조사에서 수량을 입력해요</li><li>오늘의 매장에 주문할 품목이 빨갛게 떠요</li></ol>'+
   '<button class="btn primary" data-act="start">조사표 품목으로 시작하기</button></div>';
 }
+function todayLabel(){var d=new Date();return (d.getMonth()+1)+'월 '+d.getDate()+'일 '+DOW[d.getDay()]+'요일';}
 function lastCountLine(){
   var c=S.counts[0]; if(!c)return '아직 재고 조사 기록이 없어요';
   var days=Math.floor((dayStart(ymd(new Date()))-dayStart(ymd(new Date(c.at))))/864e5);
-  return '최근 조사 '+fmtMs(c.at)+(c.by?' · '+esc(c.by):'')+(days>=4?' · <b style="color:var(--amber)">'+days+'일 전</b>':'');
+  return '최근 재고 조사 '+fmtMs(c.at)+(c.by?' · '+esc(c.by):'')+(days>=4?' · <b style="color:var(--warn)">'+days+'일 전</b>':'');
 }
-function itemMeta(inf){
-  var u=inf.item.unit||'';
-  var parts=['지금 <span class="qty">'+fq(inf.qty,u)+'</span>'];
-  if(inf.item.threshold!=null)parts.push('<span class="pen">기준 '+fq(inf.item.threshold,u)+'</span>');
-  if(inf.last)parts.push('<span>'+fmtMs(inf.last.at)+' 조사</span>');
-  return parts.join('');
-}
-function homeRow(inf,kind){
-  var it=inf.item,c=CAT_BY[it.cat],u=it.unit||'',btn='',meta;
+function thLabel(it){return it.threshold!=null?'<span class="pen">'+fq(it.threshold,it.unit)+' 이하 주문</span>':'';}
+
+function homeItem(inf,kind){
+  var it=inf.item,u=it.unit||'',right='',meta;
   if(kind==='pending'||kind==='late'){
-    meta='<span>주문 '+fq(inf.order.qty,u)+'</span><span>'+fmtYmd(inf.order.eta)+(kind==='late'?' 도착 예정이었어요':' 도착 예정')+'</span>';
-    btn='<div class="actions"><button class="btn sm" data-act="order-done" data-id="'+esc(inf.order.id)+'">도착했어요</button><button class="btn sm ghost" data-act="order-drop" data-id="'+esc(inf.order.id)+'">취소</button></div>';
+    meta='<span>주문 '+fq(inf.order.qty,u)+'</span><span>· '+fmtYmd(inf.order.eta)+(kind==='late'?' 도착 예정이었어요':' 도착 예정')+'</span>';
+    right=isOwner()?'<div style="display:flex;flex-direction:column;gap:6px"><button class="btn sm soft" data-act="order-done" data-id="'+esc(inf.order.id)+'">도착했어요</button><button class="btn sm ghost" data-act="order-drop" data-id="'+esc(inf.order.id)+'">취소</button></div>':'<span class="badge '+(kind==='late'?'b-low':'b-pending')+'">'+(kind==='late'?'도착 확인':'입고 대기')+'</span>';
   }else{
-    meta=itemMeta(inf);
-    btn='<button class="btn sm'+(kind==='order'?' primary':'')+'" data-act="order-open" data-id="'+esc(it.id)+'">주문했어요</button>';
+    meta='<span>'+esc((CAT_BY[it.cat]||{}).name||'')+'</span>'+thLabel(it);
+    right='<div class="qtyblk"><b>'+fq(inf.qty)+'<small>'+esc(u)+'</small></b><span>'+(inf.last?fmtMs(inf.last.at):'')+'</span></div>'+
+      (isOwner()?'<button class="btn sm '+(kind==='order'?'primary':'soft')+'" data-act="order-open" data-id="'+esc(it.id)+'">주문했어요</button>':'');
   }
-  if(!isOwner())btn='';
-  var row='<div class="rowgroup"><div class="row st-'+kind+'" style="'+catStyle(c)+'"><i class="stripe"></i><div class="main"><div class="name">'+esc(it.name)+'</div><div class="meta">'+meta+'</div></div>'+btn+'</div>';
-  if(S.orderOpen===it.id&&(kind==='order'||kind==='low')){
-    var eta=ymd(addDays(new Date(),2));
-    row+='<div class="form"><div class="line"><label for="oq">주문 수량</label><input class="num" id="oq" inputmode="decimal" autocomplete="off"><span>'+esc(u||'개')+'</span></div>'+
-      '<div class="line"><label for="oe">도착 예정일</label><input type="date" id="oe" value="'+eta+'" min="'+ymd(new Date())+'"></div>'+
-      '<p class="sub">도착 예정일까지 이 품목 알림을 쉬어요. 도착 후 첫 재고 조사에서 수량이 바뀌면 자동으로 끝나요.</p>'+
-      '<div class="actions"><button class="btn sm ghost" data-act="order-close">닫기</button><button class="btn sm primary" data-act="order-save" data-id="'+esc(it.id)+'">주문 기록</button></div></div>';
-  }
-  return row+'</div>';
+  return '<div class="item st-'+kind+'">'+tile(it.cat)+'<div class="main"><div class="name">'+esc(it.name)+'</div><div class="meta">'+meta+'</div></div>'+right+'</div>';
+}
+function hero(c){
+  var art='<svg class="art" viewBox="0 0 120 120" aria-hidden="true"><ellipse cx="62" cy="106" rx="34" ry="6" fill="var(--line)"/><path d="M38 40h48l-6 60a6 6 0 0 1-6 5H50a6 6 0 0 1-6-5z" fill="var(--surface)" stroke="var(--ink)" stroke-width="3"/><rect x="32" y="30" width="60" height="12" rx="4" fill="var(--primary)" stroke="var(--ink)" stroke-width="3"/><path d="M41 62h42l-2.6 24H43.6z" fill="var(--primary)" opacity=".85"/><path d="M53 74l6 6 11-12" fill="none" stroke="var(--surface)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M60 14v8M44 18l4 7M76 18l-4 7" stroke="var(--primary)" stroke-width="3" stroke-linecap="round"/></svg>';
+  var t,p,b;
+  if(!S.counts.length){t='첫 <em>재고 조사</em>를 해볼까요?';p='종이 조사표 대신 여기에 수량을 적어요. 빈칸은 다음에 세도 돼요.';b='<a class="btn primary" href="#count">재고 조사 시작 '+svg(UI.arrow)+'</a>';}
+  else if(c.need){t='오늘은 <em>'+c.need+'개 품목</em>을<br>챙겨주세요.';p=isOwner()?'주문하고 「주문했어요」를 누르면 도착일까지 조용해져요.':'사장님께 주문이 필요하다고 알려주세요.';b='<button class="btn primary" data-act="jump" data-target="sec-need">주문할 품목 보기 '+svg(UI.arrow)+'</button>';}
+  else if(c.low){t='급한 건 없어요.<br><em>'+c.low+'개</em>는 간당간당해요.';p='다음 조사 전에 떨어질 수 있어요.';b='<button class="btn primary" data-act="jump" data-target="sec-low">간당간당 보기 '+svg(UI.arrow)+'</button>';}
+  else if(isOwner()&&c.unset===c.all){t='<em>주문기준</em>부터<br>적어볼까요?';p='품목마다 「이 수량 이하면 주문」을 적어두면 알아서 알려줘요.';b='<button class="btn primary" data-act="setup-unset">기준 적기 '+svg(UI.arrow)+'</button>';}
+  else{t='오늘은 <em>주문할 게 없어요.</em>';p='기준을 정한 품목은 모두 넉넉해요.';b='<a class="btn primary" href="#count">재고 조사 '+svg(UI.arrow)+'</a>';}
+  return '<section class="hero">'+art+'<h2>'+t+'</h2><p>'+p+'</p>'+b+'</section>';
 }
 function homeScreen(){
   var infos=activeItems().map(info);
   function of(st){return infos.filter(function(i){return i.st===st;});}
-  var order=of('order'),low=of('low'),pending=of('pending'),late=of('late'),unset=of('unset'),uncounted=of('uncounted');
-  var h=top('매장 재고 체크',lastCountLine()+' · '+(isOwner()?'사장님':'직원')+' <button class="xbtn" data-act="logout">코드 바꾸기</button>');
+  var order=of('order'),low=of('low'),pending=of('pending'),late=of('late'),unset=of('unset');
+  var c={need:order.length+late.length,low:low.length,unset:unset.length,all:infos.length};
+  var h='<div class="greet"><p class="eyebrow">'+todayLabel()+'</p><h1>'+(isOwner()?'사장님, 오늘도 반가워요.':'오늘도 고마워요.')+'</h1><p class="sub">'+lastCountLine()+'</p></div>';
+  h+=hero(c);
   h+='<div class="stats">'+
-    stat('red','order',order.length,'주문 필요')+stat('amber','low',low.length,'간당간당')+
-    stat('gray','pending',pending.length+late.length,'입고 대기')+stat('','unset',unset.length,'기준 없음')+'</div>';
-  h+='<div class="stack" style="margin-top:20px">';
-  if(late.length)h+=section('late','도착 확인이 필요해요',late.map(function(i){return homeRow(i,'late');}).join(''));
-  if(order.length)h+=section('order','지금 주문할 것',order.map(function(i){return homeRow(i,'order');}).join(''));
-  if(low.length)h+=section('low','간당간당 · 다음 조사 전에 떨어질 수 있어요',low.map(function(i){return homeRow(i,'low');}).join(''));
-  if(pending.length)h+=section('pending','입고 대기',pending.map(function(i){return homeRow(i,'pending');}).join(''));
-  if(!order.length&&!low.length&&!late.length&&S.counts.length&&unset.length<activeItems().length)h+='<div class="note">기준을 정한 품목은 모두 넉넉해요.</div>';
-  if(unset.length)h+='<section class="block" id="sec-unset"><div class="note">주문기준이 없는 품목이 '+unset.length+'개예요. 기준을 적어야 알림이 떠요.'+(isOwner()?'<button class="btn sm" data-act="goto-setup-unset">주문기준 적으러 가기</button>':'')+'</div></section>';
-  if(uncounted.length)h+='<div class="note">기준은 있지만 아직 한 번도 세지 않은 품목이 '+uncounted.length+'개예요.<a class="btn sm" href="#count">재고 조사하기</a></div>';
-  return h+'</div>';
+    '<button class="stat danger" data-act="jump" data-target="sec-need"><span class="lab">'+svg(UI.alert)+'주문 필요</span><b>'+c.need+'<small>개</small></b></button>'+
+    '<button class="stat warn" data-act="jump" data-target="sec-low"><span class="lab">'+svg(UI.gauge)+'간당간당</span><b>'+c.low+'<small>개</small></b></button>'+
+    '<button class="stat info" data-act="jump" data-target="sec-pending"><span class="lab">'+svg(UI.truck)+'입고 대기</span><b>'+pending.length+'<small>건</small></b></button></div>';
+  if(c.need)h+='<section class="sec" id="sec-need"><div class="sechead"><h3>지금 주문할 것</h3><span class="count">'+c.need+'</span></div>'+
+    '<div class="card list">'+late.map(function(i){return homeItem(i,'late');}).join('')+order.map(function(i){return homeItem(i,'order');}).join('')+'</div></section>';
+  if(low.length)h+='<section class="sec" id="sec-low"><div class="sechead"><h3>조금 남았어요</h3><span class="count warn">'+low.length+'</span></div><p class="secsub">다음 조사 전에 떨어질 수 있어요</p>'+
+    '<div class="card list">'+low.map(function(i){return homeItem(i,'low');}).join('')+'</div></section>';
+  if(pending.length)h+='<section class="sec" id="sec-pending"><div class="sechead"><h3>입고 대기</h3><span class="count info">'+pending.length+'</span></div><p class="secsub">도착 후 첫 재고 조사에 수량이 들어오면 자동으로 끝나요</p>'+
+    '<div class="card list">'+pending.map(function(i){return homeItem(i,'pending');}).join('')+'</div></section>';
+  if(unset.length&&isOwner()&&unset.length<c.all){
+    var done=c.all-unset.length;
+    h+='<div class="note"><span class="grow">주문기준 <b style="color:var(--ink)">'+done+'/'+c.all+'</b> 적었어요. 기준이 없는 품목은 알림이 안 떠요.</span><button class="btn sm soft" data-act="setup-unset">이어서 적기</button></div>';
+  }
+  return h;
 }
-function stat(cls,key,n,label){return '<button class="stat '+cls+'" data-act="jump" data-target="sec-'+key+'"><b>'+n+'</b><span>'+label+'</span></button>';}
-function section(key,title,rows){return '<section class="block" id="sec-'+key+'"><h2>'+title+'</h2><div class="list">'+rows+'</div></section>';}
 
 function countScreen(){
   var act=activeItems(), entered=draftEntries().length;
-  var h=top('재고 조사','빈칸은 지난 수량 그대로 둬요. 박스는 아래층까지 열어서 세 주세요.');
-  h+='<label class="field" for="by">확인 담당자<input class="txt" id="by" value="'+esc(S.by)+'" placeholder="이름" autocomplete="off"></label>';
-  h+='<nav class="catnav" aria-label="분류">'+CATS.filter(function(c){return act.some(function(i){return i.cat===c.id;});}).map(function(c){
-    return '<button class="chip" style="'+catStyle(c)+'" data-act="jump" data-target="cat-'+c.id+'">'+esc(c.name)+'</button>';}).join('')+'</nav>';
-  h+='<div class="stack">';
+  var h='<div class="greet"><h1>재고 조사</h1><p class="sub">빈칸은 지난 수량 그대로 둬요. 박스는 아래층까지 열어서 세 주세요.</p></div>';
+  h+='<label class="field" for="by">확인 담당자<input id="by" value="'+esc(S.by)+'" placeholder="이름" autocomplete="off"></label>';
+  h+='<div class="sticky"><nav class="chips" aria-label="분류로 이동">'+CATS.filter(function(c){return act.some(function(i){return i.cat===c.id;});}).map(function(c){
+    return '<button class="chip" data-act="jump" data-target="cat-'+c.id+'">'+esc(c.name)+'</button>';}).join('')+'</nav></div>';
+  h+='<div class="card list">';
   CATS.forEach(function(c){
     var list=act.filter(function(i){return i.cat===c.id;}); if(!list.length)return;
-    h+='<section class="block"><h2 class="cathead" id="cat-'+c.id+'" style="'+catStyle(c)+'"><i class="dot"></i>'+esc(c.name)+' · '+list.length+'</h2><div class="list">';
+    h+='<div class="grp"><div class="grphead" id="cat-'+c.id+'" style="'+catStyle(c)+'"><i class="sw"></i>'+esc(c.name)+' · '+list.length+'</div>';
     list.forEach(function(it){
       var inf=info(it),d=S.draft[it.id]||{},u=it.unit||'',q=totalOf(it,S.draft[it.id]);
-      var meta=(inf.last?'<span>지난번 '+fq(inf.last.qty,u)+' · '+fmtMs(inf.last.at)+'</span>':'<span>처음 세요</span>')+(it.threshold!=null?'<span class="pen">기준 '+fq(it.threshold,u)+'</span>':'');
+      var meta=(inf.last?'<span>지난번 '+fq(inf.last.qty,u)+' · '+fmtMs(inf.last.at)+'</span>':'<span>처음 세요</span>')+thLabel(it);
       var inputs=it.perBox?
-        '<input class="num narrow" id="b-'+it.id+'" data-id="'+it.id+'" data-f="box" inputmode="decimal" placeholder="박스" aria-label="'+esc(it.name)+' 박스 수" value="'+esc(d.box||'')+'"><span>×'+fq(it.perBox)+' +</span>'+
-        '<input class="num narrow" id="l-'+it.id+'" data-id="'+it.id+'" data-f="loose" inputmode="decimal" placeholder="낱개" aria-label="'+esc(it.name)+' 낱개" value="'+esc(d.loose||'')+'"><span class="total" id="t-'+it.id+'">'+(q!=null&&!Number.isNaN(q)?'= '+fq(q,u):'')+'</span>'
-        :'<input class="num" id="n-'+it.id+'" data-id="'+it.id+'" data-f="n" inputmode="decimal" placeholder="수량" aria-label="'+esc(it.name)+' 수량" value="'+esc(d.n||'')+'"><span>'+esc(u)+'</span>';
-      h+='<div class="row count-row" style="'+catStyle(c)+'"><i class="stripe"></i><div class="main"><div class="name">'+esc(it.name)+'</div><div class="meta">'+meta+'</div><div class="warnline" id="w-'+it.id+'">'+esc(anomaly(inf,q))+'</div></div><div class="inputs">'+inputs+'</div></div>';
+        '<input class="num narrow'+(d.box?' filled':'')+'" id="b-'+it.id+'" data-id="'+it.id+'" data-f="box" inputmode="decimal" placeholder="박스" aria-label="'+esc(it.name)+' 박스 수" value="'+esc(d.box||'')+'"><span>×'+fq(it.perBox)+'+</span>'+
+        '<input class="num narrow'+(d.loose?' filled':'')+'" id="l-'+it.id+'" data-id="'+it.id+'" data-f="loose" inputmode="decimal" placeholder="낱개" aria-label="'+esc(it.name)+' 낱개" value="'+esc(d.loose||'')+'"><span class="total" id="t-'+it.id+'">'+(q!=null&&!Number.isNaN(q)?'= '+fq(q,u):'')+'</span>'
+        :'<input class="num'+(d.n?' filled':'')+'" id="n-'+it.id+'" data-id="'+it.id+'" data-f="n" inputmode="decimal" placeholder="수량" aria-label="'+esc(it.name)+' 수량" value="'+esc(d.n||'')+'"><span>'+esc(u)+'</span>';
+      h+='<div class="item crow">'+tile(it.cat,true)+'<div class="main"><div class="name">'+esc(it.name)+'</div><div class="meta">'+meta+'</div><div class="warnline" id="w-'+it.id+'">'+esc(anomaly(inf,q))+'</div></div><div class="inputs">'+inputs+'</div></div>';
     });
-    h+='</div></section>';
+    h+='</div>';
   });
   h+='</div>';
-  h+='<div class="bar"><div class="in"><span id="sb-n">'+entered+'개 입력 · 전체 '+act.length+'개</span><button class="btn primary" data-act="review"'+(S.readOnly?' disabled':'')+'>확인하고 저장</button></div></div>';
-  if(S.sheet==='review')h+=reviewSheet();
-  return h;
-}
-function reviewSheet(){
-  var ents=draftEntries(), act=activeItems();
-  var flagged=ents.map(function(e){return {e:e,msg:anomaly(info(e.item),e.q)};}).filter(function(x){return x.msg;});
-  var bad=ents.some(function(e){return Number.isNaN(e.q);});
-  var willOrder=act.filter(function(it){
-    var th=it.threshold; if(th==null||openOrderOf(it.id))return false;
-    var e=ents.find(function(x){return x.item.id===it.id;}); var q=e?e.q:(historyOf(it.id)[0]||{}).qty;
-    return q!=null&&!Number.isNaN(q)&&q<=th;
-  }).length;
-  var h='<div class="sheetwrap" data-act="sheet-bg"><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="rv-t"><h2 id="rv-t">'+ents.length+'개 품목을 저장할까요?</h2>';
-  h+='<p class="sub">확인 담당자 <b style="color:var(--ink)">'+esc(S.by||'—')+'</b> · 입력하지 않은 '+(act.length-ents.length)+'개는 지난 수량 그대로예요.</p>';
-  if(flagged.length){h+='<div class="field">다시 볼 만한 품목 '+flagged.length+'개</div><ul>'+flagged.map(function(x){
-    return '<li><span><b>'+esc(x.e.item.name)+'</b> '+fq(x.e.q,x.e.item.unit)+' · '+esc(x.msg)+'</span><button class="btn sm" data-act="fix" data-id="'+x.e.item.id+'">고치기</button></li>';}).join('')+'</ul>';}
-  if(willOrder)h+='<p class="sub">저장하면 주문 필요가 <b style="color:var(--red)">'+willOrder+'개</b>예요.</p>';
-  if(S.sheetErr)h+='<p class="err">'+esc(S.sheetErr)+'</p>';
-  h+='<div class="actions"><button class="btn ghost" data-act="sheet-close">돌아가기</button><button class="btn primary" data-act="save-count"'+(bad||!ents.length?' disabled':'')+'>저장</button></div></div></div>';
+  h+='<div class="bar"><div class="in"><span id="sb-n">'+entered+'개 입력 · 전체 '+act.length+'개</span><button class="btn primary" data-act="review">확인하고 저장</button></div></div>';
   return h;
 }
 
+/* ---------- 품목 관리 ---------- */
+function setupFiltered(){
+  var q=S.q.trim();
+  return items().filter(function(i){
+    if(S.cat!=='all'&&i.cat!==S.cat)return false;
+    if(q&&i.name.indexOf(q)<0)return false;
+    if(S.filter==='hidden')return i.active===false;
+    if(i.active===false)return false;
+    if(S.filter==='unset')return i.threshold==null;
+    if(S.filter==='review')return !!i.review;
+    return true;
+  }).map(function(i,k){return [i,k];}).sort(function(a,b){
+    return (CATS.indexOf(CAT_BY[a[0].cat])-CATS.indexOf(CAT_BY[b[0].cat]))||(a[1]-b[1]);
+  }).map(function(x){return x[0];});
+}
 function setupScreen(){
-  var all=items(), act=activeItems();
-  var counts={all:act.length,unset:act.filter(function(i){return i.threshold==null&&!(S.edits[i.id]&&num(S.edits[i.id].threshold)!=null);}).length,review:act.filter(function(i){return i.review;}).length,hidden:all.length-act.length};
-  var h=top('설정','<b style="color:var(--ink)">주문기준</b>은 “이 수량 이하가 되면 주문”이에요. 조사표 품목명 옆에 손으로 적던 숫자를 여기 적어두면 지워지지 않아요. 박스로 세는 품목은 박스당 개수를 넣으면 조사 화면이 박스 + 낱개로 바뀌어요.');
-  h+='<nav class="catnav" aria-label="보기">'+
-    [['all','전체'],['unset','기준 없음'],['review','이름 확인'],['hidden','숨김']].map(function(f){
-      return '<button class="chip" data-act="filter" data-f="'+f[0]+'" aria-pressed="'+(S.filter===f[0])+'">'+f[1]+' '+counts[f[0]]+'</button>';}).join('')+'</nav>';
-  h+='<div class="stack">';
-  CATS.forEach(function(c){
-    var list=all.filter(function(i){
-      if(i.cat!==c.id)return false;
-      if(S.filter==='hidden')return i.active===false;
-      if(i.active===false)return false;
-      if(S.filter==='unset')return i.threshold==null;
-      if(S.filter==='review')return !!i.review;
-      return true;});
-    if(!list.length&&S.filter!=='all')return;
-    h+='<section class="block"><h2 class="cathead" style="'+catStyle(c)+'"><i class="dot"></i>'+esc(c.name)+'</h2><div class="list">';
-    list.forEach(function(it){
-      var e=S.edits[it.id]||{};
-      function v(f){return e[f]!==undefined?e[f]:(it[f]==null?'':String(it[f]));}
-      h+='<div class="row setrow" style="'+catStyle(c)+'"><i class="stripe"></i><div class="main" style="gap:6px">'+
-        '<input class="txt name-in" id="nm-'+it.id+'" data-id="'+it.id+'" data-e="name" value="'+esc(v('name'))+'" aria-label="품목 이름">'+
-        (it.review?'<span class="flag">사진에서 읽은 이름이에요. 실제 이름과 맞는지 확인해 주세요.</span>':'')+
-        '<div class="fields">'+
-        '<label>주문기준<input class="num narrow" id="th-'+it.id+'" data-id="'+it.id+'" data-e="threshold" inputmode="decimal" value="'+esc(v('threshold'))+'" placeholder="—"></label>'+
-        '<label>단위<input class="txt unit-in" id="un-'+it.id+'" data-id="'+it.id+'" data-e="unit" value="'+esc(v('unit'))+'" placeholder="개" maxlength="6"></label>'+
-        '<label>박스당<input class="num narrow" id="pb-'+it.id+'" data-id="'+it.id+'" data-e="perBox" inputmode="decimal" value="'+esc(v('perBox'))+'" placeholder="—"></label>'+
-        '</div></div><button class="btn sm ghost" data-act="toggle-hide" data-id="'+it.id+'"'+(S.readOnly?' disabled':'')+'>'+(it.active===false?'다시 쓰기':'숨기기')+'</button></div>';
-    });
-    if(S.filter==='all')h+='<div class="row"><i class="stripe" style="'+catStyle(c)+'"></i><div class="main"><input class="txt" id="add-'+c.id+'" placeholder="'+esc(c.name)+'에 새 품목 추가" aria-label="'+esc(c.name)+' 새 품목 이름"></div><button class="btn sm" data-act="add-item" data-cat="'+c.id+'"'+(S.readOnly?' disabled':'')+'>추가</button></div>';
-    h+='</div></section>';
-  });
-  h+='</div>';
-  var n=Object.keys(S.edits).length;
-  h+='<div class="bar" id="setbar"'+(n?'':' hidden')+'><div class="in"><span id="set-n">'+n+'개 품목 바뀜</span><div class="actions"><button class="btn ghost" data-act="edits-drop">되돌리기</button><button class="btn primary" data-act="edits-save"'+(S.readOnly?' disabled':'')+'>저장</button></div></div></div>';
+  var all=items(),act=activeItems();
+  var n={all:act.length,unset:act.filter(function(i){return i.threshold==null;}).length,review:act.filter(function(i){return i.review;}).length,hidden:all.length-act.length};
+  var done=n.all-n.unset;
+  var h='<div class="greet"><h1>품목 관리</h1><p class="sub">품목을 누르면 단위와 주문기준을 바꿀 수 있어요.</p></div>';
+  if(n.unset){
+    h+='<div class="card" style="padding:16px;display:flex;flex-direction:column;gap:10px">'+
+      '<div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap"><b>주문기준 '+done+' / '+n.all+'</b><span class="sub" style="font-size:12.5px">기준이 있어야 알림이 떠요</span></div>'+
+      '<div class="progress"><i style="width:'+Math.round(done/Math.max(1,n.all)*100)+'%"></i></div>'+
+      '<button class="btn soft" data-act="setup-unset">기준 없는 품목 차례로 적기 '+svg(UI.arrow)+'</button></div>';
+  }
+  h+='<div class="toolbar"><label class="search">'+svg(UI.search)+'<input id="q" value="'+esc(S.q)+'" placeholder="품목 검색" autocomplete="off" aria-label="품목 검색"></label><button class="btn" data-act="add-open">'+svg(UI.plus)+'품목 추가</button></div>';
+  h+='<nav class="chips" aria-label="보기">'+[['all','전체'],['unset','기준 없음'],['review','이름 확인'],['hidden','숨김']].map(function(f){
+      return '<button class="chip" data-act="filter" data-f="'+f[0]+'" aria-pressed="'+(S.filter===f[0])+'">'+f[1]+'<span class="n">'+n[f[0]]+'</span></button>';}).join('')+'</nav>';
+  h+='<nav class="chips" aria-label="분류">'+[{id:'all',name:'모든 분류'}].concat(CATS).map(function(c){
+      return '<button class="chip" data-act="cat" data-c="'+c.id+'" aria-pressed="'+(S.cat===c.id)+'">'+esc(c.name)+'</button>';}).join('')+'</nav>';
+  h+='<div id="setup-list">'+setupList()+'</div>';
   return h;
+}
+function setupList(){
+  var list=setupFiltered();
+  if(!list.length)return '<div class="card empty"><p class="sub">'+(S.q?'「'+esc(S.q)+'」에 맞는 품목이 없어요.':'여기에 해당하는 품목이 없어요.')+'</p><button class="btn soft" data-act="add-open">'+svg(UI.plus)+'품목 추가</button></div>';
+  var h='<div class="card list">',cur=null;
+  list.forEach(function(it){
+    if(it.cat!==cur){cur=it.cat;var c=CAT_BY[cur]||CAT_BY.etc;h+='<div class="grphead" style="'+catStyle(c)+'"><i class="sw"></i>'+esc(c.name)+'</div>';}
+    var sub=it.unit?'<span>'+esc(it.unit)+(it.perBox?' · 박스당 '+fq(it.perBox):'')+'</span>':'<span>단위 없음</span>';
+    var right=it.active===false?'<span class="badge b-mute">숨김</span>':it.threshold!=null?'<span class="pen">'+fq(it.threshold,it.unit)+' 이하</span>':'<span class="badge b-low">기준 없음</span>';
+    h+='<div class="item"><button class="tap" data-act="item-open" data-id="'+esc(it.id)+'">'+tile(it.cat,true)+
+      '<div class="main"><div class="name">'+esc(it.name)+(it.review?'<i class="dot" title="이름 확인 필요"></i>':'')+'</div><div class="meta">'+sub+'</div></div>'+
+      right+svg(UI.chev,'chev')+'</button></div>';
+  });
+  return h+'</div>';
 }
 
 function logScreen(){
-  var h=top('기록','재고 조사와 주문 기록이 남아요. 조사를 누르면 바뀐 수량이 보여요.');
-  h+='<div class="stack"><section class="block"><h2>재고 조사</h2><div class="list">';
-  if(!S.counts.length)h+='<div class="row"><div class="main"><span class="sub">아직 조사 기록이 없어요.</span></div></div>';
+  var h='<div class="greet"><h1>기록</h1><p class="sub">재고 조사와 주문이 남아요. 조사를 누르면 바뀐 수량이 보여요.</p></div>';
+  h+='<section class="sec"><div class="sechead"><h3>재고 조사</h3></div><div class="card list">';
+  if(!S.counts.length)h+='<div class="item"><span class="sub">아직 조사 기록이 없어요.</span></div>';
   S.counts.slice(0,40).forEach(function(c,idx){
-    var ids=Object.keys(c.values||{});
-    h+='<div class="rowgroup"><div class="row"><button class="linkish" data-act="log-open" data-id="'+esc(c.id)+'" aria-expanded="'+(S.logOpen===c.id)+'"><div class="main"><div class="name">'+fmtMsTime(c.at)+'</div><div class="meta"><span>'+esc(c.by||'담당자 없음')+'</span><span>'+ids.length+'개 품목</span></div></div><span class="sub">'+(S.logOpen===c.id?'접기':'보기')+'</span></button></div>';
-    if(S.logOpen===c.id){
+    var ids=Object.keys(c.values||{}),open=S.logOpen===c.id;
+    h+='<div class="grp"><div class="item"><button class="tap" data-act="log-open" data-id="'+esc(c.id)+'" aria-expanded="'+open+'"><span class="tile sm" style="--h:215;--s:70%">'+svg(UI.check)+'</span><div class="main"><div class="name">'+fmtMsTime(c.at)+'</div><div class="meta"><span>'+esc(c.by||'담당자 없음')+'</span><span>· '+ids.length+'개 품목</span></div></div><span class="sub" style="font-size:13px">'+(open?'접기':'보기')+'</span></button></div>';
+    if(open){
       var older=S.counts.slice(idx+1);
       var parts=ids.map(function(id){
         var it=itemById(id),prev=null;
@@ -485,15 +573,84 @@ function logScreen(){
     }
     h+='</div>';
   });
-  h+='</div></section><section class="block"><h2>주문</h2><div class="list">';
-  if(!S.orders.length)h+='<div class="row"><div class="main"><span class="sub">아직 주문 기록이 없어요.</span></div></div>';
+  h+='</div></section><section class="sec"><div class="sechead"><h3>주문</h3></div><div class="card list">';
+  if(!S.orders.length)h+='<div class="item"><span class="sub">아직 주문 기록이 없어요.</span></div>';
   S.orders.slice(0,60).forEach(function(o){
     var it=itemById(o.itemId),lab=orderStatusLabel(o);
-    var cls=lab==='입고 대기'?'b-pending':lab==='도착 확인 필요'?'b-low':lab==='취소'?'b-pending':'b-ok';
-    h+='<div class="row" style="'+catStyle(it&&CAT_BY[it.cat])+'"><i class="stripe"></i><div class="main"><div class="name">'+esc(it?it.name:'삭제된 품목')+' '+fq(o.qty,it&&it.unit)+'</div><div class="meta"><span>'+fmtMs(o.at)+' 주문</span><span>'+fmtYmd(o.eta)+' 도착 예정</span></div></div><span class="badge '+cls+'">'+lab+'</span></div>';
+    var cls=lab==='입고 대기'?'b-pending':lab==='도착 확인 필요'?'b-low':lab==='취소'?'b-mute':'b-ok';
+    h+='<div class="item">'+tile(it?it.cat:'etc',true)+'<div class="main"><div class="name">'+esc(it?it.name:'삭제된 품목')+' '+fq(o.qty,it&&it.unit)+'</div><div class="meta"><span>'+fmtMs(o.at)+' 주문</span><span>· '+fmtYmd(o.eta)+' 도착 예정</span></div></div><span class="badge '+cls+'">'+lab+'</span></div>';
   });
-  return h+'</div></section></div>';
+  return h+'</div></section>';
 }
+
+/* ---------- sheets ---------- */
+function sheetHtml(){
+  var s=S.sheet;if(!s)return '';
+  var body='';
+  if(s.type==='review')body=reviewSheet();
+  else if(s.type==='item')body=itemSheet(itemById(s.id),false);
+  else if(s.type==='add')body=itemSheet(null,true);
+  else if(s.type==='order')body=orderSheet(itemById(s.id));
+  if(!body)return '';
+  return '<div class="sheetwrap" data-act="sheet-bg"><div class="sheet" role="dialog" aria-modal="true"><div class="grab"></div>'+body+'</div></div>';
+}
+function closeBtn(){return '<button class="iconbtn" data-act="sheet-close" aria-label="닫기" style="margin-left:auto;flex:none">'+svg(UI.x)+'</button>';}
+function reviewSheet(){
+  var ents=draftEntries(), act=activeItems();
+  var flagged=ents.map(function(e){return {e:e,msg:anomaly(info(e.item),e.q)};}).filter(function(x){return x.msg;});
+  var bad=ents.some(function(e){return Number.isNaN(e.q);});
+  var willOrder=act.filter(function(it){
+    var th=it.threshold; if(th==null||openOrderOf(it.id))return false;
+    var e=ents.find(function(x){return x.item.id===it.id;}); var q=e?e.q:(historyOf(it.id)[0]||{}).qty;
+    return q!=null&&!Number.isNaN(q)&&q<=th;
+  }).length;
+  var h='<div class="sheethead"><div><h2>'+ents.length+'개 품목을 저장할까요?</h2><p>확인 담당자 '+esc(S.by||'—')+' · 입력 안 한 '+(act.length-ents.length)+'개는 지난 수량 그대로예요</p></div>'+closeBtn()+'</div>';
+  if(flagged.length)h+='<div class="field">다시 볼 만한 품목 '+flagged.length+'개</div><ul>'+flagged.map(function(x){
+    return '<li><span><b>'+esc(x.e.item.name)+'</b> '+fq(x.e.q,x.e.item.unit)+' · '+esc(x.msg)+'</span><button class="btn sm" data-act="fix" data-id="'+x.e.item.id+'">고치기</button></li>';}).join('')+'</ul>';
+  if(willOrder)h+='<p class="sub">저장하면 주문 필요가 <b style="color:var(--danger)">'+willOrder+'개</b>예요.</p>';
+  if(S.sheetErr)h+='<p class="err">'+esc(S.sheetErr)+'</p>';
+  h+='<div class="actions"><button class="btn" data-act="sheet-close">돌아가기</button><button class="btn primary" data-act="save-count"'+(bad||!ents.length?' disabled':'')+'>저장</button></div>';
+  return h;
+}
+function itemSheet(it,isNew){
+  if(!isNew&&!it)return '';
+  var c=CAT_BY[isNew?(S.cat!=='all'?S.cat:'season'):it.cat]||CAT_BY.etc;
+  var inf=it?info(it):null;
+  var next=!isNew&&S.sheet.seq?nextInSeq(it.id):null;
+  var h='<div class="sheethead">'+tile(c.id)+'<div style="min-width:0"><h2>'+(isNew?'새 품목 추가':esc(it.name))+'</h2><p>'+(isNew?'추가한 품목은 다음 재고 조사부터 보여요':esc(c.name)+(inf&&inf.last?' · 지금 '+fq(inf.qty,it.unit)+' ('+fmtMs(inf.last.at)+')':' · 아직 안 셌어요'))+'</p></div>'+closeBtn()+'</div>';
+  if(it&&it.review)h+='<div class="note warn">사진의 작은 글씨에서 옮긴 이름이에요. 실제 상품명과 맞는지 확인해 주세요.</div>';
+  h+='<label class="field" for="it-name">품목명<input id="it-name" value="'+esc(it?it.name:'')+'" maxlength="40" autocomplete="off"></label>';
+  if(isNew)h+='<label class="field" for="it-cat">분류<select id="it-cat">'+CATS.map(function(x){return '<option value="'+x.id+'"'+(x.id===c.id?' selected':'')+'>'+esc(x.name)+'</option>';}).join('')+'</select></label>';
+  h+='<div class="grid2"><label class="field" for="it-unit">세는 단위<input id="it-unit" value="'+esc(it?it.unit:'')+'" maxlength="6" placeholder="개" autocomplete="off"></label>'+
+    '<label class="field" for="it-th">이 수량 이하면 주문<input id="it-th" inputmode="decimal" value="'+esc(it&&it.threshold!=null?it.threshold:'')+'" placeholder="예: 2" autocomplete="off"></label></div>';
+  h+='<div class="chips" style="margin-top:-8px" aria-label="단위 고르기">'+UNITS.map(function(u){return '<button class="chip" data-act="unit-pick" data-v="'+u+'">'+u+'</button>';}).join('')+'</div>';
+  h+='<label class="field" for="it-pb">박스당 개수 <small>박스로 세는 품목만. 넣으면 재고 조사가 「박스 + 낱개」로 바뀌어요</small><input id="it-pb" inputmode="decimal" value="'+esc(it&&it.perBox?it.perBox:'')+'" placeholder="비워두기" autocomplete="off"></label>';
+  if(S.sheetErr)h+='<p class="err">'+esc(S.sheetErr)+'</p>';
+  if(isNew)h+='<button class="btn primary block" data-act="add-save">'+svg(UI.plus)+'품목 추가</button>';
+  else{
+    h+='<div class="actions">'+(next?'<button class="btn" data-act="item-save" data-id="'+esc(it.id)+'">저장하고 닫기</button><button class="btn primary" data-act="item-save" data-id="'+esc(it.id)+'" data-next="'+esc(next)+'">저장하고 다음 '+svg(UI.arrow)+'</button>':'<button class="btn primary block" data-act="item-save" data-id="'+esc(it.id)+'">저장</button>')+'</div>';
+    h+='<div class="divider"></div><button class="textbtn" data-act="toggle-hide" data-id="'+esc(it.id)+'">'+svg(UI.hide)+(it.active===false?'다시 쓰는 품목으로 되돌리기':'사용하지 않는 품목 숨기기')+'</button>';
+  }
+  return h;
+}
+function orderSheet(it){
+  if(!it)return '';
+  var inf=info(it),u=it.unit||'개',d1=ymd(addDays(new Date(),1)),d2=ymd(addDays(new Date(),2)),d3=ymd(addDays(new Date(),3));
+  var h='<div class="sheethead">'+tile(it.cat)+'<div><h2>'+esc(it.name)+' 주문 기록</h2><p>지금 '+fq(inf.qty,it.unit)+(it.threshold!=null?' · 기준 '+fq(it.threshold,it.unit)+' 이하':'')+'</p></div>'+closeBtn()+'</div>';
+  h+='<label class="field" for="oq">주문한 수량<span class="withunit"><input id="oq" inputmode="decimal" autocomplete="off" placeholder="예: 4"><span>'+esc(u)+'</span></span></label>';
+  h+='<label class="field" for="oe">도착 예정일<input type="date" id="oe" value="'+d2+'" min="'+ymd(new Date())+'"></label>';
+  h+='<div class="chips" style="margin-top:-8px">'+[[d1,'내일'],[d2,'모레'],[d3,'3일 뒤']].map(function(x){return '<button class="chip" data-act="eta-pick" data-v="'+x[0]+'">'+x[1]+' '+fmtYmd(x[0])+'</button>';}).join('')+'</div>';
+  h+='<p class="sub">도착 예정일까지 이 품목 알림을 쉬어요. 도착 후 첫 재고 조사에서 수량이 들어오면 자동으로 끝나요.</p>';
+  if(S.sheetErr)h+='<p class="err">'+esc(S.sheetErr)+'</p>';
+  h+='<button class="btn primary block" data-act="order-save" data-id="'+esc(it.id)+'">주문 기록</button>';
+  return h;
+}
+function nextInSeq(id){
+  var list=setupFiltered(),i=list.findIndex(function(x){return x.id===id;});
+  for(var k=i+1;k<list.length;k++)if(list[k].id!==id)return list[k].id;
+  return null;
+}
+function openSheet(s){S.sheet=s;S.sheetErr='';S.forceRender=true;render();}
 
 /* ---------- toast ---------- */
 var toastTimer=null;
@@ -504,66 +661,73 @@ document.addEventListener('focusout',function(){setTimeout(function(){if(S.defer
 document.addEventListener('input',function(ev){
   var el=ev.target;
   if(el.id==='by'){S.by=el.value;lsSet(LS_BY,S.by);return;}
+  if(el.id==='q'){S.q=el.value;var box=$('#setup-list');if(box)box.innerHTML=setupList();return;}
   var id=el.getAttribute('data-id');
   if(el.hasAttribute('data-f')){
     var f=el.getAttribute('data-f'),d=Object.assign({},S.draft[id]);d[f]=el.value;
     if(!d.n&&!d.box&&!d.loose)delete S.draft[id];else S.draft[id]=d;saveDraft();
+    el.classList.toggle('filled',!!el.value);
     var it=itemById(id),q=totalOf(it,S.draft[id]);
     var w=document.getElementById('w-'+id);if(w)w.textContent=anomaly(info(it),q);
     var t=document.getElementById('t-'+id);if(t)t.textContent=q!=null&&!Number.isNaN(q)?'= '+fq(q,it.unit):'';
     var sb=$('#sb-n');if(sb)sb.textContent=draftEntries().length+'개 입력 · 전체 '+activeItems().length+'개';
-    return;
-  }
-  if(el.hasAttribute('data-e')){
-    var key=el.getAttribute('data-e'),e=Object.assign({},S.edits[id]);e[key]=el.value;S.edits[id]=e;
-    var n=Object.keys(S.edits).length,bar=$('#setbar');if(bar){bar.hidden=!n;$('#set-n').textContent=n+'개 품목 바뀜';}
   }
 });
 document.addEventListener('keydown',function(ev){
-  if(ev.key==='Enter'&&ev.target.matches&&ev.target.matches('input[id^="add-"]')){ev.preventDefault();addItem(ev.target.id.slice(4));}
-  if(ev.key==='Escape'&&S.sheet){S.sheet=null;render();}
+  if(ev.key==='Escape'&&S.sheet){S.sheet=null;S.forceRender=true;render();}
 });
 document.addEventListener('click',function(ev){
   var el=ev.target.closest('[data-act]');if(!el)return;
   var act=el.getAttribute('data-act'),id=el.getAttribute('data-id');
-  if(act==='sheet-bg'){if(ev.target===el){S.sheet=null;render();}return;}
+  if(act==='sheet-bg'){if(ev.target===el){S.sheet=null;S.forceRender=true;render();}return;}
   if(el.tagName==='BUTTON')ev.preventDefault();
   S.forceRender=true;
   switch(act){
     case 'start':run(function(){return store.seed();},'조사표 품목을 불러왔어요');break;
-    case 'retry':S.forceRender=true;refresh();break;
+    case 'retry':refresh();break;
     case 'logout':logout('');break;
     case 'jump':var t=document.getElementById(el.getAttribute('data-target'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'});S.forceRender=false;break;
-    case 'order-open':S.orderOpen=id;render();var q=$('#oq');if(q)q.focus();break;
-    case 'order-close':S.orderOpen=null;render();break;
+    case 'order-open':openSheet({type:'order',id:id});break;
+    case 'eta-pick':$('#oe').value=el.getAttribute('data-v');S.forceRender=false;break;
     case 'order-save':saveOrder(id);break;
     case 'order-done':closeOrder(id,'done','도착 처리했어요. 다음 재고 조사에서 수량이 반영돼요');break;
     case 'order-drop':closeOrder(id,'cancelled','주문을 취소했어요');break;
-    case 'goto-setup-unset':S.filter='unset';location.hash='#setup';break;
+    case 'setup-unset':
+      S.filter='unset';S.cat='all';S.q='';
+      var first=setupFiltered()[0];
+      S.sheet=first?{type:'item',id:first.id,seq:true}:null;S.sheetErr='';
+      if(location.hash!=='#setup')location.hash='#setup';else{S.forceRender=true;render();}
+      break;
     case 'review':
       if(!draftEntries().length){toast('입력한 수량이 없어요');break;}
       if(!S.by.trim()){toast('확인 담당자 이름을 적어주세요');var b=$('#by');if(b){b.focus();b.scrollIntoView({block:'center'});}break;}
-      S.sheet='review';S.sheetErr='';render();break;
+      openSheet({type:'review'});break;
     case 'sheet-close':S.sheet=null;render();break;
     case 'fix':S.sheet=null;render();var it=itemById(id);var inp=document.getElementById((it&&it.perBox?'b-':'n-')+id);if(inp){inp.scrollIntoView({block:'center'});inp.focus();}break;
     case 'save-count':saveCount();break;
     case 'filter':S.filter=el.getAttribute('data-f');render();break;
-    case 'toggle-hide':commitCatalog(function(list){return list.map(function(i){return i.id===id?Object.assign({},i,{active:i.active===false}):i;});},'바꿨어요');break;
-    case 'add-item':addItem(el.getAttribute('data-cat'));break;
-    case 'edits-drop':S.edits={};render();break;
-    case 'edits-save':commitCatalog(null,'설정을 저장했어요');break;
+    case 'cat':S.cat=el.getAttribute('data-c');render();break;
+    case 'item-open':openSheet({type:'item',id:id,seq:S.filter==='unset'||S.filter==='review'});break;
+    case 'add-open':openSheet({type:'add'});break;
+    case 'unit-pick':$('#it-unit').value=el.getAttribute('data-v');S.forceRender=false;break;
+    case 'item-save':saveItem(id,el.getAttribute('data-next'));break;
+    case 'add-save':addItem();break;
+    case 'toggle-hide':
+      var target=itemById(id),wasHidden=target&&target.active===false;
+      commitCatalog(function(list){return list.map(function(i){return i.id===id?Object.assign({},i,{active:i.active===false}):i;});},wasHidden?'다시 쓰는 품목으로 바꿨어요':'숨겼어요. 「숨김」에서 되돌릴 수 있어요').then(function(ok){if(ok){S.sheet=null;S.forceRender=true;render();}});
+      break;
     case 'log-open':S.logOpen=S.logOpen===id?null:id;render();break;
   }
   S.forceRender=false;
 });
 
+function sheetFail(msg){S.sheetErr=msg;S.forceRender=true;render();}
 function saveOrder(itemId){
   var it=itemById(itemId),q=num($('#oq').value),eta=$('#oe').value;
-  if(q==null||Number.isNaN(q)||q<=0){toast('주문 수량을 숫자로 적어주세요');$('#oq').focus();return;}
-  if(!/^\d{4}-\d{2}-\d{2}$/.test(eta)){toast('도착 예정일을 골라주세요');return;}
+  if(q==null||Number.isNaN(q)||q<=0)return sheetFail('주문한 수량을 숫자로 적어주세요');
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(eta))return sheetFail('도착 예정일을 골라주세요');
   var o={id:uid(),itemId:itemId,qty:q,eta:eta,at:Date.now(),status:'open'};
-  S.orderOpen=null;
-  run(function(){return store.putOrder(o);},(it?it.name:'')+' 주문 기록 · '+fmtYmd(eta)+'까지 알림을 쉬어요');
+  run(function(){return store.putOrder(o);},(it?it.name:'')+' 주문 기록 · '+fmtYmd(eta)+'까지 알림을 쉬어요').then(function(ok){if(ok){S.sheet=null;S.forceRender=true;render();}});
 }
 function closeOrder(orderId,status,msg){
   var o=S.orders.find(function(x){return x.id===orderId;});if(!o)return;
@@ -571,7 +735,7 @@ function closeOrder(orderId,status,msg){
 }
 function saveCount(){
   var ents=draftEntries();
-  if(ents.some(function(e){return Number.isNaN(e.q);})){S.sheetErr='숫자가 아닌 칸이 있어요.';render();return;}
+  if(ents.some(function(e){return Number.isNaN(e.q);}))return sheetFail('숫자가 아닌 칸이 있어요.');
   var values={};ents.forEach(function(e){values[e.item.id]=e.q;});
   var doc={at:Date.now(),by:S.by.trim().slice(0,20),values:values},id=uid();
   run(function(){return store.addCount(id,doc);}).then(function(ok){
@@ -582,33 +746,41 @@ function saveCount(){
     toast(ents.length+'개 품목 저장 · 주문 필요 '+need+'개');
   });
 }
-function commitCatalog(mutate,okMsg){
-  var bad=null;
-  var list=items().map(function(it){
-    var e=S.edits[it.id];if(!e)return it;
-    var next=Object.assign({},it);
-    if(e.name!==undefined){var nm=e.name.trim().slice(0,40);if(nm){if(nm!==it.name)next.review=false;next.name=nm;}}
-    if(e.threshold!==undefined){var t=num(e.threshold);if(Number.isNaN(t))bad=it.name+' 주문기준';else next.threshold=t;}
-    if(e.unit!==undefined)next.unit=e.unit.trim().slice(0,6);
-    if(e.perBox!==undefined){var p=num(e.perBox);if(Number.isNaN(p))bad=it.name+' 박스당 개수';else next.perBox=p&&p>0?p:null;}
-    return next;
-  });
-  if(bad){toast(bad+'을 숫자로 적어주세요');return;}
-  if(mutate)list=mutate(list);
-  var cat={items:list,updatedAt:Date.now()};
-  run(function(){return store.setCatalog(cat);},okMsg).then(function(ok){if(ok){S.edits={};S.forceRender=true;render();}});
+function readItemForm(){
+  var name=$('#it-name').value.trim().slice(0,40),unit=$('#it-unit').value.trim().slice(0,6),th=num($('#it-th').value),pb=num($('#it-pb').value);
+  if(!name)return {err:'품목명을 적어주세요'};
+  if(Number.isNaN(th))return {err:'주문기준은 숫자로 적어주세요'};
+  if(Number.isNaN(pb))return {err:'박스당 개수는 숫자로 적어주세요'};
+  return {name:name,unit:unit,threshold:th,perBox:pb&&pb>0?pb:null};
 }
-function addItem(catId){
-  var inp=document.getElementById('add-'+catId);var name=inp?inp.value.trim().slice(0,40):'';
-  if(!name){toast('새 품목 이름을 적어주세요');return;}
-  var item={id:catId+'-'+uid(),cat:catId,name:name,unit:'',perBox:null,threshold:null,active:true,review:false};
-  commitCatalog(function(list){return list.concat([item]);},name+' 추가했어요');
+function commitCatalog(mutate,okMsg){
+  var cat={items:mutate(items()),updatedAt:Date.now()};
+  return run(function(){return store.setCatalog(cat);},okMsg);
+}
+function saveItem(id,nextId){
+  var f=readItemForm();if(f.err)return sheetFail(f.err);
+  commitCatalog(function(list){return list.map(function(i){
+    if(i.id!==id)return i;
+    return Object.assign({},i,{name:f.name,unit:f.unit,threshold:f.threshold,perBox:f.perBox,review:f.name!==i.name?false:i.review});
+  });},nextId?null:'저장했어요').then(function(ok){
+    if(!ok)return;
+    if(nextId&&itemById(nextId)){S.sheet={type:'item',id:nextId,seq:true};S.sheetErr='';toast('저장했어요 · 다음 품목');}
+    else S.sheet=null;
+    S.forceRender=true;render();
+  });
+}
+function addItem(){
+  var f=readItemForm();if(f.err)return sheetFail(f.err);
+  var catId=$('#it-cat').value;
+  var item={id:catId+'-'+uid(),cat:catId,name:f.name,unit:f.unit,perBox:f.perBox,threshold:f.threshold,active:true,review:false};
+  commitCatalog(function(list){return list.concat([item]);},f.name+' 추가했어요').then(function(ok){if(ok){S.sheet=null;S.forceRender=true;render();}});
 }
 
 /* ---------- boot ---------- */
 function readRoute(){
   var h=location.hash.slice(1);route=['home','count','log','setup'].indexOf(h)>=0?h:'home';
-  S.sheet=null;S.orderOpen=null;S.forceRender=true;render();window.scrollTo(0,0);
+  if(S.sheet&&S.sheet.type!=='item')S.sheet=null;
+  S.forceRender=true;render();window.scrollTo(0,0);
 }
 window.addEventListener('hashchange',readRoute);
 readRoute();
@@ -624,8 +796,8 @@ document.addEventListener('submit',function(ev){
     API.setCode('');S.loginErr=e.message;S.forceRender=true;render();
   });
 });
-document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible'&&S.mode==='ready')refresh();});
-setInterval(function(){if(document.visibilityState==='visible'&&S.mode==='ready'&&!editingField()&&!S.sheet&&!S.orderOpen)refresh();},60000);
+document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible'&&S.mode==='ready'&&!S.sheet)refresh();});
+setInterval(function(){if(document.visibilityState==='visible'&&S.mode==='ready'&&!editingField()&&!S.sheet)refresh();},60000);
 (function boot(){
   var cache=lsGet(LS_CACHE);
   if(!API.getCode())S.mode='login';

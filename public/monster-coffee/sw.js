@@ -1,6 +1,6 @@
 // 앱 껍데기만 캐시한다(오프라인에서도 화면이 열리게). 데이터 API(Lambda, 다른 도메인)는 건드리지 않는다.
 // 화면 파일은 네트워크 우선 → 배포하면 다음 실행에 바로 반영되고, 오프라인일 때만 캐시를 쓴다.
-const CACHE = 'mc-shell-v1';
+const CACHE = 'mc-shell-v2';
 const SHELL = ['./', 'index.html', 'settle.html', 'app-api.js', 'config.js', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/apple-touch-icon.png'];
 
 self.addEventListener('install', (e) => {
